@@ -25,7 +25,7 @@ const Hero = () => {
   return (
     <>
       {/* ================= HERO ================= */}
-      <section className="relative min-h-[92vh] overflow-hidden bg-black text-white lg:h-screen">
+      <section className="relative min-h-screen overflow-hidden bg-black text-white">
 
         {/* ================= BACKGROUND ================= */}
         <div className="absolute inset-0">
@@ -53,28 +53,28 @@ const Hero = () => {
           </div>
 
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/30 md:bg-black/20" />
+          <div className="absolute inset-0 bg-black/45 md:bg-black/25" />
 
           {/* Left Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/5 md:from-black md:via-black/70 md:to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/20" />
 
           {/* Premium Glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.16),transparent_30%)]" />
 
           {/* Grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:65px_65px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
           {/* Bottom Fade */}
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
         </div>
 
         {/* Floating Glow */}
-        <div className="absolute left-[-100px] top-20 h-[260px] w-[260px] rounded-full bg-yellow-400/10 blur-[120px] sm:h-[320px] sm:w-[320px]" />
+        <div className="absolute left-[-100px] top-10 h-[220px] w-[220px] rounded-full bg-yellow-400/10 blur-[120px] sm:h-[320px] sm:w-[320px]" />
 
-        <div className="absolute bottom-0 right-0 h-[260px] w-[260px] rounded-full bg-orange-500/10 blur-[120px] sm:h-[320px] sm:w-[320px]" />
+        <div className="absolute bottom-0 right-0 h-[220px] w-[220px] rounded-full bg-orange-500/10 blur-[120px] sm:h-[320px] sm:w-[320px]" />
 
         {/* ================= CONTENT ================= */}
-        <div className="relative z-10 mx-auto flex max-w-7xl items-center px-5 pt-24 sm:px-8 lg:min-h-screen lg:px-10 lg:pt-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-10 lg:pb-0 lg:pt-20">
 
           <div className="grid w-full items-center gap-12 lg:grid-cols-[1fr_0.75fr]">
 
@@ -83,66 +83,73 @@ const Hero = () => {
               initial={{ opacity: 0, y: 70 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="pb-12 lg:pb-0"
+              className="pb-4 lg:pb-0"
             >
 
               {/* Badge */}
-              <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-xl sm:px-5">
+              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-2 backdrop-blur-xl sm:gap-3 sm:px-5">
 
                 <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-                <p className="text-[7px] font-semibold uppercase tracking-[0.16em] text-yellow-300 sm:text-[10px] md:text-xs">
+                <p className="text-[7px] font-semibold uppercase tracking-[0.14em] text-yellow-300 sm:text-[10px] md:text-xs">
                   PREMIUM FITNESS EXPERIENCE
                 </p>
               </div>
 
               {/* ================= HEADING ================= */}
-             <h1 className="max-w-full text-[2rem] font-black uppercase leading-[0.92] tracking-[-0.03em] text-white sm:max-w-3xl sm:text-[3.5rem] md:text-[3.7rem] lg:text-[3.8rem]">
+             <h1 className="max-w-full text-[2.3rem] font-black uppercase leading-[0.9] tracking-[-0.04em] text-white xs:text-[2.6rem] sm:max-w-3xl sm:text-[3.5rem] md:text-[3.8rem] lg:text-[4rem]">
 
-  STOP
+  PUSH
   <br />
-  GUESSING.
+  LIMITS.
 
   <span className="mt-2 block bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent drop-shadow-[0_0_45px_rgba(250,204,21,0.35)]">
-    START
+
+    BUILD{" "}
+    
     <br className="sm:hidden" />
-    EVOLVING.
+
+    <span className="hidden sm:inline">&nbsp;</span>
+
+    GREATNESS.
   </span>
 </h1>
 
               {/* Small Premium Line */}
-              <div className="mt-5 flex items-center gap-3">
+              <div className="mt-5 flex flex-wrap items-center gap-3">
 
                 <div className="h-[1px] w-10 bg-yellow-400" />
 
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-yellow-300 sm:text-xs">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-yellow-300 sm:text-xs">
                   ELITE TRANSFORMATION HUB
                 </p>
               </div>
 
               {/* Description */}
-              <p className="mt-5 max-w-[95%] text-[13px] leading-relaxed text-gray-300 sm:max-w-lg sm:text-base md:text-lg">
+              <p className="mt-5 max-w-full text-[13px] leading-relaxed text-gray-300 sm:max-w-lg sm:text-base md:text-lg">
                 Elite coaching, modern equipment, transformation programs,
                 and premium workout experiences crafted to unlock your
                 strongest version at MR WOW FITNESS.
               </p>
 
               {/* ================= BUTTONS ================= */}
-             <div className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
+              <div className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
 
-  {/* Main CTA */}
-  <button className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-4 py-3 text-[11px] font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] sm:w-auto sm:px-7 sm:py-4 sm:text-sm">
+                {/* Main CTA */}
+                <button className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-4 text-[11px] font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] sm:h-14 sm:w-auto sm:px-7 sm:text-sm">
 
-    <span className="truncate">Join MR WOW</span>
+                  <span className="truncate">
+                    Join MR WOW
+                  </span>
 
-    <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
-  </button>
+                  <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
+                </button>
 
-  {/* Secondary */}
-  <button className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.1em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 sm:w-auto sm:px-7 sm:py-4 sm:text-sm">
-    Get 1-Day Pass
-  </button>
-</div>
+                {/* Secondary */}
+                <button className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.05] px-4 text-[11px] font-bold uppercase tracking-[0.1em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 sm:h-14 sm:w-auto sm:px-7 sm:text-sm">
+                  Get 1-Day Pass
+                </button>
+              </div>
             </motion.div>
 
             {/* ================= RIGHT SIDE ================= */}
@@ -154,7 +161,7 @@ const Hero = () => {
             >
 
               {/* Glass Card */}
-              <div className="absolute right-0 top-1/2 z-20 w-[150px] -translate-y-1/2 rounded-[1.7rem] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-2xl">
+              <div className="absolute right-0 top-1/2 z-20 w-[160px] -translate-y-1/2 rounded-[1.8rem] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-2xl">
 
                 {/* Item */}
                 <div className="flex flex-col items-center border-b border-white/10 pb-5 text-center">
@@ -195,13 +202,13 @@ const Hero = () => {
                     <ShieldCheck className="h-5 w-5 text-yellow-400" />
                   </div>
 
-   <h3 className="mt-3 text-lg font-black text-white">
-  PRO GYM
-</h3>
+                  <h3 className="mt-3 text-lg font-black text-white">
+                    PRO GYM
+                  </h3>
 
-<p className="mt-1 text-[8px] uppercase tracking-[0.22em] text-gray-400">
-  Elite Training
-</p>
+                  <p className="mt-1 text-[8px] uppercase tracking-[0.22em] text-gray-400">
+                    Elite Training
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -212,59 +219,59 @@ const Hero = () => {
       {/* ================= MOVING INFO BAR ================= */}
       <section className="relative overflow-hidden border-y border-white/10 bg-[#050505] py-3 sm:py-4">
 
-  {/* Glow */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(250,204,21,0.06),transparent_60%)]" />
+        {/* Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(250,204,21,0.06),transparent_60%)]" />
 
-  {/* Moving Content */}
-  <motion.div
-    animate={{
-      x: ["0%", "-50%"],
-    }}
-    transition={{
-      duration: 22,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-    className="flex w-max items-center gap-6 sm:gap-12"
-  >
+        {/* Moving Content */}
+        <motion.div
+          animate={{
+            x: ["0%", "-50%"],
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="flex w-max items-center gap-6 sm:gap-12"
+        >
 
-    {[...tickerItems, ...tickerItems].map((item, index) => (
-      <div
-        key={index}
-        className="flex items-center gap-3 sm:gap-4"
-      >
+          {[...tickerItems, ...tickerItems].map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-3 sm:gap-4"
+            >
 
-        {/* Icon */}
-        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-yellow-400/15 bg-yellow-400/10 shadow-[0_0_20px_rgba(250,204,21,0.08)] sm:h-9 sm:w-9">
+              {/* Icon */}
+              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-yellow-400/15 bg-yellow-400/10 shadow-[0_0_20px_rgba(250,204,21,0.08)] sm:h-9 sm:w-9">
 
-          {index % 4 === 0 && (
-            <HeartPulse className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
-          )}
+                {index % 4 === 0 && (
+                  <HeartPulse className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
+                )}
 
-          {index % 4 === 1 && (
-            <Dumbbell className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
-          )}
+                {index % 4 === 1 && (
+                  <Dumbbell className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
+                )}
 
-          {index % 4 === 2 && (
-            <Trophy className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
-          )}
+                {index % 4 === 2 && (
+                  <Trophy className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
+                )}
 
-          {index % 4 === 3 && (
-            <ShieldCheck className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
-          )}
-        </div>
+                {index % 4 === 3 && (
+                  <ShieldCheck className="h-3.5 w-3.5 text-yellow-400 sm:h-4 sm:w-4" />
+                )}
+              </div>
 
-        {/* Text */}
-        <p className="whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.14em] text-gray-200 sm:text-[11px] sm:tracking-[0.22em]">
-          {item}
-        </p>
+              {/* Text */}
+              <p className="whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.14em] text-gray-200 sm:text-[11px] sm:tracking-[0.22em]">
+                {item}
+              </p>
 
-        {/* Divider */}
-        <div className="h-4 w-px bg-gradient-to-b from-transparent via-yellow-400/40 to-transparent sm:h-5" />
-      </div>
-    ))}
-  </motion.div>
-</section>
+              {/* Divider */}
+              <div className="h-4 w-px bg-gradient-to-b from-transparent via-yellow-400/40 to-transparent sm:h-5" />
+            </div>
+          ))}
+        </motion.div>
+      </section>
     </>
   );
 };
