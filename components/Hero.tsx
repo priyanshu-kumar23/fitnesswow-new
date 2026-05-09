@@ -1,5 +1,7 @@
-"use client";
 
+
+"use client";
+import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -53,10 +55,10 @@ const Hero = () => {
           </div>
 
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/45 md:bg-black/25" />
+          <div className="absolute inset-0 bg-black/45 md:bg-black/15" />
 
           {/* Left Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/55 to-black/20" />
 
           {/* Premium Glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.16),transparent_30%)]" />
@@ -136,19 +138,25 @@ const Hero = () => {
               <div className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
 
                 {/* Main CTA */}
-                <button className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-4 text-[11px] font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] sm:h-14 sm:w-auto sm:px-7 sm:text-sm">
+              <Link
+  href="/joinnow"
+  className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-4 text-[11px] font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] sm:h-14 sm:w-auto sm:px-7 sm:text-sm"
+>
 
-                  <span className="truncate">
-                    Join MR WOW
-                  </span>
+  <span className="truncate">
+    Join MR WOW
+  </span>
 
-                  <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
-                </button>
+  <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
+</Link>
 
                 {/* Secondary */}
-                <button className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.05] px-4 text-[11px] font-bold uppercase tracking-[0.1em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 sm:h-14 sm:w-auto sm:px-7 sm:text-sm">
-                  Get 1-Day Pass
-                </button>
+             <Link
+  href="/onedaypass"
+  className="flex h-12 w-full items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] px-4 text-[11px] font-bold uppercase tracking-[0.1em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 sm:h-14 sm:w-auto sm:px-7 sm:text-sm"
+>
+  Get 1-Day Pass
+</Link>
               </div>
             </motion.div>
 

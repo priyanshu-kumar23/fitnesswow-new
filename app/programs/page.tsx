@@ -25,7 +25,7 @@ export default function ProgramsPage() {
             MR WOW FITNESS
           </div>
 
-          <h1 className="mt-8 text-5xl font-black uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[100px]">
+          <h1 className="mt-8 text-5xl font-black uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[70px]">
 
             TRAIN
             <br />

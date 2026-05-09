@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 const navItems = [
   { name: "About", href: "/about" },
   { name: "Programs", href: "/programs" },
-  { name: "Pricing", href: "/pricing" },
+  { name: "Membership", href: "/pricing" },
   { name: "Testimonials", href: "/testimonials" },
   { name: "Contact", href: "/contact" },
 ];
@@ -75,36 +75,34 @@ const Navbar = () => {
             >
 
               {/* Logo */}
-          {/* Logo */}
-<div className="relative h-11 w-11 sm:h-12 sm:w-12 overflow-visible flex-shrink-0">
+              <div className="relative h-11 w-11 overflow-visible flex-shrink-0 sm:h-12 sm:w-12">
 
-  <div className="absolute inset-0 scale-[1.45] rounded-2xl border border-yellow-400/20 bg-black shadow-[0_0_25px_rgba(250,204,21,0.25)] overflow-hidden">
+                <div className="absolute inset-0 scale-[1.45] overflow-hidden rounded-2xl border border-yellow-400/20 bg-black shadow-[0_0_25px_rgba(250,204,21,0.25)]">
 
-    <Image
-      src="/logo.png"
-      alt="MR WOW FITNESS"
-      fill
-      className="object-cover"
-    />
-  </div>
-</div>
+                  <Image
+                    src="/logo.png"
+                    alt="MR WOW FITNESS"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
 
               {/* Text */}
-             {/* Text */}
-<div className="ml-2 flex flex-col items-center leading-[0.85]">
+              <div className="ml-2 flex flex-col items-center leading-[0.85]">
 
-  <h1 className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 bg-clip-text text-transparent text-sm font-black uppercase tracking-[0.22em] sm:text-lg lg:text-xl">
-    MR WOW
-  </h1>
+                <h1 className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 bg-clip-text text-sm font-black uppercase tracking-[0.22em] text-transparent sm:text-lg lg:text-xl">
+                  MR WOW
+                </h1>
 
-  <p className="mt-[3px] text-center text-[8px] font-semibold uppercase tracking-[0.38em] text-white/75 sm:text-[9px]">
-    FITNESS
-  </p>
-</div>
+                <p className="mt-[3px] text-center text-[8px] font-semibold uppercase tracking-[0.38em] text-white/75 sm:text-[9px]">
+                  FITNESS
+                </p>
+              </div>
             </Link>
 
             {/* ================= DESKTOP NAV ================= */}
-            <nav className="relative z-10 hidden items-center gap-6 xl:gap-8 lg:flex">
+            <nav className="relative z-10 hidden items-center gap-6 lg:flex xl:gap-8">
 
               {navItems.map((item) => (
                 <Link
@@ -123,8 +121,11 @@ const Navbar = () => {
             {/* ================= RIGHT ================= */}
             <div className="relative z-10 flex items-center gap-2 sm:gap-3">
 
-              {/* Desktop Button */}
-              <button className="group relative hidden overflow-hidden rounded-full bg-yellow-400 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(250,204,21,0.45)] sm:flex sm:items-center sm:gap-2 lg:px-6 lg:text-xs">
+              {/* ================= DESKTOP JOIN BUTTON ================= */}
+              <Link
+                href="/joinnow"
+                className="group relative hidden overflow-hidden rounded-full bg-yellow-400 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(250,204,21,0.45)] sm:flex sm:items-center sm:gap-2 lg:px-6 lg:text-xs"
+              >
 
                 <span className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -133,9 +134,9 @@ const Navbar = () => {
 
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-              </button>
+              </Link>
 
-              {/* ================= MOBILE BUTTON ================= */}
+              {/* ================= MOBILE MENU BUTTON ================= */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 lg:hidden"
@@ -193,20 +194,26 @@ const Navbar = () => {
                     </motion.div>
                   ))}
 
-                  {/* CTA */}
-                  <motion.button
+                  {/* ================= MOBILE JOIN BUTTON ================= */}
+                  <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
                       delay: 0.25,
                     }}
-                    className="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 py-5 text-sm font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.4)]"
                   >
 
-                    Join Now
+                    <Link
+                      href="/joinnow"
+                      onClick={() => setIsOpen(false)}
+                      className="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 py-5 text-sm font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.4)]"
+                    >
 
-                    <ArrowRight className="h-5 w-5" />
-                  </motion.button>
+                      Join Now
+
+                      <ArrowRight className="h-5 w-5" />
+                    </Link>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>

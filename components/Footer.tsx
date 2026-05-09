@@ -57,7 +57,7 @@ const Footer = () => {
 
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/rahulrao0607"
+                href="https://www.instagram.com/mr.wowfitness?igsh=ZDJ1c3M0b2c4Z3Ns"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-pink-500/40 hover:bg-pink-500/10"
@@ -209,7 +209,7 @@ const Footer = () => {
                   </p>
 
                   <p className="mt-2 text-sm text-gray-400">
-                    Open 18 Hours
+                    Open 18/6 Hours
                   </p>
                 </div>
               </div>

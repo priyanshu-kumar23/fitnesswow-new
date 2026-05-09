@@ -25,7 +25,7 @@ const features = [
   },
   {
     icon: Clock3,
-    title: "24/7 Access",
+    title: "18/6 Access",
     description:
       "Workout anytime with flexible gym access designed for your lifestyle.",
   },
