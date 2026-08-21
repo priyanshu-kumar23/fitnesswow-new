@@ -1,3 +1,5 @@
+import { Check } from "lucide-react";
+
 export default function PricingPage() {
   const plans = [
     {
@@ -119,17 +121,17 @@ export default function PricingPage() {
             {plans.map((plan, index) => (
               <div
                 key={index}
-                className={`relative overflow-hidden rounded-[32px] border p-7 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 sm:p-8 ${
+                className={`relative overflow-hidden rounded-[32px] border p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 sm:p-7 lg:p-8 ${
                   plan.popular
-                    ? "border-yellow-400/40 bg-yellow-400/[0.06] shadow-[0_0_60px_rgba(250,204,21,0.12)]"
+                    ? "glow-yellow border-yellow-400/40 bg-yellow-400/[0.06] shadow-[0_0_60px_rgba(250,204,21,0.12)]"
                     : "border-white/10 bg-white/[0.03]"
                 }`}
               >
 
                 {/* Popular Badge */}
                 {plan.popular && (
-                  <div className="absolute right-4 top-4 rounded-full bg-yellow-400 px-4 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-black">
-                    Most Popular
+                  <div className="absolute right-4 top-4 whitespace-nowrap rounded-full bg-yellow-400 px-3 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-black sm:px-4 sm:text-[10px] sm:tracking-[0.18em]">
+                    Best Value
                   </div>
                 )}
 
@@ -162,8 +164,10 @@ export default function PricingPage() {
                       className="flex items-center gap-3"
                     >
 
-                      {/* Dot */}
-                      <div className="h-2 w-2 rounded-full bg-yellow-400" />
+                      {/* Check */}
+                      <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-yellow-400/10">
+                        <Check className="h-3.5 w-3.5 text-yellow-400" />
+                      </span>
 
                       {/* Feature */}
                       <p className="text-sm text-gray-300 sm:text-base">

@@ -55,7 +55,7 @@ const PricingSection = () => {
                     alt="Rahul Yadav"
                     width={1000}
                     height={1200}
-                    className="h-[320px] w-full object-cover object-top transition-transform duration-700 hover:scale-105 sm:h-[500px] lg:h-[620px]"
+                    className="aspect-[3/4] w-full object-cover object-top transition-transform duration-700 hover:scale-105 sm:aspect-auto sm:h-[500px] lg:h-[620px]"
                   />
 
                   {/* Overlay */}
@@ -127,18 +127,20 @@ const PricingSection = () => {
               </p>
 
               {/* Description */}
-              <p className="mt-6 text-sm leading-relaxed text-gray-300 sm:mt-8 lg:text-base">
-                Rahul Yadav built MR WOW FITNESS with a mission to create
-                a premium transformation-focused gym where discipline,
-                confidence, strength, and lifestyle transformation come together.
-              </p>
+              <div className="mt-6 border-l-2 border-yellow-400/70 pl-4 sm:mt-8 sm:border-l-0 sm:pl-0">
+                <p className="text-sm leading-relaxed text-gray-300 lg:text-base">
+                  Rahul Yadav built MR WOW FITNESS with a mission to create
+                  a premium transformation-focused gym where discipline,
+                  confidence, strength, and lifestyle transformation come together.
+                </p>
 
-              <p className="mt-5 text-sm leading-relaxed text-gray-400 sm:mt-6 lg:text-base">
-                From elite workout programs and high-energy coaching
-                to luxury interiors and modern equipment — every part
-                of the gym is designed to push members toward their
-                strongest version.
-              </p>
+                <p className="mt-5 text-sm leading-relaxed text-gray-400 lg:text-base">
+                  From elite workout programs and high-energy coaching
+                  to luxury interiors and modern equipment — every part
+                  of the gym is designed to push members toward their
+                  strongest version.
+                </p>
+              </div>
 
               {/* Stats */}
               <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">

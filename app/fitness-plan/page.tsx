@@ -221,10 +221,10 @@ export default function FitnessPlanPage() {
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`flex h-11 snap-center items-center whitespace-nowrap rounded-full border px-5 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 active:scale-95 ${
+                className={`flex h-11 snap-center items-center whitespace-nowrap rounded-full border px-4 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 active:scale-95 sm:px-5 ${
                   activeDay === day
-                    ? "glow-yellow border-yellow-400/60 bg-yellow-400/15 text-yellow-300"
-                    : "border-white/10 bg-white/[0.03] text-gray-400 hover:border-yellow-400/20 hover:text-yellow-200"
+                    ? "glow-yellow border-yellow-400 bg-yellow-400 text-black"
+                    : "border-white/20 bg-white/[0.03] text-gray-400 hover:border-yellow-400/30 hover:text-yellow-200 sm:border-white/10"
                 }`}
               >
                 {day}
@@ -279,7 +279,7 @@ export default function FitnessPlanPage() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="mb-6 flex flex-col items-center justify-between gap-3 rounded-2xl border border-yellow-400/10 bg-white/[0.03] px-5 py-4 text-center sm:flex-row sm:text-left">
-                    <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white">
+                    <p className="text-lg font-black uppercase tracking-[0.06em] text-yellow-400 sm:text-sm sm:font-semibold sm:tracking-[0.14em] sm:text-white">
                       {selectedDay.day} · {selectedDay.focus}
                     </p>
                     <p className="glow-yellow-text text-sm font-black text-yellow-400">
@@ -298,16 +298,16 @@ export default function FitnessPlanPage() {
                     </p>
                   </div>
 
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  <div className="flex flex-col divide-y divide-white/5 md:grid md:grid-cols-2 md:gap-4 md:divide-y-0 lg:grid-cols-3">
                     {selectedDay.exercises.map((ex) => {
                       const ExIcon = exerciseIconMap[ex.type];
 
                       return (
                       <div
                         key={ex.name}
-                        className="group relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30"
+                        className="group relative overflow-hidden py-4 transition-all duration-300 max-md:first:pt-0 md:rounded-[1.6rem] md:border md:border-white/10 md:bg-gradient-to-b md:from-white/[0.06] md:to-white/[0.02] md:p-5 md:hover:-translate-y-1 md:hover:border-yellow-400/30"
                       >
-                        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <div className="absolute inset-x-0 top-0 hidden h-[2px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block" />
 
                         <div className="flex items-start gap-4">
                           <span className="inline-flex flex-shrink-0 items-center justify-center rounded-lg bg-yellow-400/10 p-2">
@@ -319,14 +319,14 @@ export default function FitnessPlanPage() {
                               {ex.name}
                             </h3>
 
-                            <span className="mt-1.5 inline-block rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-yellow-300">
+                            <span className="mt-1 inline-block text-sm font-bold text-yellow-400 md:mt-1.5 md:rounded-full md:border md:border-yellow-400/20 md:bg-yellow-400/10 md:px-3 md:py-1 md:text-[10px] md:uppercase md:tracking-[0.1em] md:text-yellow-300">
                               {config.sets} x {ex.reps}
                             </span>
                           </div>
                         </div>
 
                         {/* Set progress indicator */}
-                        <div className="mt-4 flex gap-1.5">
+                        <div className="mt-3 flex gap-1.5 pl-[52px] md:mt-4 md:pl-0">
                           {Array.from({ length: config.sets }).map((_, i) => (
                             <span
                               key={i}
@@ -335,12 +335,12 @@ export default function FitnessPlanPage() {
                           ))}
                         </div>
 
-                        <p className="mt-3 flex items-center gap-1.5 text-xs uppercase tracking-[0.14em] text-gray-500">
+                        <p className="mt-2 flex items-center gap-1.5 pl-[52px] text-xs uppercase tracking-[0.14em] text-gray-500 md:mt-3 md:pl-0">
                           <Timer className="h-3.5 w-3.5 flex-shrink-0" />
                           Rest {config.rest}
                         </p>
 
-                        <p className="mt-3 flex items-start gap-1.5 text-sm leading-relaxed text-gray-400">
+                        <p className="mt-2 flex items-start gap-1.5 pl-[52px] text-sm leading-relaxed text-gray-400 md:mt-3 md:pl-0">
                           <Target className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-yellow-400/70" />
                           <span>{ex.tip}</span>
                         </p>

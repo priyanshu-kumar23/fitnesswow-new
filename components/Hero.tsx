@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <>
       {/* ================= HERO ================= */}
-      <section className="relative min-h-screen overflow-hidden bg-black text-white">
+      <section className="relative h-screen overflow-hidden bg-black text-white md:min-h-screen md:h-auto">
 
         {/* ================= BACKGROUND ================= */}
         <div className="absolute inset-0">
@@ -58,7 +58,13 @@ const Hero = () => {
           <div className="absolute inset-0 bg-black/60 md:bg-black/15" />
 
           {/* Mobile Bottom-Up Gradient (keeps text readable over the photo) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30 md:hidden" />
+          <div
+            className="absolute inset-0 md:hidden"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,1) 100%)",
+            }}
+          />
 
           {/* Left Gradient (desktop) */}
           <div className="absolute inset-0 hidden bg-gradient-to-r from-black via-black/55 to-black/20 md:block" />
@@ -79,7 +85,7 @@ const Hero = () => {
         <div className="absolute bottom-0 right-0 h-[220px] w-[220px] rounded-full bg-orange-500/10 blur-[120px] sm:h-[320px] sm:w-[320px]" />
 
         {/* ================= CONTENT ================= */}
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-10 lg:pb-0 lg:pt-20">
+        <div className="relative z-10 mx-auto flex h-full min-h-screen max-w-7xl items-end px-4 pb-32 pt-28 sm:px-6 sm:pt-32 lg:h-auto lg:items-center lg:px-10 lg:pb-0 lg:pt-20">
 
           <div className="grid w-full items-center gap-12 lg:grid-cols-[1fr_0.75fr]">
 
@@ -92,17 +98,17 @@ const Hero = () => {
             >
 
               {/* Badge */}
-              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-2 backdrop-blur-xl sm:gap-3 sm:px-5">
+              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 backdrop-blur-xl sm:gap-3 sm:border-yellow-400/20 sm:px-5 sm:py-2">
 
-                <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
+                <span className="pulse-dot h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-                <p className="text-xs uppercase tracking-widest text-yellow-400">
+                <p className="text-[10px] tracking-[0.2em] uppercase text-yellow-400 sm:text-xs sm:tracking-widest">
                   PREMIUM FITNESS EXPERIENCE
                 </p>
               </div>
 
               {/* ================= HEADING ================= */}
-             <h1 className="max-w-full text-3xl font-black uppercase leading-none tracking-tight text-white sm:max-w-3xl sm:text-4xl md:text-5xl xl:text-6xl">
+             <h1 className="max-w-full text-4xl font-black uppercase leading-none tracking-tight text-white sm:max-w-3xl sm:text-4xl md:text-5xl xl:text-6xl">
 
   PUSH
   <br />
@@ -125,13 +131,13 @@ const Hero = () => {
 
                 <div className="h-px w-8 bg-yellow-400" />
 
-                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-yellow-400 sm:text-xs sm:tracking-widest">
                   ELITE TRANSFORMATION HUB
                 </p>
               </div>
 
               {/* Description */}
-              <p className="mt-5 max-w-full text-sm leading-relaxed text-gray-300 sm:max-w-md lg:text-base">
+              <p className="mx-auto mt-5 max-w-[280px] text-xs leading-relaxed text-gray-300 sm:max-w-md sm:text-sm lg:text-base">
                 Elite coaching, modern equipment, transformation programs,
                 and premium workout experiences crafted to unlock your
                 strongest version at MR WOW FITNESS.
@@ -143,7 +149,7 @@ const Hero = () => {
                 {/* Main CTA */}
               <Link
   href="/joinnow"
-  className="group flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-8 py-3 text-sm font-bold uppercase tracking-[0.06em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] active:scale-95 sm:w-auto"
+  className="shimmer group flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-8 py-4 text-sm font-black uppercase tracking-[0.06em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] active:scale-95 sm:py-3 sm:font-bold sm:w-auto"
 >
 
   <span className="truncate">
@@ -156,7 +162,7 @@ const Hero = () => {
                 {/* Secondary */}
              <Link
   href="/onedaypass"
-  className="flex min-h-12 w-full items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] px-8 py-3 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 active:scale-95 sm:w-auto"
+  className="flex min-h-12 w-full items-center justify-center rounded-2xl border border-white/20 bg-white/[0.05] px-8 py-4 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 active:scale-95 sm:border-white/10 sm:py-3 sm:w-auto"
 >
   Get 1-Day Pass
 </Link>
@@ -223,6 +229,31 @@ const Hero = () => {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+
+        {/* ================= MOBILE BOTTOM STATS STRIP ================= */}
+        <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-black/60 py-3 backdrop-blur-xl lg:hidden">
+          <div className="mx-auto flex max-w-md items-center justify-center gap-3 px-6">
+
+            <div className="flex flex-1 flex-col items-center">
+              <span className="text-sm font-bold text-yellow-400">500+</span>
+              <span className="text-[9px] uppercase tracking-wider text-gray-400">Members</span>
+            </div>
+
+            <div className="h-8 w-px flex-shrink-0 bg-white/10" />
+
+            <div className="flex flex-1 flex-col items-center">
+              <span className="text-sm font-bold text-yellow-400">3K+</span>
+              <span className="text-[9px] uppercase tracking-wider text-gray-400">Transforms</span>
+            </div>
+
+            <div className="h-8 w-px flex-shrink-0 bg-white/10" />
+
+            <div className="flex flex-1 flex-col items-center">
+              <span className="text-sm font-bold text-yellow-400">Pro</span>
+              <span className="text-[9px] uppercase tracking-wider text-gray-400">Gym</span>
+            </div>
           </div>
         </div>
       </section>

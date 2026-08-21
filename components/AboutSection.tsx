@@ -99,7 +99,7 @@ const AboutSection = () => {
               <div className="absolute left-0 top-0 h-40 w-40 rounded-full bg-yellow-400/10 blur-3xl" />
 
               {/* Carousel */}
-              <div className="relative h-[280px] overflow-hidden rounded-[1.5rem] sm:h-[420px] lg:h-[520px]">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] sm:aspect-auto sm:h-[420px] lg:h-[520px]">
 
                 {images.map((img, index) => (
                   <Image
@@ -158,17 +158,19 @@ const AboutSection = () => {
           >
 
             {/* Intro */}
-            <p className="text-sm leading-relaxed text-gray-300 lg:text-base">
-              At MR WOW FITNESS, we’re passionate about empowering people
-              to transform their bodies, mindset, and lifestyle through
-              premium fitness experiences and elite training programs.
-            </p>
+            <div className="border-l-2 border-yellow-400/70 pl-4 sm:border-l-0 sm:pl-0">
+              <p className="text-sm leading-relaxed text-gray-300 lg:text-base">
+                At MR WOW FITNESS, we’re passionate about empowering people
+                to transform their bodies, mindset, and lifestyle through
+                premium fitness experiences and elite training programs.
+              </p>
 
-            <p className="mt-5 text-sm leading-relaxed text-gray-300 sm:mt-6 lg:text-base">
-              Our gym combines modern equipment, certified trainers,
-              high-energy workouts, and a motivating atmosphere designed
-              to help you push beyond your limits and unlock your best version.
-            </p>
+              <p className="mt-5 text-sm leading-relaxed text-gray-300 sm:mt-6 lg:text-base">
+                Our gym combines modern equipment, certified trainers,
+                high-energy workouts, and a motivating atmosphere designed
+                to help you push beyond your limits and unlock your best version.
+              </p>
+            </div>
 
             {/* Mission */}
             <div className="mt-8 sm:mt-10">

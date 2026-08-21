@@ -134,7 +134,7 @@ const TestimonialsSection = () => {
                 </div>
 
                 {/* Review */}
-                <p className="mt-6 text-sm leading-relaxed text-gray-300 sm:mt-8 lg:text-base">
+                <p className="mt-6 text-sm italic leading-relaxed text-gray-300 sm:mt-8 lg:text-base">
                   {testimonial.review}
                 </p>
 

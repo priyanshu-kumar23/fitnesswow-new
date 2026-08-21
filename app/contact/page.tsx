@@ -143,7 +143,7 @@ const ContactPage = () => {
                   <input
                     type="text"
                     placeholder="Enter your name"
-                    className="h-12 w-full rounded-2xl border border-white/10 bg-black/50 px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/40 sm:h-14 sm:px-5 sm:text-base"
+                    className="h-12 w-full rounded-2xl border border-white/10 bg-zinc-900 px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 sm:h-14 sm:px-5 sm:text-base"
                   />
                 </div>
 
@@ -156,7 +156,7 @@ const ContactPage = () => {
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="h-12 w-full rounded-2xl border border-white/10 bg-black/50 px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/40 sm:h-14 sm:px-5 sm:text-base"
+                    className="h-12 w-full rounded-2xl border border-white/10 bg-zinc-900 px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 sm:h-14 sm:px-5 sm:text-base"
                   />
                 </div>
 
@@ -169,7 +169,7 @@ const ContactPage = () => {
                   <textarea
                     rows={5}
                     placeholder="Write your message..."
-                    className="w-full rounded-2xl border border-white/10 bg-black/50 p-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/40 sm:p-5 sm:text-base"
+                    className="w-full rounded-2xl border border-white/10 bg-zinc-900 p-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 sm:p-5 sm:text-base"
                   />
                 </div>
 

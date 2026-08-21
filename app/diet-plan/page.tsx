@@ -199,7 +199,7 @@ export default function DietPlanPage() {
         </p>
 
         {/* ================= VEG / NON-VEG TOGGLE ================= */}
-        <div className="mx-auto mt-8 flex w-full max-w-xs items-center rounded-full border border-white/10 bg-white/[0.04] p-1.5 backdrop-blur-xl">
+        <div className="mx-auto mt-8 flex w-full items-center rounded-full border border-white/10 bg-white/[0.04] p-1.5 backdrop-blur-xl sm:max-w-xs">
 
           <button
             onClick={() => setDietType("veg")}
@@ -235,10 +235,10 @@ export default function DietPlanPage() {
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`flex h-11 snap-center items-center whitespace-nowrap rounded-full border px-5 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 active:scale-95 ${
+                className={`flex h-11 snap-center items-center whitespace-nowrap rounded-full border px-4 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 active:scale-95 sm:px-5 ${
                   activeDay === day
-                    ? "glow-yellow border-yellow-400/60 bg-yellow-400/15 text-yellow-300"
-                    : "border-white/10 bg-white/[0.03] text-gray-400 hover:border-yellow-400/20 hover:text-yellow-200"
+                    ? "glow-yellow border-yellow-400 bg-yellow-400 text-black"
+                    : "border-white/20 bg-white/[0.03] text-gray-400 hover:border-yellow-400/30 hover:text-yellow-200 sm:border-white/10"
                 }`}
               >
                 {day}
@@ -276,31 +276,35 @@ export default function DietPlanPage() {
                 return (
                 <div
                   key={meal.label}
-                  className="group relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30"
+                  className="group relative overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 p-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30 sm:rounded-[1.6rem] sm:border-white/10 sm:bg-gradient-to-b sm:from-white/[0.06] sm:to-white/[0.02] sm:p-5"
                 >
                   <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  <div className="flex items-center justify-between">
-                    <div className="inline-flex items-center justify-center rounded-lg bg-yellow-400/10 p-2">
+                  <div className="flex items-start gap-4">
+                    <div className="inline-flex flex-shrink-0 items-center justify-center rounded-lg bg-yellow-400/10 p-2">
                       <MealIcon className="h-5 w-5 text-yellow-400" />
                     </div>
 
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-lg font-bold uppercase tracking-[0.02em] text-white">
+                        {meal.label}
+                      </h3>
+
+                      <p className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-yellow-400/70">
+                        {meal.time}
+                      </p>
+
+                      <p className="mt-2 text-sm leading-relaxed text-gray-400">
+                        {meal.text}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 flex justify-end">
                     <span className="rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-yellow-300">
                       {meal.calories} kcal
                     </span>
                   </div>
-
-                  <h3 className="mt-4 text-lg font-bold uppercase tracking-[0.02em] text-white">
-                    {meal.label}
-                  </h3>
-
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.16em] text-yellow-400/70">
-                    {meal.time}
-                  </p>
-
-                  <p className="mt-3 text-sm leading-relaxed text-gray-400">
-                    {meal.text}
-                  </p>
                 </div>
                 );
               })}

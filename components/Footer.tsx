@@ -31,10 +31,10 @@ const Footer = () => {
       <div className="relative z-10">
 
         {/* ================= TOP ================= */}
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr_1.2fr] lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-10 text-center sm:px-8 sm:py-16 lg:grid-cols-[1.2fr_1fr_1fr_1.2fr] lg:gap-12 lg:px-10 lg:text-left">
 
           {/* ================= BRAND ================= */}
-          <div>
+          <div className="flex flex-col items-center lg:items-start">
 
             <Link href="/" className="inline-block">
               <Image
@@ -53,7 +53,7 @@ const Footer = () => {
             </p>
 
             {/* Social */}
-            <div className="mt-7 flex items-center gap-4">
+            <div className="mt-7 flex items-center justify-center gap-4 lg:justify-start">
 
               {/* Instagram */}
               <a
@@ -90,7 +90,7 @@ const Footer = () => {
               Quick Links
             </h3>
 
-            <div className="mt-6 flex flex-col gap-4">
+            <div className="mt-6 grid grid-cols-2 justify-items-center gap-x-4 gap-y-4 lg:flex lg:flex-col lg:justify-items-start lg:gap-4">
 
               {[
                 { name: "Home", href: "/" },
@@ -121,7 +121,7 @@ const Footer = () => {
               Our Services
             </h3>
 
-            <div className="mt-6 flex flex-col gap-4">
+            <div className="mt-6 flex flex-col items-center gap-4 lg:items-start">
 
               {[
                 "Strength Training",
@@ -136,7 +136,7 @@ const Footer = () => {
                   key={item}
                   className="flex items-center gap-3 text-sm text-gray-400 sm:text-base"
                 >
-                  <span className="h-2 w-2 rounded-full bg-yellow-400" />
+                  <span className="h-2 w-2 flex-shrink-0 rounded-full bg-yellow-400" />
 
                   {item}
                 </div>
@@ -151,10 +151,10 @@ const Footer = () => {
               Contact Info
             </h3>
 
-            <div className="mt-6 space-y-5">
+            <div className="mt-6 space-y-6 lg:space-y-5">
 
               {/* Address */}
-              <div className="flex items-start gap-4">
+              <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
 
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-yellow-400/20 bg-yellow-400/10">
                   <MapPin className="h-5 w-5 text-yellow-400" />
@@ -176,7 +176,7 @@ const Footer = () => {
               </div>
 
               {/* Phone */}
-              <div className="flex items-start gap-4">
+              <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
 
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-yellow-400/20 bg-yellow-400/10">
                   <Phone className="h-5 w-5 text-yellow-400" />
@@ -197,7 +197,7 @@ const Footer = () => {
               </div>
 
               {/* Timing */}
-              <div className="flex items-start gap-4">
+              <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
 
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-yellow-400/20 bg-yellow-400/10">
                   <Clock3 className="h-5 w-5 text-yellow-400" />

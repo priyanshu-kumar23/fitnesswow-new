@@ -14,6 +14,7 @@ import {
 const services = [
   {
     title: "Strength Training",
+    tag: "STRENGTH",
     icon: Dumbbell,
     description:
       "Build muscle mass, improve endurance, and increase strength using advanced free weights and resistance training.",
@@ -26,6 +27,7 @@ const services = [
 
   {
     title: "Cardio Training",
+    tag: "CARDIO",
     icon: HeartPulse,
     description:
       "Improve stamina, burn calories, and boost heart health with high-performance cardio programs.",
@@ -38,6 +40,7 @@ const services = [
 
   {
     title: "Personal Training",
+    tag: "1-ON-1",
     icon: Users,
     description:
       "Get one-on-one coaching, customized workouts, nutrition plans, and expert guidance.",
@@ -50,6 +53,7 @@ const services = [
 
   {
     title: "CrossFit & Functional",
+    tag: "CROSSFIT",
     icon: Flame,
     description:
       "Enhance agility, flexibility, mobility, and core strength with functional workouts.",
@@ -62,6 +66,7 @@ const services = [
 
   {
     title: "Weight Loss Programs",
+    tag: "FAT LOSS",
     icon: Target,
     description:
       "Scientifically designed transformation programs for fat loss and body toning.",
@@ -74,6 +79,7 @@ const services = [
 
   {
     title: "Sports Training",
+    tag: "SPORTS",
     icon: Trophy,
     description:
       "Specialized athletic training programs to improve speed, endurance, and performance.",
@@ -86,6 +92,7 @@ const services = [
 
   {
     title: "Group Fitness",
+    tag: "GROUP",
     icon: Users,
     description:
       "Experience high-energy group classes designed for motivation and maximum results.",
@@ -98,6 +105,7 @@ const services = [
 
   {
     title: "Endurance & Cycling",
+    tag: "ENDURANCE",
     icon: Bike,
     description:
       "Boost cardiovascular fitness with cycling and endurance-focused routines.",
@@ -187,7 +195,7 @@ const ProgramsSection = () => {
 
                 viewport={{ once: true }}
 
-                className="group relative min-w-[85%] snap-center overflow-hidden rounded-[1.8rem] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.03] p-5 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/30 hover:shadow-[0_0_45px_rgba(250,204,21,0.08)] sm:min-w-0 sm:rounded-[2rem] sm:p-7"
+                className="group relative w-[75vw] shrink-0 snap-center overflow-hidden rounded-[1.8rem] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.03] p-5 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/30 hover:shadow-[0_0_45px_rgba(250,204,21,0.08)] active:scale-[0.98] sm:w-auto sm:min-w-0 sm:shrink sm:rounded-[2rem] sm:p-7"
               >
 
                 {/* Premium Top Border */}
@@ -200,7 +208,15 @@ const ProgramsSection = () => {
 
                   {/* Corner Glow */}
                   <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-yellow-400/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:h-40 sm:w-40" />
+
+                  {/* Mobile Ambient Glow (decorative "photo" backdrop) */}
+                  <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.22),transparent_70%)] sm:hidden" />
                 </>
+
+                {/* Mobile Category Pill */}
+                <span className="mb-4 inline-block rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-yellow-400 sm:hidden">
+                  {service.tag}
+                </span>
 
                 {/* Icon */}
                 <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-[1.2rem] border border-yellow-400/20 bg-gradient-to-br from-yellow-400/20 to-orange-500/10 shadow-[0_0_30px_rgba(250,204,21,0.08)] transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_45px_rgba(250,204,21,0.18)] sm:h-16 sm:w-16 sm:rounded-[1.4rem]">
@@ -211,7 +227,7 @@ const ProgramsSection = () => {
                 {/* Content */}
                 <div className="relative z-10 mt-6 sm:mt-7">
 
-                  <h3 className="text-lg font-bold uppercase leading-snug text-white">
+                  <h3 className="text-xl font-bold uppercase leading-snug text-white sm:text-lg">
                     {service.title}
                   </h3>
 
@@ -239,6 +255,11 @@ const ProgramsSection = () => {
             );
           })}
         </div>
+
+        {/* Swipe Hint (mobile only) */}
+        <p className="mt-3 text-center text-[10px] uppercase tracking-widest text-gray-500 sm:hidden">
+          Swipe →
+        </p>
       </div>
     </section>
   );

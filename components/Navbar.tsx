@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, ArrowRight, X, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 
 type NavChild = {
@@ -71,14 +71,14 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.7 }}
-      className="fixed left-0 top-0 z-[9999] w-full px-3 py-3 sm:px-4"
+      className="fixed left-0 top-0 z-[9999] w-full px-0 py-0 sm:px-4 sm:py-3"
     >
 
       {/* ================= NAVBAR CONTAINER ================= */}
-      <div className="relative mx-auto max-w-7xl overflow-visible rounded-2xl">
+      <div className="relative mx-auto max-w-7xl overflow-visible rounded-none sm:rounded-2xl">
 
         {/* ================= MOBILE SPARK ================= */}
-        <div className="absolute inset-x-0 top-0 h-[2px] overflow-hidden rounded-t-2xl xl:hidden">
+        <div className="absolute inset-x-0 top-0 hidden h-[2px] overflow-hidden rounded-t-2xl sm:block xl:hidden">
 
           <motion.div
             animate={{
@@ -94,12 +94,12 @@ const Navbar = () => {
         </div>
 
         {/* ================= MAIN NAVBAR ================= */}
-        <div className="relative rounded-2xl border border-yellow-400/10 bg-black/65 backdrop-blur-2xl">
+        <div className="relative rounded-none border-0 border-b border-white/10 bg-black/80 backdrop-blur-xl sm:rounded-2xl sm:border sm:border-yellow-400/10 sm:bg-black/65 sm:backdrop-blur-2xl">
 
           {/* Glow */}
-          <div className="absolute left-0 top-0 h-full w-32 bg-yellow-400/5 blur-3xl" />
+          <div className="absolute left-0 top-0 hidden h-full w-32 bg-yellow-400/5 blur-3xl sm:block" />
 
-          <div className="absolute right-0 top-0 h-full w-32 bg-orange-500/5 blur-3xl" />
+          <div className="absolute right-0 top-0 hidden h-full w-32 bg-orange-500/5 blur-3xl sm:block" />
 
           {/* ================= TOP ROW ================= */}
           <div className="relative flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4">
@@ -206,24 +206,36 @@ const Navbar = () => {
                 </span>
               </Link>
 
-              {/* ================= MOBILE MENU BUTTON ================= */}
+              {/* ================= MOBILE MENU BUTTON (3-line to X morph) ================= */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isOpen}
                 className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 active:scale-95 xl:hidden"
               >
-                {isOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
+                <span className="flex h-4 w-5 flex-col justify-between">
+                  <span
+                    className={`h-[2px] w-full origin-center rounded-full bg-current transition-all duration-300 ${
+                      isOpen ? "translate-y-[7px] rotate-45" : ""
+                    }`}
+                  />
+                  <span
+                    className={`h-[2px] w-full rounded-full bg-current transition-all duration-300 ${
+                      isOpen ? "opacity-0" : "opacity-100"
+                    }`}
+                  />
+                  <span
+                    className={`h-[2px] w-full origin-center rounded-full bg-current transition-all duration-300 ${
+                      isOpen ? "-translate-y-[7px] -rotate-45" : ""
+                    }`}
+                  />
+                </span>
               </button>
             </div>
           </div>
 
           {/* Bottom Glow */}
-          <div className="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 hidden h-[1px] w-full bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent sm:block" />
         </div>
 
         {/* ================= MOBILE MENU ================= */}
@@ -235,7 +247,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-0 top-[88px] z-[9998] bg-black/95 backdrop-blur-2xl xl:hidden"
+              className="fixed inset-0 top-[70px] z-[9998] bg-black/95 backdrop-blur-2xl sm:top-[88px] xl:hidden"
             >
 
               {/* Scrollable Content */}
@@ -257,12 +269,14 @@ const Navbar = () => {
                       {item.dropdown ? (
                         <div className="overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03]">
 
-                          <div className="flex items-center justify-between">
+                          <div className="group relative flex items-center justify-between">
+
+                            <span className="absolute left-0 top-1/2 h-0 w-1 -translate-y-1/2 rounded-full bg-yellow-400 transition-all duration-300 group-active:h-8" />
 
                             <Link
                               href={item.href}
                               onClick={closeMobileMenu}
-                              className="flex-1 px-5 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:text-yellow-400"
+                              className="flex-1 py-4 pl-5 pr-2 text-2xl font-black uppercase text-white transition-colors duration-300 active:text-yellow-400"
                             >
                               {item.name}
                             </Link>
@@ -277,10 +291,10 @@ const Navbar = () => {
                               }
                               aria-label={`Toggle ${item.name} submenu`}
                               aria-expanded={openMobileDropdown === item.name}
-                              className="flex h-12 w-14 flex-shrink-0 items-center justify-center text-yellow-400"
+                              className="flex h-14 w-14 flex-shrink-0 items-center justify-center text-yellow-400"
                             >
                               <ChevronDown
-                                className={`h-5 w-5 transition-transform duration-300 ${
+                                className={`h-6 w-6 transition-transform duration-300 ${
                                   openMobileDropdown === item.name
                                     ? "rotate-180"
                                     : ""
@@ -304,8 +318,9 @@ const Navbar = () => {
                                     key={sub.name}
                                     href={sub.href}
                                     onClick={closeMobileMenu}
-                                    className="block border-l-2 border-yellow-400 px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-gray-300 transition-colors duration-200 hover:bg-yellow-400/10 hover:text-yellow-400"
+                                    className="flex items-center gap-2 py-3.5 pl-10 pr-6 text-sm font-semibold uppercase tracking-wide text-gray-300 transition-colors duration-200 hover:bg-yellow-400/10 hover:text-yellow-400 active:bg-yellow-400/10 active:text-yellow-400"
                                   >
+                                    <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-yellow-400" />
                                     {sub.name}
                                   </Link>
                                 ))}
@@ -317,11 +332,13 @@ const Navbar = () => {
                         <Link
                           href={item.href}
                           onClick={closeMobileMenu}
-                          className="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/[0.03] px-5 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-gray-200 transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.05] hover:text-yellow-400"
+                          className="group relative flex items-center justify-between overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] py-4 pl-5 pr-4 text-2xl font-black uppercase text-white transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.05] hover:text-yellow-400 active:text-yellow-400"
                         >
-                          {item.name}
+                          <span className="absolute left-0 top-1/2 h-0 w-1 -translate-y-1/2 rounded-full bg-yellow-400 transition-all duration-300 group-hover:h-8 group-active:h-8" />
 
-                          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                          <span className="pl-2">{item.name}</span>
+
+                          <ArrowRight className="h-5 w-5 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
                         </Link>
                       )}
                     </motion.div>
@@ -339,7 +356,7 @@ const Navbar = () => {
                     <Link
                       href="/joinnow"
                       onClick={closeMobileMenu}
-                      className="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 py-5 text-sm font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.4)] active:scale-95"
+                      className="shimmer mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 py-5 text-sm font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.4)] active:scale-95"
                     >
 
                       Join Now
