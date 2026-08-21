@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -13,7 +12,6 @@ import {
   Dumbbell,
   HeartPulse,
   ShieldCheck,
-  X,
 } from "lucide-react";
 
 const tickerItems = [
@@ -32,17 +30,13 @@ const stats = [
   { icon: Star, value: "5★", label: "AVERAGE RATING", accent: true },
 ];
 
+const heroStats = [
+  { value: "300+", label: "MEMBERS" },
+  { value: "2K+", label: "TRANSFORMED" },
+  { value: "5★", label: "RATING" },
+];
+
 const Hero = () => {
-  const [showVideo, setShowVideo] = useState(false);
-
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setShowVideo(false);
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
-
   return (
     <>
       {/* ================= HERO ================= */}
@@ -130,8 +124,8 @@ const Hero = () => {
               </h1>
 
               {/* Sub-headline */}
-              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-gray-400">
-                WHERE ELITE ATHLETES ARE MADE
+              <p className="mt-3 text-xs uppercase tracking-[0.2em] text-gray-300">
+                YOUR TRIBE. YOUR TRANSFORMATION.
               </p>
 
               {/* Divider */}
@@ -155,14 +149,34 @@ const Hero = () => {
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
 
-                <button
-                  type="button"
-                  onClick={() => setShowVideo(true)}
+                <Link
+                  href="/watch-tour"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur transition-all duration-300 hover:bg-white/10"
                 >
                   <Play className="h-4 w-4 fill-current" />
                   WATCH THE TOUR
-                </button>
+                </Link>
+              </div>
+
+              {/* ================= STATS ROW ================= */}
+              <div className="mt-3 flex w-full rounded-2xl bg-black/40 px-4 py-3 backdrop-blur lg:hidden">
+                {heroStats.map((stat, index) => (
+                  <div
+                    key={stat.label}
+                    className={`flex-1 text-center ${
+                      index !== heroStats.length - 1
+                        ? "border-r border-white/20"
+                        : ""
+                    }`}
+                  >
+                    <p className="text-xl font-black text-yellow-400">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-[10px] uppercase tracking-wider text-gray-400">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
@@ -228,31 +242,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* ================= MOBILE BOTTOM STATS STRIP ================= */}
-        <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-black/60 py-3 backdrop-blur-xl lg:hidden">
-          <div className="mx-auto flex max-w-md items-center justify-center gap-3 px-6">
-
-            <div className="flex flex-1 flex-col items-center">
-              <span className="text-sm font-bold text-yellow-400">500+</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400">Members</span>
-            </div>
-
-            <div className="h-8 w-px flex-shrink-0 bg-white/10" />
-
-            <div className="flex flex-1 flex-col items-center">
-              <span className="text-sm font-bold text-yellow-400">3K+</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400">Transforms</span>
-            </div>
-
-            <div className="h-8 w-px flex-shrink-0 bg-white/10" />
-
-            <div className="flex flex-1 flex-col items-center">
-              <span className="text-sm font-bold text-yellow-400">5★</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400">Rating</span>
-            </div>
-          </div>
-        </div>
-
         {/* ================= SCROLL INDICATOR ================= */}
         <div className="absolute inset-x-0 bottom-16 z-20 hidden flex-col items-center gap-2 lg:flex">
           <span className="text-[9px] uppercase tracking-widest text-gray-500">
@@ -275,39 +264,6 @@ const Hero = () => {
             </svg>
           </motion.div>
         </div>
-
-        {/* ================= VIDEO MODAL ================= */}
-        {showVideo && (
-          <div
-            className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 backdrop-blur-sm"
-            onClick={() => setShowVideo(false)}
-          >
-            <div
-              className="relative mx-4 w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close button */}
-              <button
-                onClick={() => setShowVideo(false)}
-                aria-label="Close video"
-                className="absolute right-3 top-3 z-10 rounded-full bg-black/60 p-2 text-white transition-colors hover:bg-black"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              {/* Video */}
-              <video
-                src="/tour.mp4"
-                controls
-                autoPlay
-                className="aspect-video w-full bg-black"
-                onEnded={() => setShowVideo(false)}
-              >
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-        )}
       </section>
 
       {/* ================= MOVING INFO BAR ================= */}
