@@ -63,13 +63,13 @@ const TestimonialsSection = () => {
 
               <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-              <p className="text-[8px] font-semibold uppercase tracking-[0.22em] text-yellow-300 sm:text-xs sm:tracking-[0.28em]">
+              <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                 SUCCESS STORIES
               </p>
             </div>
 
             {/* Heading */}
-            <h2 className="mt-6 text-3xl font-black uppercase leading-[1] sm:text-5xl md:text-6xl lg:text-6xl">
+            <h2 className="mt-6 text-3xl font-bold uppercase leading-[1] sm:text-4xl lg:text-4xl">
 
               REAL RESULTS,
 
@@ -79,8 +79,8 @@ const TestimonialsSection = () => {
             </h2>
 
             {/* Description */}
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-gray-400 sm:mt-6 sm:text-lg">
-              MR WOW FITNESS and Rahul Rao are helping people transform
+            <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-gray-300 sm:mt-6 lg:text-base">
+              MR WOW FITNESS and Rahul Yadav are helping people transform
               their strength, confidence, and lifestyle through elite
               training, premium equipment, and powerful motivation.
             </p>
@@ -134,7 +134,7 @@ const TestimonialsSection = () => {
                 </div>
 
                 {/* Review */}
-                <p className="mt-6 text-sm leading-relaxed text-gray-300 sm:mt-8 sm:text-lg">
+                <p className="mt-6 text-sm leading-relaxed text-gray-300 sm:mt-8 lg:text-base">
                   {testimonial.review}
                 </p>
 
@@ -144,7 +144,7 @@ const TestimonialsSection = () => {
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                     <div>
-                      <h3 className="text-lg font-black text-white sm:text-xl">
+                      <h3 className="text-lg font-bold text-white">
                         {testimonial.name}
                       </h3>
 
@@ -199,7 +199,7 @@ const TestimonialsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mt-6 text-3xl font-black uppercase leading-[1] sm:mt-7 sm:text-5xl md:text-6xl lg:text-7xl"
+            className="mt-6 text-3xl font-bold uppercase leading-[1] sm:mt-7 sm:text-4xl lg:text-4xl"
           >
             BUILD YOUR
             <span className="block">
@@ -208,8 +208,8 @@ const TestimonialsSection = () => {
           </motion.h2>
 
           {/* Description */}
-          <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-black/80 sm:mt-7 sm:text-lg lg:text-xl">
-            Train with Rahul Rao at MR WOW FITNESS and experience
+          <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-black/80 sm:mt-7 lg:text-base">
+            Train with Rahul Yadav at MR WOW FITNESS and experience
             world-class equipment, expert guidance, premium workout
             spaces, and real transformation results.
           </p>
@@ -218,7 +218,7 @@ const TestimonialsSection = () => {
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row">
 
             {/* Primary */}
-            <button className="group flex w-full items-center justify-center gap-3 rounded-full bg-black px-6 py-4 text-[10px] font-black uppercase tracking-[0.16em] text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#050505] hover:shadow-[0_0_40px_rgba(0,0,0,0.25)] sm:w-auto sm:px-10 sm:text-base">
+            <button className="group flex h-12 w-full items-center justify-center gap-3 rounded-full bg-black px-6 text-[10px] font-black uppercase tracking-[0.16em] text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#050505] hover:shadow-[0_0_40px_rgba(0,0,0,0.25)] active:scale-95 sm:h-auto sm:w-auto sm:px-10 sm:py-4 sm:text-base">
 
               Join Now
 
@@ -226,7 +226,7 @@ const TestimonialsSection = () => {
             </button>
 
             {/* Secondary */}
-            <button className="w-full rounded-full border-2 border-black bg-transparent px-6 py-4 text-[10px] font-black uppercase tracking-[0.16em] text-black transition-all duration-300 hover:bg-black hover:text-white sm:w-auto sm:px-10 sm:text-base">
+            <button className="flex h-12 w-full items-center justify-center rounded-full border-2 border-black bg-transparent px-6 text-[10px] font-black uppercase tracking-[0.16em] text-black transition-all duration-300 hover:bg-black hover:text-white active:scale-95 sm:h-auto sm:w-auto sm:px-10 sm:py-4 sm:text-base">
               Explore Programs
             </button>
           </div>

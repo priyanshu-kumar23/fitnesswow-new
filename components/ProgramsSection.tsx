@@ -137,13 +137,13 @@ const ProgramsSection = () => {
 
             <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-            <p className="text-[9px] font-semibold uppercase tracking-[0.28em] text-yellow-300 sm:text-[10px] md:text-xs">
+            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
               OUR SERVICES
             </p>
           </div>
 
           {/* Title */}
-          <h2 className="text-3xl font-black uppercase leading-[1] text-white sm:text-4xl md:text-5xl lg:text-6xl">
+          <h2 className="text-3xl font-bold uppercase leading-[1] text-white sm:text-4xl lg:text-4xl">
 
             Elite Fitness
 
@@ -153,7 +153,7 @@ const ProgramsSection = () => {
           </h2>
 
           {/* Description */}
-          <p className="mx-auto mt-5 max-w-3xl px-2 text-sm leading-relaxed text-gray-400 sm:text-base md:text-lg">
+          <p className="mx-auto mt-5 max-w-3xl px-2 text-sm leading-relaxed text-gray-300 lg:text-base">
             At MR WOW FITNESS, we provide premium training programs
             designed to help you transform your body, build strength,
             and unlock peak performance.
@@ -211,11 +211,11 @@ const ProgramsSection = () => {
                 {/* Content */}
                 <div className="relative z-10 mt-6 sm:mt-7">
 
-                  <h3 className="text-lg font-black uppercase leading-snug text-white sm:text-xl lg:text-2xl">
+                  <h3 className="text-lg font-bold uppercase leading-snug text-white">
                     {service.title}
                   </h3>
 
-                  <p className="mt-3 text-[13px] leading-relaxed text-gray-400 sm:mt-4 sm:text-sm lg:text-[15px]">
+                  <p className="mt-3 text-sm leading-relaxed text-gray-400">
                     {service.description}
                   </p>
 

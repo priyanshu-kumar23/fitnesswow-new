@@ -85,13 +85,13 @@ const WorkoutSchedule = () => {
 
     <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-    <p className="text-[9px] font-semibold uppercase tracking-[0.28em] text-yellow-300 sm:text-[10px] md:text-xs">
+    <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
       FITNESS PROGRAMS
     </p>
   </div>
 
   {/* Heading */}
-  <h2 className="mt-5 text-3xl font-black uppercase leading-[1] text-white sm:text-4xl md:text-5xl lg:text-6xl">
+  <h2 className="mt-5 text-3xl font-bold uppercase leading-[1] text-white sm:text-4xl lg:text-4xl">
 
     TRAIN LIKE A
 
@@ -101,7 +101,7 @@ const WorkoutSchedule = () => {
   </h2>
 
   {/* Description */}
-  <p className="mx-auto mt-5 max-w-3xl px-2 text-sm leading-relaxed text-gray-400 sm:text-base md:text-lg">
+  <p className="mx-auto mt-5 max-w-3xl px-2 text-sm leading-relaxed text-gray-300 lg:text-base">
     Professionally designed training programs for muscle growth,
     endurance, recovery, and complete body transformation.
   </p>
@@ -151,11 +151,11 @@ const WorkoutSchedule = () => {
                 {/* CONTENT */}
                 <div className="p-5">
 
-                  <h3 className="text-xl font-black uppercase leading-tight text-white">
+                  <h3 className="text-lg font-bold uppercase leading-tight text-white">
                     {workout.title}
                   </h3>
 
-                  <p className="mt-2 text-[13px] leading-relaxed text-gray-400">
+                  <p className="mt-2 text-sm leading-relaxed text-gray-400">
                     {workout.description}
                   </p>
 
@@ -219,7 +219,7 @@ const WorkoutSchedule = () => {
                 {/* CONTENT */}
                 <div className="p-6">
 
-                  <h3 className="text-2xl font-black uppercase leading-tight">
+                  <h3 className="text-lg font-bold uppercase leading-tight">
                     {workout.title}
                   </h3>
 
@@ -256,7 +256,7 @@ const WorkoutSchedule = () => {
   className="mt-14 flex justify-center px-4 sm:mt-16"
 >
 
-  <button className="group relative flex items-center gap-3 overflow-hidden rounded-full bg-yellow-400 px-6 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(250,204,21,0.45)] sm:px-8 sm:py-4 sm:text-sm">
+  <button className="group relative flex h-12 w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-yellow-400 px-6 text-[11px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(250,204,21,0.45)] active:scale-95 sm:h-auto sm:w-auto sm:px-8 sm:py-4 sm:text-sm">
 
     {/* Glow */}
     <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.35),transparent_60%)]" />

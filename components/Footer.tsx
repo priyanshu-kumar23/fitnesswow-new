@@ -86,29 +86,29 @@ const Footer = () => {
           {/* ================= QUICK LINKS ================= */}
           <div>
 
-            <h3 className="text-xl font-black uppercase">
+            <h3 className="text-xl font-semibold uppercase lg:text-2xl">
               Quick Links
             </h3>
 
             <div className="mt-6 flex flex-col gap-4">
 
               {[
-                "Home",
-                "About",
-                "Programs",
-                "Trainers",
-                "Pricing",
-                "Gallery",
-                "Contact",
+                { name: "Home", href: "/" },
+                { name: "About", href: "/about" },
+                { name: "Programs", href: "/programs" },
+                { name: "Diet Plan", href: "/diet-plan" },
+                { name: "Fitness Plan", href: "/fitness-plan" },
+                { name: "Pricing", href: "/pricing" },
+                { name: "Contact", href: "/contact" },
               ].map((item) => (
                 <Link
-                  key={item}
-                  href="/"
+                  key={item.name}
+                  href={item.href}
                   className="group flex items-center gap-2 text-sm text-gray-400 transition-all duration-300 hover:text-yellow-400 sm:text-base"
                 >
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
 
-                  {item}
+                  {item.name}
                 </Link>
               ))}
             </div>
@@ -117,7 +117,7 @@ const Footer = () => {
           {/* ================= SERVICES ================= */}
           <div>
 
-            <h3 className="text-xl font-black uppercase">
+            <h3 className="text-xl font-semibold uppercase lg:text-2xl">
               Our Services
             </h3>
 
@@ -147,7 +147,7 @@ const Footer = () => {
           {/* ================= CONTACT ================= */}
           <div>
 
-            <h3 className="text-xl font-black uppercase">
+            <h3 className="text-xl font-semibold uppercase lg:text-2xl">
               Contact Info
             </h3>
 

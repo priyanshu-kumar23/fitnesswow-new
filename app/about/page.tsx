@@ -59,18 +59,18 @@ export default function AboutPage() {
           {/* Heading */}
           <div className="text-center">
 
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-yellow-400">
+            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
               WHY MR WOW FITNESS
             </p>
 
-            <h2 className="mt-4 text-3xl font-black uppercase leading-tight text-white sm:text-5xl md:text-6xl">
+            <h2 className="mt-4 text-3xl font-bold uppercase leading-tight text-white sm:text-4xl lg:text-4xl">
               BUILT FOR
               <span className="bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
                 {" "}TRANSFORMATION
               </span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-gray-400 sm:text-base md:text-lg">
+            <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-gray-300 lg:text-base">
               More than just a gym — MR WOW FITNESS is a premium fitness
               destination focused on strength, discipline, confidence,
               and real body transformation.
@@ -87,7 +87,7 @@ export default function AboutPage() {
               >
 
                 {/* Number */}
-                <div className="absolute right-5 top-5 text-5xl font-black text-white/10 sm:text-6xl">
+                <div className="absolute right-5 top-5 text-4xl font-black text-white/10 sm:text-5xl md:text-6xl">
                   {card.number}
                 </div>
 
@@ -97,7 +97,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Title */}
-                <h3 className="mt-7 text-2xl font-black uppercase text-white">
+                <h3 className="mt-7 text-lg font-bold uppercase text-white">
                   {card.title}
                 </h3>
 
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <div className="mt-4 h-[2px] w-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-500 group-hover:w-28" />
 
                 {/* Description */}
-                <p className="mt-6 text-sm leading-relaxed text-gray-400 sm:text-base">
+                <p className="mt-6 text-sm leading-relaxed text-gray-400">
                   {card.description}
                 </p>
 

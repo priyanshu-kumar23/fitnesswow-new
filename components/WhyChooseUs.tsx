@@ -77,13 +77,13 @@ const WhyChooseUs = () => {
 
             <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-            <p className="text-[9px] font-semibold uppercase tracking-[0.28em] text-yellow-300 sm:text-[10px] md:text-xs">
+            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
               WHY CHOOSE US
             </p>
           </div>
 
           {/* Heading */}
-          <h2 className="mt-5 text-3xl font-black uppercase leading-[1] text-white sm:text-4xl md:text-5xl lg:text-6xl">
+          <h2 className="mt-5 text-3xl font-bold uppercase leading-[1] text-white sm:text-4xl lg:text-4xl">
 
             THE BEST FITNESS
 
@@ -93,7 +93,7 @@ const WhyChooseUs = () => {
           </h2>
 
           {/* Description */}
-          <p className="mx-auto mt-5 max-w-3xl px-2 text-sm leading-relaxed text-gray-400 sm:text-base md:text-lg">
+          <p className="mx-auto mt-5 max-w-3xl px-2 text-sm leading-relaxed text-gray-300 lg:text-base">
             MR WOW FITNESS combines luxury workout spaces, elite coaching,
             modern equipment, and high-energy fitness programs to help you
             achieve real transformation.
@@ -129,12 +129,12 @@ const WhyChooseUs = () => {
               </div>
 
               {/* Title */}
-              <h3 className="mt-6 text-lg font-black uppercase leading-snug text-white sm:mt-7 sm:text-2xl">
+              <h3 className="mt-6 text-lg font-bold uppercase leading-snug text-white sm:mt-7">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="mt-3 text-[13px] leading-relaxed text-gray-400 sm:mt-4 sm:text-base">
+              <p className="mt-3 text-sm leading-relaxed text-gray-400 sm:mt-4">
                 {feature.description}
               </p>
 

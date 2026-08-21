@@ -40,7 +40,7 @@ const ContactPage = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="mt-8 text-5xl font-black uppercase leading-[0.9] text-white sm:text-7xl md:text-8xl lg:text-[60px]">
+          <h1 className="mt-8 text-3xl font-black uppercase leading-[1.05] text-white sm:text-4xl md:text-5xl lg:text-7xl">
 
             LET'S
             <br />
@@ -61,33 +61,33 @@ const ContactPage = () => {
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl">
 
-              <h3 className="text-3xl font-black text-yellow-400">
+              <h3 className="text-2xl font-bold text-yellow-400">
                 18H
               </h3>
 
-              <p className="mt-2 text-xs uppercase tracking-[0.25em] text-gray-400">
+              <p className="mt-2 text-xs uppercase tracking-wider text-gray-400">
                 Open Daily
               </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl">
 
-              <h3 className="text-3xl font-black text-yellow-400">
+              <h3 className="text-2xl font-bold text-yellow-400">
                 PRO
               </h3>
 
-              <p className="mt-2 text-xs uppercase tracking-[0.25em] text-gray-400">
+              <p className="mt-2 text-xs uppercase tracking-wider text-gray-400">
                 Expert Trainers
               </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl">
 
-              <h3 className="text-3xl font-black text-yellow-400">
+              <h3 className="text-2xl font-bold text-yellow-400">
                 ELITE
               </h3>
 
-              <p className="mt-2 text-xs uppercase tracking-[0.25em] text-gray-400">
+              <p className="mt-2 text-xs uppercase tracking-wider text-gray-400">
                 Fitness Experience
               </p>
             </div>
@@ -109,11 +109,11 @@ const ContactPage = () => {
           {/* Heading */}
           <div className="text-center">
 
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-yellow-400">
+            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
               GET IN TOUCH
             </p>
 
-            <h2 className="mt-3 text-3xl font-black uppercase sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-bold uppercase sm:text-4xl lg:text-4xl">
               LET'S TALK FITNESS
             </h2>
           </div>
@@ -124,7 +124,7 @@ const ContactPage = () => {
             {/* ================= LEFT FORM ================= */}
             <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-2xl sm:p-8">
 
-              <h3 className="text-2xl font-black uppercase text-white">
+              <h3 className="text-xl font-semibold uppercase text-white lg:text-2xl">
                 Send Enquiry
               </h3>
 
@@ -176,7 +176,7 @@ const ContactPage = () => {
                 {/* Button */}
                 <button
                   type="submit"
-                  className="flex h-12 w-full items-center justify-center rounded-2xl bg-yellow-400 text-xs font-black uppercase tracking-[0.15em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.35)] sm:h-14 sm:text-sm"
+                  className="flex h-12 w-full items-center justify-center rounded-2xl bg-yellow-400 text-xs font-black uppercase tracking-[0.15em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.35)] active:scale-95 sm:h-14 sm:text-sm"
                 >
                   Send Message
                 </button>
@@ -196,11 +196,11 @@ const ContactPage = () => {
                   </div>
 
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-yellow-400 sm:text-sm">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                       Phone Number
                     </p>
 
-                    <h3 className="mt-2 text-xl font-black text-white sm:mt-3 sm:text-2xl">
+                    <h3 className="mt-2 text-lg font-bold text-white sm:mt-3">
                       +91 93545 45001
                     </h3>
                   </div>
@@ -217,11 +217,11 @@ const ContactPage = () => {
                   </div>
 
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-yellow-400 sm:text-sm">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                       Email Address
                     </p>
 
-                    <h3 className="mt-2 break-all text-lg font-black text-white sm:mt-3 sm:text-xl">
+                    <h3 className="mt-2 break-all text-lg font-bold text-white sm:mt-3">
                       mrwowfitness@gmail.com
                     </h3>
                   </div>
@@ -238,7 +238,7 @@ const ContactPage = () => {
                   </div>
 
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-yellow-400 sm:text-sm">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                       Address
                     </p>
 
@@ -265,11 +265,11 @@ const ContactPage = () => {
 
           <div className="mb-8 text-center">
 
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-yellow-400">
+            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
               FIND US
             </p>
 
-            <h2 className="mt-3 text-3xl font-black uppercase sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-bold uppercase sm:text-4xl lg:text-4xl">
               VISIT OUR GYM
             </h2>
           </div>

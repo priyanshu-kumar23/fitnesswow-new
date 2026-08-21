@@ -3,12 +3,40 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, ArrowRight, X } from "lucide-react";
+import { Menu, ArrowRight, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 
-const navItems = [
+type NavChild = {
+  name: string;
+  href: string;
+};
+
+type NavItem = {
+  name: string;
+  href: string;
+  dropdown?: NavChild[];
+};
+
+const navItems: NavItem[] = [
   { name: "About", href: "/about" },
   { name: "Programs", href: "/programs" },
+  {
+    name: "Diet Plan",
+    href: "/diet-plan",
+    dropdown: [
+      { name: "Veg Plan", href: "/diet-plan#veg" },
+      { name: "Non-Veg Plan", href: "/diet-plan#nonveg" },
+    ],
+  },
+  {
+    name: "Fitness Plan",
+    href: "/fitness-plan",
+    dropdown: [
+      { name: "Beginner", href: "/fitness-plan#beginner" },
+      { name: "Intermediate", href: "/fitness-plan#intermediate" },
+      { name: "Advanced", href: "/fitness-plan#advanced" },
+    ],
+  },
   { name: "Membership", href: "/pricing" },
   { name: "Testimonials", href: "/testimonials" },
   { name: "Contact", href: "/contact" },
@@ -16,6 +44,9 @@ const navItems = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
+    null
+  );
 
   /* ================= PREVENT BACKGROUND SCROLL ================= */
   useEffect(() => {
@@ -30,6 +61,11 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
+  const closeMobileMenu = () => {
+    setIsOpen(false);
+    setOpenMobileDropdown(null);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -42,7 +78,7 @@ const Navbar = () => {
       <div className="relative mx-auto max-w-7xl overflow-visible rounded-2xl">
 
         {/* ================= MOBILE SPARK ================= */}
-        <div className="absolute inset-x-0 top-0 h-[2px] overflow-hidden rounded-t-2xl lg:hidden">
+        <div className="absolute inset-x-0 top-0 h-[2px] overflow-hidden rounded-t-2xl xl:hidden">
 
           <motion.div
             animate={{
@@ -102,20 +138,54 @@ const Navbar = () => {
             </Link>
 
             {/* ================= DESKTOP NAV ================= */}
-            <nav className="relative z-10 hidden items-center gap-6 lg:flex xl:gap-8">
+            <nav className="relative z-10 hidden items-center gap-4 xl:flex 2xl:gap-6">
 
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="group relative text-xs font-semibold uppercase tracking-[0.18em] text-gray-200 transition-all duration-300 hover:text-yellow-400 xl:text-sm"
-                >
-                  {item.name}
+              {navItems.map((item) =>
+                item.dropdown ? (
+                  <div key={item.name} className="group relative">
 
-                  {/* Underline */}
-                  <span className="absolute -bottom-2 left-0 h-[2px] w-0 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-full" />
-                </Link>
-              ))}
+                    <Link
+                      href={item.href}
+                      className="flex items-center gap-1 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-gray-200 transition-all duration-300 hover:text-yellow-400 2xl:text-sm"
+                    >
+                      {item.name}
+
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 group-hover:text-yellow-400" />
+
+                      {/* Underline */}
+                      <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-[calc(100%-18px)]" />
+                    </Link>
+
+                    {/* ================= DESKTOP DROPDOWN ================= */}
+                    <div className="invisible absolute left-0 top-full z-20 translate-y-1 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+
+                      <div className="min-w-[190px] overflow-hidden rounded-xl border-l-2 border-yellow-400 bg-[#111111] py-2 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+
+                        {item.dropdown.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            className="block px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-gray-300 transition-colors duration-200 hover:bg-yellow-400/10 hover:text-yellow-400"
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="group relative py-2 text-xs font-semibold uppercase tracking-[0.16em] text-gray-200 transition-all duration-300 hover:text-yellow-400 2xl:text-sm"
+                  >
+                    {item.name}
+
+                    {/* Underline */}
+                    <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                )
+              )}
             </nav>
 
             {/* ================= RIGHT ================= */}
@@ -139,7 +209,9 @@ const Navbar = () => {
               {/* ================= MOBILE MENU BUTTON ================= */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 lg:hidden"
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+                className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 active:scale-95 xl:hidden"
               >
                 {isOpen ? (
                   <X className="h-5 w-5" />
@@ -159,17 +231,17 @@ const Navbar = () => {
 
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 top-[88px] z-[9998] bg-black/95 backdrop-blur-2xl lg:hidden"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed inset-0 top-[88px] z-[9998] bg-black/95 backdrop-blur-2xl xl:hidden"
             >
 
               {/* Scrollable Content */}
               <div className="h-full overflow-y-auto px-5 py-6">
 
-                <div className="mx-auto flex max-w-md flex-col gap-5 pb-24">
+                <div className="mx-auto flex max-w-md flex-col gap-4 pb-24">
 
                   {/* Links */}
                   {navItems.map((item, index) => (
@@ -182,15 +254,76 @@ const Navbar = () => {
                       }}
                     >
 
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/[0.03] px-5 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-gray-200 transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.05] hover:text-yellow-400"
-                      >
-                        {item.name}
+                      {item.dropdown ? (
+                        <div className="overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03]">
 
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Link>
+                          <div className="flex items-center justify-between">
+
+                            <Link
+                              href={item.href}
+                              onClick={closeMobileMenu}
+                              className="flex-1 px-5 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:text-yellow-400"
+                            >
+                              {item.name}
+                            </Link>
+
+                            <button
+                              onClick={() =>
+                                setOpenMobileDropdown(
+                                  openMobileDropdown === item.name
+                                    ? null
+                                    : item.name
+                                )
+                              }
+                              aria-label={`Toggle ${item.name} submenu`}
+                              aria-expanded={openMobileDropdown === item.name}
+                              className="flex h-12 w-14 flex-shrink-0 items-center justify-center text-yellow-400"
+                            >
+                              <ChevronDown
+                                className={`h-5 w-5 transition-transform duration-300 ${
+                                  openMobileDropdown === item.name
+                                    ? "rotate-180"
+                                    : ""
+                                }`}
+                              />
+                            </button>
+                          </div>
+
+                          <AnimatePresence initial={false}>
+                            {openMobileDropdown === item.name && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.25, ease: "easeOut" }}
+                                className="overflow-hidden border-t border-white/5 bg-[#111111]"
+                              >
+
+                                {item.dropdown.map((sub) => (
+                                  <Link
+                                    key={sub.name}
+                                    href={sub.href}
+                                    onClick={closeMobileMenu}
+                                    className="block border-l-2 border-yellow-400 px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-gray-300 transition-colors duration-200 hover:bg-yellow-400/10 hover:text-yellow-400"
+                                  >
+                                    {sub.name}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={closeMobileMenu}
+                          className="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/[0.03] px-5 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-gray-200 transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.05] hover:text-yellow-400"
+                        >
+                          {item.name}
+
+                          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
 
@@ -205,8 +338,8 @@ const Navbar = () => {
 
                     <Link
                       href="/joinnow"
-                      onClick={() => setIsOpen(false)}
-                      className="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 py-5 text-sm font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.4)]"
+                      onClick={closeMobileMenu}
+                      className="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 py-5 text-sm font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(250,204,21,0.4)] active:scale-95"
                     >
 
                       Join Now

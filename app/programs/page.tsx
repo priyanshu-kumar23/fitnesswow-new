@@ -25,7 +25,7 @@ export default function ProgramsPage() {
             MR WOW FITNESS
           </div>
 
-          <h1 className="mt-8 text-5xl font-black uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[70px]">
+          <h1 className="mt-8 text-3xl font-black uppercase leading-[1.05] sm:text-4xl md:text-5xl lg:text-7xl">
 
             TRAIN
             <br />
@@ -55,11 +55,11 @@ export default function ProgramsPage() {
           {/* Heading */}
           <div className="text-center">
 
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-yellow-400">
+            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
               OUR PROGRAMS
             </p>
 
-            <h2 className="mt-3 text-3xl font-black uppercase sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-bold uppercase sm:text-4xl lg:text-4xl">
               LEVEL UP YOUR FITNESS
             </h2>
           </div>
@@ -104,12 +104,12 @@ export default function ProgramsPage() {
                 </div>
 
                 {/* Title */}
-                <h3 className="mt-7 text-2xl font-black uppercase text-white">
+                <h3 className="mt-7 text-lg font-bold uppercase text-white">
                   {program.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-4 text-sm leading-relaxed text-gray-400 sm:text-base">
+                <p className="mt-4 text-sm leading-relaxed text-gray-400">
                   {program.desc}
                 </p>
 

@@ -8,6 +8,7 @@ import {
   Clock3,
   Sparkles,
   Ticket,
+  ChevronDown,
 } from "lucide-react";
 
 export default function OneDayPassPage() {
@@ -64,13 +65,13 @@ export default function OneDayPassPage() {
 
               <Sparkles className="h-4 w-4 text-yellow-400" />
 
-              <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-yellow-300 sm:text-xs sm:tracking-[0.3em]">
+              <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                 EXPERIENCE MR WOW FITNESS
               </p>
             </div>
 
             {/* Heading */}
-            <h1 className="mt-6 text-[2.4rem] font-black uppercase leading-[0.92] tracking-[-0.04em] sm:text-6xl lg:text-8xl">
+            <h1 className="mt-6 text-3xl font-black uppercase leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-5xl lg:text-7xl">
 
               CLAIM YOUR
 
@@ -151,11 +152,11 @@ export default function OneDayPassPage() {
               {/* Heading */}
               <div className="relative z-10 text-center">
 
-                <p className="text-[9px] uppercase tracking-[0.24em] text-yellow-400 sm:text-xs sm:tracking-[0.28em]">
+                <p className="text-xs uppercase tracking-widest text-yellow-400">
                   GET YOUR PASS
                 </p>
 
-                <h2 className="mt-3 text-3xl font-black uppercase sm:text-4xl">
+                <h2 className="mt-3 text-3xl font-bold uppercase sm:text-4xl lg:text-4xl">
                   BOOK NOW
                 </h2>
 
@@ -170,25 +171,25 @@ export default function OneDayPassPage() {
                 <input
                   type="text"
                   placeholder="Full Name"
-                  className="h-13 sm:h-14 w-full rounded-2xl border border-white/10 bg-black/40 px-5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30"
+                  className="h-12 sm:h-14 w-full rounded-2xl border border-white/10 bg-black/40 px-5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30"
                 />
 
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="h-13 sm:h-14 w-full rounded-2xl border border-white/10 bg-black/40 px-5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30"
+                  className="h-12 sm:h-14 w-full rounded-2xl border border-white/10 bg-black/40 px-5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30"
                 />
 
                 <input
                   type="email"
                   placeholder="Email Address"
-                  className="h-13 sm:h-14 w-full rounded-2xl border border-white/10 bg-black/40 px-5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30"
+                  className="h-12 sm:h-14 w-full rounded-2xl border border-white/10 bg-black/40 px-5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30"
                 />
 
                 {/* Select */}
                 <div className="relative">
 
-                  <select className="h-13 sm:h-14 w-full appearance-none rounded-2xl border border-white/10 bg-black/70 px-5 pr-12 text-sm text-white outline-none transition-all duration-300 focus:border-yellow-400/30">
+                  <select className="h-12 sm:h-14 w-full appearance-none rounded-2xl border border-white/10 bg-black/70 px-5 pr-12 text-sm text-white outline-none transition-all duration-300 focus:border-yellow-400/30">
 
                     <option>Select Visit Time</option>
                     <option>Morning</option>
@@ -198,14 +199,14 @@ export default function OneDayPassPage() {
 
                   {/* Arrow */}
                   <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-yellow-400">
-                    ▼
+                    <ChevronDown className="h-4 w-4" />
                   </div>
                 </div>
 
                 {/* Button */}
                 <button
                   type="submit"
-                  className="group flex h-13 sm:h-14 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 text-[11px] font-black uppercase tracking-[0.16em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.35)] sm:text-sm"
+                  className="group flex h-12 sm:h-14 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 text-[11px] font-black uppercase tracking-[0.16em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.35)] active:scale-95 sm:text-sm"
                 >
 
                   CLAIM PASS

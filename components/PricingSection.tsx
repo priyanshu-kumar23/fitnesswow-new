@@ -52,7 +52,7 @@ const PricingSection = () => {
 
                   <Image
                     src="/owner.jpg"
-                    alt="Rahul Rao"
+                    alt="Rahul Yadav"
                     width={1000}
                     height={1200}
                     className="h-[320px] w-full object-cover object-top transition-transform duration-700 hover:scale-105 sm:h-[500px] lg:h-[620px]"
@@ -69,7 +69,7 @@ const PricingSection = () => {
                     </p>
 
                     <h3 className="mt-1 text-xl font-black uppercase text-white sm:mt-2 sm:text-2xl">
-                      Rahul Rao
+                      Rahul Yadav
                     </h3>
 
                     <p className="mt-1 text-xs text-gray-400 sm:text-sm">
@@ -78,13 +78,13 @@ const PricingSection = () => {
                   </div>
 
                   {/* Floating Followers */}
-                  <div className="absolute right-4 top-4 rounded-2xl border border-yellow-400/20 bg-black/60 px-3 py-2 backdrop-blur-xl sm:right-5 sm:top-5 sm:px-4 sm:py-3">
+                  <div className="glow-yellow absolute right-3 top-3 rounded-2xl border border-yellow-400/20 bg-black/70 px-3 py-2 backdrop-blur-xl sm:right-5 sm:top-5 sm:px-4 sm:py-3">
 
-                    <p className="text-xl font-black text-yellow-400 sm:text-2xl">
+                    <p className="text-lg font-black text-yellow-400 sm:text-2xl">
                       44K+
                     </p>
 
-                    <p className="text-[8px] uppercase tracking-[0.2em] text-gray-300 sm:text-[10px] sm:tracking-[0.25em]">
+                    <p className="whitespace-nowrap text-[7px] uppercase tracking-[0.18em] text-gray-300 sm:text-[10px] sm:tracking-[0.25em]">
                       Followers
                     </p>
                   </div>
@@ -106,34 +106,34 @@ const PricingSection = () => {
 
                 <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-                <p className="text-[8px] font-semibold uppercase tracking-[0.22em] text-yellow-300 sm:text-[10px] sm:tracking-[0.28em]">
+                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                   MEET THE FOUNDER
                 </p>
               </div>
 
               {/* Heading */}
-              <h2 className="mt-6 text-3xl font-black uppercase leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="mt-6 text-3xl font-bold uppercase leading-none sm:text-4xl lg:text-4xl">
 
                 Rahul
 
                 <span className="ml-2 bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent sm:ml-3">
-                  Rao
+                  Yadav
                 </span>
               </h2>
 
               {/* Sub */}
-              <p className="mt-4 text-xs uppercase tracking-[0.2em] text-yellow-400 sm:text-base sm:tracking-[0.25em]">
+              <p className="mt-4 text-xs uppercase tracking-widest text-yellow-400">
                 Founder Of MR WOW FITNESS
               </p>
 
               {/* Description */}
-              <p className="mt-6 text-sm leading-relaxed text-gray-300 sm:mt-8 sm:text-base lg:text-lg">
-                Rahul Rao built MR WOW FITNESS with a mission to create
+              <p className="mt-6 text-sm leading-relaxed text-gray-300 sm:mt-8 lg:text-base">
+                Rahul Yadav built MR WOW FITNESS with a mission to create
                 a premium transformation-focused gym where discipline,
                 confidence, strength, and lifestyle transformation come together.
               </p>
 
-              <p className="mt-5 text-sm leading-relaxed text-gray-400 sm:mt-6 sm:text-base lg:text-lg">
+              <p className="mt-5 text-sm leading-relaxed text-gray-400 sm:mt-6 lg:text-base">
                 From elite workout programs and high-energy coaching
                 to luxury interiors and modern equipment — every part
                 of the gym is designed to push members toward their
@@ -144,7 +144,7 @@ const PricingSection = () => {
               <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
 
                 {/* Followers */}
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.04] sm:rounded-[1.8rem] sm:p-5">
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.04] hover:glow-yellow sm:rounded-[1.8rem] sm:p-5">
 
                   <div className="flex items-center gap-3 sm:gap-4">
 
@@ -153,11 +153,11 @@ const PricingSection = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-black text-white sm:text-3xl">
+                      <h3 className="glow-yellow-text text-2xl font-bold text-white">
                         44K+
                       </h3>
 
-                      <p className="text-[8px] uppercase tracking-[0.18em] text-gray-400 sm:text-[10px] sm:tracking-[0.22em]">
+                      <p className="text-xs uppercase tracking-wider text-gray-400">
                         Instagram Followers
                       </p>
                     </div>
@@ -165,7 +165,7 @@ const PricingSection = () => {
                 </div>
 
                 {/* Trained Clients */}
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.04] sm:rounded-[1.8rem] sm:p-5">
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.04] hover:glow-yellow sm:rounded-[1.8rem] sm:p-5">
 
                   <div className="flex items-center gap-3 sm:gap-4">
 
@@ -174,11 +174,11 @@ const PricingSection = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-black text-white sm:text-3xl">
+                      <h3 className="glow-yellow-text text-2xl font-bold text-white">
                         500+
                       </h3>
 
-                      <p className="text-[8px] uppercase tracking-[0.18em] text-gray-400 sm:text-[10px] sm:tracking-[0.22em]">
+                      <p className="text-xs uppercase tracking-wider text-gray-400">
                         Trained Members
                       </p>
                     </div>
@@ -200,7 +200,7 @@ const PricingSection = () => {
                   <BadgeCheck className="h-5 w-5 text-yellow-400" />
 
                   <p className="text-sm font-semibold uppercase tracking-[0.15em] text-yellow-300 sm:tracking-[0.18em]">
-                    Rahul Rao
+                    Rahul Yadav
                   </p>
                 </div>
               </div>
@@ -209,9 +209,9 @@ const PricingSection = () => {
               <a
                 href="https://www.instagram.com/rahulrao0607?igsh=MWM2d3Z4emI5aGh3Zg%3D%3D"
                 target="_blank"
-                className="group mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 py-4 text-[10px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] sm:mt-10 sm:w-auto sm:px-8 sm:text-sm"
+                className="group mt-8 flex h-12 w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-6 text-[10px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] active:scale-95 sm:mt-10 sm:h-14 sm:w-auto sm:px-8 sm:text-sm"
               >
-                Follow Rahul Rao
+                Follow Rahul Yadav
 
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>

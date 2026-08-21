@@ -6,7 +6,6 @@ import AboutSection from "@/components/AboutSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import WorkoutSchedule from "@/components/WorkoutSchedule";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 
 export default function HomePage() {
@@ -22,8 +21,6 @@ export default function HomePage() {
 
       {/* Floating WhatsApp + Scroll Top */}
       <FloatingButtons />
-
-      <Footer />
     </main>
   );
 }

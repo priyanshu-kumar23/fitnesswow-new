@@ -55,10 +55,13 @@ const Hero = () => {
           </div>
 
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/45 md:bg-black/15" />
+          <div className="absolute inset-0 bg-black/60 md:bg-black/15" />
 
-          {/* Left Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/55 to-black/20" />
+          {/* Mobile Bottom-Up Gradient (keeps text readable over the photo) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30 md:hidden" />
+
+          {/* Left Gradient (desktop) */}
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-black via-black/55 to-black/20 md:block" />
 
           {/* Premium Glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.16),transparent_30%)]" />
@@ -85,7 +88,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 70 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="pb-4 lg:pb-0"
+              className="flex flex-col items-center pb-4 text-center sm:items-start sm:text-left lg:pb-0"
             >
 
               {/* Badge */}
@@ -93,13 +96,13 @@ const Hero = () => {
 
                 <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
 
-                <p className="text-[7px] font-semibold uppercase tracking-[0.14em] text-yellow-300 sm:text-[10px] md:text-xs">
+                <p className="text-xs uppercase tracking-widest text-yellow-400">
                   PREMIUM FITNESS EXPERIENCE
                 </p>
               </div>
 
               {/* ================= HEADING ================= */}
-             <h1 className="max-w-full text-[2.3rem] font-black uppercase leading-[0.9] tracking-[-0.04em] text-white xs:text-[2.6rem] sm:max-w-3xl sm:text-[3.5rem] md:text-[3.8rem] lg:text-[4rem]">
+             <h1 className="max-w-full text-3xl font-black uppercase leading-none tracking-tight text-white sm:max-w-3xl sm:text-4xl md:text-5xl xl:text-6xl">
 
   PUSH
   <br />
@@ -108,7 +111,7 @@ const Hero = () => {
   <span className="mt-2 block bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent drop-shadow-[0_0_45px_rgba(250,204,21,0.35)]">
 
     BUILD{" "}
-    
+
     <br className="sm:hidden" />
 
     <span className="hidden sm:inline">&nbsp;</span>
@@ -118,17 +121,17 @@ const Hero = () => {
 </h1>
 
               {/* Small Premium Line */}
-              <div className="mt-5 flex flex-wrap items-center gap-3">
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
 
-                <div className="h-[1px] w-10 bg-yellow-400" />
+                <div className="h-px w-8 bg-yellow-400" />
 
-                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-yellow-300 sm:text-xs">
+                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                   ELITE TRANSFORMATION HUB
                 </p>
               </div>
 
               {/* Description */}
-              <p className="mt-5 max-w-full text-[13px] leading-relaxed text-gray-300 sm:max-w-lg sm:text-base md:text-lg">
+              <p className="mt-5 max-w-full text-sm leading-relaxed text-gray-300 sm:max-w-md lg:text-base">
                 Elite coaching, modern equipment, transformation programs,
                 and premium workout experiences crafted to unlock your
                 strongest version at MR WOW FITNESS.
@@ -140,20 +143,20 @@ const Hero = () => {
                 {/* Main CTA */}
               <Link
   href="/joinnow"
-  className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-4 text-[11px] font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] sm:h-14 sm:w-auto sm:px-7 sm:text-sm"
+  className="group flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-8 py-3 text-sm font-bold uppercase tracking-[0.06em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] active:scale-95 sm:w-auto"
 >
 
   <span className="truncate">
     Join MR WOW
   </span>
 
-  <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
+  <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
 </Link>
 
                 {/* Secondary */}
              <Link
   href="/onedaypass"
-  className="flex h-12 w-full items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] px-4 text-[11px] font-bold uppercase tracking-[0.1em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 sm:h-14 sm:w-auto sm:px-7 sm:text-sm"
+  className="flex min-h-12 w-full items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] px-8 py-3 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 active:scale-95 sm:w-auto"
 >
   Get 1-Day Pass
 </Link>
@@ -169,7 +172,7 @@ const Hero = () => {
             >
 
               {/* Glass Card */}
-              <div className="absolute right-0 top-1/2 z-20 w-[160px] -translate-y-1/2 rounded-[1.8rem] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-2xl">
+              <div className="absolute right-4 top-1/2 z-20 w-[168px] max-w-full -translate-y-1/2 rounded-[1.8rem] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-2xl">
 
                 {/* Item */}
                 <div className="flex flex-col items-center border-b border-white/10 pb-5 text-center">
@@ -178,11 +181,11 @@ const Hero = () => {
                     <Users className="h-5 w-5 text-yellow-400" />
                   </div>
 
-                  <h3 className="mt-3 text-2xl font-black text-white">
+                  <h3 className="glow-yellow-text mt-3 text-2xl font-bold text-white">
                     500+
                   </h3>
 
-                  <p className="mt-1 text-[8px] uppercase tracking-[0.22em] text-gray-400">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400">
                     Active Members
                   </p>
                 </div>
@@ -194,11 +197,11 @@ const Hero = () => {
                     <HeartPulse className="h-5 w-5 text-yellow-400" />
                   </div>
 
-                  <h3 className="mt-3 text-2xl font-black text-white">
+                  <h3 className="glow-yellow-text mt-3 text-2xl font-bold text-white">
                     3K+
                   </h3>
 
-                  <p className="mt-1 text-[8px] uppercase tracking-[0.22em] text-gray-400">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400">
                     Transformations
                   </p>
                 </div>
@@ -210,11 +213,11 @@ const Hero = () => {
                     <ShieldCheck className="h-5 w-5 text-yellow-400" />
                   </div>
 
-                  <h3 className="mt-3 text-lg font-black text-white">
+                  <h3 className="mt-3 text-2xl font-bold text-white">
                     PRO GYM
                   </h3>
 
-                  <p className="mt-1 text-[8px] uppercase tracking-[0.22em] text-gray-400">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400">
                     Elite Training
                   </p>
                 </div>

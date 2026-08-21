@@ -57,11 +57,11 @@ const AboutSection = () => {
 
             <div>
 
-              <p className="text-[10px] uppercase tracking-[0.28em] text-gray-400 sm:text-sm">
+              <p className="text-xs uppercase tracking-widest text-yellow-400">
                 About Us
               </p>
 
-              <h2 className="mt-2 text-4xl font-black uppercase leading-none text-yellow-400 sm:text-5xl lg:text-6xl">
+              <h2 className="mt-2 text-3xl font-bold uppercase leading-none text-yellow-400 sm:text-4xl lg:text-4xl">
                 WHO WE ARE
               </h2>
             </div>
@@ -158,13 +158,13 @@ const AboutSection = () => {
           >
 
             {/* Intro */}
-            <p className="text-sm leading-relaxed text-gray-300 sm:text-base lg:text-lg">
+            <p className="text-sm leading-relaxed text-gray-300 lg:text-base">
               At MR WOW FITNESS, we’re passionate about empowering people
               to transform their bodies, mindset, and lifestyle through
               premium fitness experiences and elite training programs.
             </p>
 
-            <p className="mt-5 text-sm leading-relaxed text-gray-400 sm:mt-6 sm:text-base lg:text-lg">
+            <p className="mt-5 text-sm leading-relaxed text-gray-300 sm:mt-6 lg:text-base">
               Our gym combines modern equipment, certified trainers,
               high-energy workouts, and a motivating atmosphere designed
               to help you push beyond your limits and unlock your best version.
@@ -173,11 +173,11 @@ const AboutSection = () => {
             {/* Mission */}
             <div className="mt-8 sm:mt-10">
 
-              <h3 className="text-2xl font-black uppercase text-yellow-400 sm:text-3xl">
+              <h3 className="text-xl font-semibold uppercase text-yellow-400 lg:text-2xl">
                 Our Mission
               </h3>
 
-              <p className="mt-4 text-sm leading-relaxed text-gray-400 sm:mt-5 sm:text-base lg:text-lg">
+              <p className="mt-4 text-sm leading-relaxed text-gray-300 sm:mt-5 lg:text-base">
                 Our mission is simple — to inspire discipline,
                 confidence, strength, and consistency through world-class
                 fitness coaching and a premium workout environment.
@@ -231,7 +231,7 @@ const AboutSection = () => {
             {/* Button */}
             <Link
               href="/about"
-              className="group mt-8 inline-flex items-center gap-3 rounded-full bg-yellow-400 px-7 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(250,204,21,0.4)] sm:mt-10 sm:px-8 sm:text-sm"
+              className="group mt-8 flex h-12 w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-7 text-[11px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(250,204,21,0.4)] active:scale-95 sm:mt-10 sm:h-auto sm:w-auto sm:px-8 sm:py-4 sm:text-sm"
             >
 
               Read More

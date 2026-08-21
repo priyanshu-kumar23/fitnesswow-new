@@ -73,7 +73,7 @@ export default function PricingPage() {
           </div>
 
           {/* Heading */}
-          <h1 className="mt-8 text-5xl font-black uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[80px]">
+          <h1 className="mt-8 text-3xl font-black uppercase leading-[1.05] sm:text-4xl md:text-5xl lg:text-7xl">
 
             MEMBERSHIP
             <br />
@@ -104,11 +104,11 @@ export default function PricingPage() {
           {/* Heading */}
           <div className="text-center">
 
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-yellow-400">
+            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
               FLEXIBLE PRICING
             </p>
 
-            <h2 className="mt-3 text-3xl font-black uppercase sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-bold uppercase sm:text-4xl lg:text-4xl">
               INVEST IN YOUR FITNESS
             </h2>
           </div>
@@ -134,14 +134,14 @@ export default function PricingPage() {
                 )}
 
                 {/* Plan Name */}
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-yellow-400">
+                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                   {plan.title}
                 </p>
 
                 {/* Price */}
                 <div className="mt-6 flex items-end">
 
-                  <h2 className="text-5xl font-black text-white">
+                  <h2 className="text-4xl font-black text-white sm:text-5xl">
                     {plan.price}
                   </h2>
 
@@ -175,7 +175,7 @@ export default function PricingPage() {
 
                 {/* Button */}
                 <button
-                  className={`mt-10 flex h-12 w-full items-center justify-center rounded-2xl text-xs font-black uppercase tracking-[0.15em] transition-all duration-300 sm:h-14 sm:text-sm ${
+                  className={`mt-10 flex h-12 w-full items-center justify-center rounded-2xl text-xs font-black uppercase tracking-[0.15em] transition-all duration-300 active:scale-95 sm:h-14 sm:text-sm ${
                     plan.popular
                       ? "bg-yellow-400 text-black hover:shadow-[0_0_40px_rgba(250,204,21,0.35)]"
                       : "border border-white/10 bg-white/[0.05] text-white hover:border-yellow-400/30 hover:bg-yellow-400/10"

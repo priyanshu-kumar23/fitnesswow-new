@@ -13,6 +13,7 @@ import {
   Mail,
   MapPin,
   Sparkles,
+  ChevronDown,
 } from "lucide-react";
 
 export default function JoinNowPage() {
@@ -83,13 +84,13 @@ export default function JoinNowPage() {
 
               <Sparkles className="h-4 w-4 text-yellow-400" />
 
-              <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-yellow-300 sm:text-xs sm:tracking-[0.32em]">
+              <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                 PREMIUM FITNESS EXPERIENCE
               </p>
             </div>
 
             {/* Heading */}
-            <h1 className="mt-6 text-[2.8rem] font-black uppercase leading-[0.92] sm:text-6xl lg:text-8xl">
+            <h1 className="mt-6 text-3xl font-black uppercase leading-[1.05] sm:text-4xl md:text-5xl lg:text-7xl">
 
               EVOLVE
 
@@ -122,11 +123,11 @@ export default function JoinNowPage() {
                   className="rounded-2xl border border-white/10 bg-white/[0.04] p-3 text-center backdrop-blur-2xl sm:p-4"
                 >
 
-                  <h3 className="text-xl font-black text-yellow-400 sm:text-3xl">
+                  <h3 className="glow-yellow-text text-2xl font-bold text-yellow-400">
                     {item.value}
                   </h3>
 
-                  <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-gray-400 sm:mt-2 sm:text-xs sm:tracking-[0.22em]">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400 sm:mt-2">
                     {item.label}
                   </p>
                 </div>
@@ -162,7 +163,7 @@ export default function JoinNowPage() {
 
                       <div>
 
-                        <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white sm:text-sm">
+                        <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-white">
                           {item.title}
                         </h3>
 
@@ -197,11 +198,11 @@ export default function JoinNowPage() {
               {/* Heading */}
               <div className="relative z-10 text-center">
 
-                <p className="text-[9px] uppercase tracking-[0.26em] text-yellow-400 sm:text-xs sm:tracking-[0.32em]">
+                <p className="text-xs uppercase tracking-widest text-yellow-400">
                   MEMBERSHIP ACCESS
                 </p>
 
-                <h2 className="mt-3 text-3xl font-black uppercase sm:text-4xl">
+                <h2 className="mt-3 text-3xl font-bold uppercase sm:text-4xl lg:text-4xl">
                   JOIN NOW
                 </h2>
 
@@ -245,7 +246,7 @@ export default function JoinNowPage() {
                       <input
                         type={field.type}
                         placeholder={field.placeholder}
-                        className="h-13 w-full rounded-2xl border border-white/10 bg-black/40 pl-11 pr-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30 focus:bg-yellow-400/[0.03] sm:h-14 sm:pl-12"
+                        className="h-12 w-full rounded-2xl border border-white/10 bg-black/40 pl-11 pr-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30 focus:bg-yellow-400/[0.03] sm:h-14 sm:pl-12"
                       />
                     </div>
                   );
@@ -255,7 +256,7 @@ export default function JoinNowPage() {
               <div className="relative">
 
   <select
-    className="h-13 w-full appearance-none rounded-2xl border border-white/10 bg-black/40 px-4 pr-12 text-sm text-gray-300 outline-none transition-all duration-300 focus:border-yellow-400/30 focus:bg-yellow-400/[0.03] sm:h-14"
+    className="h-12 w-full appearance-none rounded-2xl border border-white/10 bg-black/40 px-4 pr-12 text-sm text-gray-300 outline-none transition-all duration-300 focus:border-yellow-400/30 focus:bg-yellow-400/[0.03] sm:h-14"
   >
     <option value="">Select Membership Plan</option>
     <option>1 Month Membership</option>
@@ -266,14 +267,14 @@ export default function JoinNowPage() {
 
   {/* Custom Arrow */}
   <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-yellow-400">
-    ▼
+    <ChevronDown className="h-4 w-4" />
   </div>
 </div>
 
                 {/* Button */}
                 <button
                   type="submit"
-                  className="group mt-2 flex h-13 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 text-[11px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.35)] sm:h-14 sm:text-sm"
+                  className="group mt-2 flex h-12 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 text-[11px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.35)] active:scale-95 sm:h-14 sm:text-sm"
                 >
 
                   START NOW
