@@ -1,290 +1,356 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { useState, type FormEvent, type ChangeEvent, type ReactNode } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
-  Dumbbell,
-  Trophy,
-  ShieldCheck,
-  Clock3,
   User,
   Phone,
   Mail,
+  Calendar,
   MapPin,
-  Sparkles,
+  CreditCard,
+  MessageCircle,
+  Target,
   ChevronDown,
+  Loader2,
+  CheckCircle,
+  Shield,
+  Clock,
+  Check,
+  ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
 
+type FormState = {
+  name: string;
+  phone: string;
+  email: string;
+  age: string;
+  city: string;
+  plan: string;
+  source: string;
+  goal: string;
+};
+
+const initialForm: FormState = {
+  name: "",
+  phone: "",
+  email: "",
+  age: "",
+  city: "",
+  plan: "",
+  source: "",
+  goal: "",
+};
+
+type Errors = Partial<Record<"name" | "phone" | "email", string>>;
+
+function inputClass(hasError: boolean, extra = "") {
+  return `w-full rounded-xl border bg-zinc-900 py-3 pl-10 pr-4 text-sm text-white placeholder:text-gray-600 outline-none transition-all duration-200 ${
+    hasError
+      ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500/30"
+      : "border-zinc-800 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400/30"
+  } ${extra}`;
+}
+
+function Field({
+  label,
+  icon: Icon,
+  optional,
+  error,
+  children,
+}: {
+  label: string;
+  icon: LucideIcon;
+  optional?: boolean;
+  error?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="mb-4">
+      <label className="mb-1.5 block text-[11px] uppercase tracking-wider text-gray-500">
+        {label}
+        {optional && (
+          <span className="ml-1 text-[9px] normal-case tracking-normal text-gray-600">
+            (optional)
+          </span>
+        )}
+      </label>
+      <div className="relative">
+        <Icon className="pointer-events-none absolute left-3.5 top-3.5 h-4 w-4 text-gray-500" />
+        {children}
+      </div>
+      {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+    </div>
+  );
+}
+
 export default function JoinNowPage() {
-  const features = [
-    {
-      icon: Dumbbell,
-      title: "Elite Equipment",
-      desc: "Imported premium machines",
-    },
-    {
-      icon: Trophy,
-      title: "Transformation",
-      desc: "Result-driven fitness plans",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Certified Trainers",
-      desc: "Professional coaching support",
-    },
-    {
-      icon: Clock3,
-      title: "Flexible Timings",
-      desc: "Workout anytime you want",
-    },
-  ];
+  const [form, setForm] = useState<FormState>(initialForm);
+  const [errors, setErrors] = useState<Errors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const update =
+    (key: keyof FormState) =>
+    (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+      setForm((prev) => ({ ...prev, [key]: e.target.value }));
+    };
+
+  const validate = (): boolean => {
+    const next: Errors = {};
+
+    if (!form.name.trim()) next.name = "Full name is required";
+
+    const digits = form.phone.replace(/\D/g, "");
+    if (!form.phone.trim()) next.phone = "Phone number is required";
+    else if (digits.length !== 10) next.phone = "Enter a valid 10-digit phone number";
+
+    if (!form.email.trim()) next.email = "Email address is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      next.email = "Enter a valid email address";
+
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      setSubmitted(true);
+    }, 1500);
+  };
 
   return (
-    <main className="relative overflow-hidden bg-black text-white">
+    <main className="relative min-h-screen overflow-hidden bg-black text-white">
 
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0">
-
-        {/* Background Image */}
-        <Image
-          src="/bg.jpg"
-          alt="MR WOW FITNESS"
-          fill
-          priority
-          className="object-cover object-center opacity-20"
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 0%, rgba(245,197,24,0.06) 0%, transparent 60%)",
+          }}
         />
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/80" />
-
-        {/* Glow */}
-        <div className="absolute left-[-120px] top-20 h-[260px] w-[260px] rounded-full bg-yellow-400/10 blur-[120px] sm:h-[350px] sm:w-[350px]" />
-
-        <div className="absolute bottom-0 right-[-120px] h-[260px] w-[260px] rounded-full bg-orange-500/10 blur-[120px] sm:h-[350px] sm:w-[350px]" />
-
-        {/* Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
-      {/* ================= MAIN ================= */}
-      <section className="relative z-10 px-4 pb-16 pt-28 sm:px-6 sm:pb-20 lg:px-10 lg:pb-28 lg:pt-36">
+      {/* ================= FORM CARD ================= */}
+      <section className="relative z-10 flex min-h-screen items-center justify-center px-4 py-28 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full max-w-lg rounded-3xl border border-white/[0.08] bg-zinc-950 p-6 shadow-2xl shadow-black sm:p-8"
+        >
+          <AnimatePresence mode="wait">
+            {submitted ? (
+              /* ================= SUCCESS STATE ================= */
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center py-8 text-center"
+              >
+                <CheckCircle className="h-12 w-12 text-yellow-400" />
 
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+                <h2 className="mt-5 text-xl font-black uppercase text-white">
+                  ENQUIRY SENT!
+                </h2>
 
-          {/* ================= LEFT ================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 70 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
+                <p className="mt-2 max-w-xs text-sm text-gray-400">
+                  We&apos;ve received your details and will contact you
+                  within 24 hours.
+                </p>
 
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-2xl sm:gap-3 sm:px-5">
-
-              <Sparkles className="h-4 w-4 text-yellow-400" />
-
-              <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
-                PREMIUM FITNESS EXPERIENCE
-              </p>
-            </div>
-
-            {/* Heading */}
-            <h1 className="mt-6 text-3xl font-black uppercase leading-[1.05] sm:text-4xl md:text-5xl lg:text-7xl">
-
-              EVOLVE
-
-              <span className="mt-2 block bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                STRONGER
-              </span>
-
-              <span className="mt-1 block text-white/90">
-                EVERY DAY
-              </span>
-            </h1>
-
-            {/* Description */}
-            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-gray-300 sm:text-base lg:text-lg">
-              Experience luxury fitness with elite trainers, premium
-              equipment, transformation programs, and an atmosphere
-              built to unlock your strongest version.
-            </p>
-
-            {/* Stats */}
-            <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
-
-              {[
-                { value: "5K+", label: "Members" },
-                { value: "12+", label: "Trainers" },
-                { value: "24/7", label: "Support" },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] p-3 text-center backdrop-blur-2xl sm:p-4"
+                <Link
+                  href="/"
+                  className="mt-8 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white/10"
                 >
-
-                  <h3 className="glow-yellow-text text-2xl font-bold text-yellow-400">
-                    {item.value}
-                  </h3>
-
-                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400 sm:mt-2">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Features */}
-            <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
-
-              {features.map((item, index) => {
-                const Icon = item.icon;
-
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: index * 0.12,
-                    }}
-                    className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.03] p-4 backdrop-blur-2xl transition-all duration-500 hover:border-yellow-400/20 hover:bg-yellow-400/[0.05] sm:p-5"
-                  >
-
-                    {/* Glow */}
-                    <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-yellow-400/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                    <div className="relative z-10 flex items-start gap-3 sm:gap-4">
-
-                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-yellow-400/10 sm:h-12 sm:w-12">
-
-                        <Icon className="h-5 w-5 text-yellow-400" />
-                      </div>
-
-                      <div>
-
-                        <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-white">
-                          {item.title}
-                        </h3>
-
-                        <p className="mt-1 text-[11px] leading-relaxed text-gray-400 sm:mt-2 sm:text-xs">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* ================= FORM ================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 70 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="relative"
-          >
-
-            {/* Glow */}
-            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-r from-yellow-400/20 to-orange-500/20 blur-3xl" />
-
-            {/* Card */}
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.05] p-5 backdrop-blur-3xl sm:rounded-[2.5rem] sm:p-8 lg:p-10">
-
-              {/* Glow */}
-              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-yellow-400/10 blur-3xl sm:h-40 sm:w-40" />
-
-              {/* Heading */}
-              <div className="relative z-10 text-center">
-
-                <p className="text-xs uppercase tracking-widest text-yellow-400">
+                  Back to Home
+                </Link>
+              </motion.div>
+            ) : (
+              /* ================= FORM STATE ================= */
+              <motion.div
+                key="form"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Header */}
+                <p className="text-[10px] uppercase tracking-[0.25em] text-yellow-400">
                   MEMBERSHIP ACCESS
                 </p>
 
-                <h2 className="mt-3 text-3xl font-bold uppercase sm:text-4xl lg:text-4xl">
-                  JOIN NOW
-                </h2>
+                <h1 className="mt-2 text-3xl font-black uppercase leading-tight">
+                  START YOUR
+                  <br />
+                  <span className="text-yellow-400">JOURNEY</span>
+                </h1>
 
-                <p className="mx-auto mt-3 max-w-md text-xs leading-relaxed text-gray-400 sm:mt-4 sm:text-sm">
-                  Fill out the form below and start your transformation journey today.
+                <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                  No commitment. Just tell us about yourself and we&apos;ll
+                  reach out within 24 hours.
                 </p>
-              </div>
 
-              {/* Form */}
-              <form className="relative z-10 mt-7 space-y-4 sm:mt-8 sm:space-y-5">
+                <div className="mb-6 mt-4 h-[2px] w-12 bg-yellow-400" />
 
-                {[
-                  {
-                    icon: User,
-                    placeholder: "Full Name",
-                    type: "text",
-                  },
-                  {
-                    icon: Phone,
-                    placeholder: "Phone Number",
-                    type: "tel",
-                  },
-                  {
-                    icon: Mail,
-                    placeholder: "Email Address",
-                    type: "email",
-                  },
-                  {
-                    icon: MapPin,
-                    placeholder: "City",
-                    type: "text",
-                  },
-                ].map((field, index) => {
-                  const Icon = field.icon;
+                <form onSubmit={handleSubmit} noValidate>
 
-                  return (
-                    <div key={index} className="relative">
+                  <Field label="Full Name" icon={User} error={errors.name}>
+                    <input
+                      type="text"
+                      value={form.name}
+                      onChange={update("name")}
+                      placeholder="e.g. Rohit Sharma"
+                      className={inputClass(!!errors.name)}
+                    />
+                  </Field>
 
-                      <Icon className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-yellow-400 sm:h-5 sm:w-5" />
+                  <Field label="Phone Number" icon={Phone} error={errors.phone}>
+                    <input
+                      type="tel"
+                      value={form.phone}
+                      onChange={update("phone")}
+                      placeholder="e.g. 98765 43210"
+                      className={inputClass(!!errors.phone)}
+                    />
+                  </Field>
 
-                      <input
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        className="h-12 w-full rounded-2xl border border-white/10 bg-black/40 pl-11 pr-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-yellow-400/30 focus:bg-yellow-400/[0.03] sm:h-14 sm:pl-12"
-                      />
+                  <Field label="Email Address" icon={Mail} error={errors.email}>
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={update("email")}
+                      placeholder="e.g. you@example.com"
+                      className={inputClass(!!errors.email)}
+                    />
+                  </Field>
+
+                  <Field label="Age" icon={Calendar} optional>
+                    <input
+                      type="number"
+                      value={form.age}
+                      onChange={update("age")}
+                      placeholder="e.g. 25"
+                      className={inputClass(false)}
+                    />
+                  </Field>
+
+                  <Field label="City" icon={MapPin} optional>
+                    <input
+                      type="text"
+                      value={form.city}
+                      onChange={update("city")}
+                      placeholder="e.g. Greater Noida"
+                      className={inputClass(false)}
+                    />
+                  </Field>
+
+                  <Field label="Membership Plan" icon={CreditCard} optional>
+                    <div className="relative">
+                      <select
+                        value={form.plan}
+                        onChange={update("plan")}
+                        className={inputClass(false, "appearance-none pr-10")}
+                      >
+                        <option value="">Exploring options...</option>
+                        <option value="monthly">Monthly Plan</option>
+                        <option value="quarterly">Quarterly Plan (3 Months)</option>
+                        <option value="half-yearly">Half-Yearly Plan (6 Months)</option>
+                        <option value="annual">Annual Plan (Best Value)</option>
+                        <option value="personal-training">Personal Training</option>
+                        <option value="enquire">Just want to enquire</option>
+                      </select>
+                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
                     </div>
-                  );
-                })}
+                  </Field>
 
-                {/* Select */}
-              <div className="relative">
+                  <Field
+                    label="How did you hear about us?"
+                    icon={MessageCircle}
+                    optional
+                  >
+                    <div className="relative">
+                      <select
+                        value={form.source}
+                        onChange={update("source")}
+                        className={inputClass(false, "appearance-none pr-10")}
+                      >
+                        <option value="">Select an option</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="referral">Friend / Referral</option>
+                        <option value="google">Google</option>
+                        <option value="walked-in">Walked In</option>
+                        <option value="other">Other</option>
+                      </select>
+                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+                    </div>
+                  </Field>
 
-  <select
-    className="h-12 w-full appearance-none rounded-2xl border border-white/10 bg-black/40 px-4 pr-12 text-sm text-gray-300 outline-none transition-all duration-300 focus:border-yellow-400/30 focus:bg-yellow-400/[0.03] sm:h-14"
-  >
-    <option value="">Select Membership Plan</option>
-    <option>1 Month Membership</option>
-    <option>3 Months Membership</option>
-    <option>6 Months Membership</option>
-    <option>12 Months Membership</option>
-  </select>
+                  <Field label="Message / Goal" icon={Target} optional>
+                    <textarea
+                      value={form.goal}
+                      onChange={update("goal")}
+                      rows={3}
+                      placeholder="e.g. I want to lose 10kg in 3 months..."
+                      className={inputClass(false, "resize-none")}
+                    />
+                  </Field>
 
-  {/* Custom Arrow */}
-  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-yellow-400">
-    <ChevronDown className="h-4 w-4" />
-  </div>
-</div>
+                  {/* Submit */}
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-yellow-400 py-4 text-sm font-black uppercase tracking-[0.06em] text-black transition-all duration-200 hover:scale-[1.02] hover:bg-yellow-300 active:scale-95 disabled:cursor-not-allowed disabled:opacity-80 disabled:hover:scale-100"
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        SENDING...
+                      </>
+                    ) : (
+                      <>
+                        SEND ENQUIRY
+                        <ArrowRight className="h-4 w-4" />
+                      </>
+                    )}
+                  </button>
 
-                {/* Button */}
-                <button
-                  type="submit"
-                  className="group mt-2 flex h-12 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 text-[11px] font-black uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.35)] active:scale-95 sm:h-14 sm:text-sm"
-                >
+                  <p className="mt-3 text-center text-[11px] text-gray-500">
+                    We&apos;ll contact you within 24 hours. No spam, ever.
+                  </p>
 
-                  START NOW
-
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
-                </button>
-              </form>
-            </div>
-          </motion.div>
-        </div>
+                  <div className="mt-2 flex flex-wrap justify-center gap-4 text-[10px] text-gray-600">
+                    <span className="flex items-center gap-1">
+                      <Shield className="h-3 w-3" />
+                      100% Private
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      24hr Response
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Check className="h-3 w-3" />
+                      No Commitment
+                    </span>
+                  </div>
+                </form>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </section>
     </main>
   );

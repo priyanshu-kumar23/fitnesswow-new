@@ -4,8 +4,9 @@ import PricingSection from "@/components/PricingSection";
 import BMISection from "@/components/BMISection";
 import AboutSection from "@/components/AboutSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import WorkoutSchedule from "@/components/WorkoutSchedule";
+import MembershipSection from "@/components/MembershipSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import ContactSection from "@/components/ContactSection";
 import FloatingButtons from "@/components/FloatingButtons";
 
 export default function HomePage() {
@@ -14,10 +15,11 @@ export default function HomePage() {
       <Hero />
       <AboutSection />
       <WhyChooseUs />
-      <WorkoutSchedule />
       <ProgramsSection />
       <PricingSection />
+      <MembershipSection />
       <TestimonialsSection />
+      <ContactSection />
 
       {/* Floating WhatsApp + Scroll Top */}
       <FloatingButtons />

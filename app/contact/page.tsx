@@ -62,11 +62,11 @@ const ContactPage = () => {
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl">
 
               <h3 className="text-2xl font-bold text-yellow-400">
-                18H
+                18HRS
               </h3>
 
               <p className="mt-2 text-xs uppercase tracking-wider text-gray-400">
-                Open Daily
+                6AM – 12AM
               </p>
             </div>
 
@@ -222,7 +222,7 @@ const ContactPage = () => {
                     </p>
 
                     <h3 className="mt-2 break-all text-lg font-bold text-white sm:mt-3">
-                      mrwowfitness@gmail.com
+                      rahulyadav809052@gmail.com
                     </h3>
                   </div>
                 </div>
@@ -243,11 +243,11 @@ const ContactPage = () => {
                     </p>
 
                     <p className="mt-2 text-sm leading-relaxed text-gray-300 sm:mt-3 sm:text-base">
-                      Plot no-115, Sector -4,
+                      Plot No. 115, Sector 4,
                       <br />
-                      Iteda, Greater Noida,
+                      Greater Noida West,
                       <br />
-                      Uttar Pradesh 201318
+                      Uttar Pradesh, India - 201318
                     </p>
                   </div>
                 </div>

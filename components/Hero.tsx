@@ -1,33 +1,52 @@
-
-
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Dumbbell,
+  Play,
+  Users,
+  Star,
   Trophy,
+  TrendingUp,
+  Dumbbell,
   HeartPulse,
   ShieldCheck,
-  Users,
+  X,
 } from "lucide-react";
 
 const tickerItems = [
   "AI-Powered Training",
   "Premium Equipment",
   "Expert Trainers",
-  "24/7 Access",
+  "18-Hour Access",
   "Diet & Nutrition Plans",
   "Luxury Workout Spaces",
   "Transformation Programs",
 ];
 
+const stats = [
+  { icon: Users, value: "500+", label: "ACTIVE MEMBERS" },
+  { icon: TrendingUp, value: "3K+", label: "TRANSFORMATIONS" },
+  { icon: Star, value: "5★", label: "AVERAGE RATING", accent: true },
+];
+
 const Hero = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowVideo(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
   return (
     <>
       {/* ================= HERO ================= */}
-      <section className="relative h-screen overflow-hidden bg-black text-white md:min-h-screen md:h-auto">
+      <section className="noise relative min-h-screen overflow-hidden bg-black text-white">
 
         {/* ================= BACKGROUND ================= */}
         <div className="absolute inset-0">
@@ -54,23 +73,23 @@ const Hero = () => {
             />
           </div>
 
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/60 md:bg-black/15" />
-
-          {/* Mobile Bottom-Up Gradient (keeps text readable over the photo) */}
+          {/* Primary Gradient Overlay */}
           <div
-            className="absolute inset-0 md:hidden"
+            className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,1) 100%)",
+                "linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.4) 100%)",
             }}
           />
 
-          {/* Left Gradient (desktop) */}
-          <div className="absolute inset-0 hidden bg-gradient-to-r from-black via-black/55 to-black/20 md:block" />
-
-          {/* Premium Glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.16),transparent_30%)]" />
+          {/* Yellow Radial Glow Bottom-Left */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 20% 80%, rgba(245,197,24,0.08) 0%, transparent 60%)",
+            }}
+          />
 
           {/* Grid */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -85,147 +104,124 @@ const Hero = () => {
         <div className="absolute bottom-0 right-0 h-[220px] w-[220px] rounded-full bg-orange-500/10 blur-[120px] sm:h-[320px] sm:w-[320px]" />
 
         {/* ================= CONTENT ================= */}
-        <div className="relative z-10 mx-auto flex h-full min-h-screen max-w-7xl items-end px-4 pb-32 pt-28 sm:px-6 sm:pt-32 lg:h-auto lg:items-center lg:px-10 lg:pb-0 lg:pt-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-4 pb-24 pt-32 sm:px-6 lg:px-10 lg:pb-16 lg:pt-28">
 
-          <div className="grid w-full items-center gap-12 lg:grid-cols-[1fr_0.75fr]">
+          <div className="grid w-full items-center gap-12 lg:grid-cols-[3fr_2fr] lg:gap-16">
 
             {/* ================= LEFT ================= */}
             <motion.div
-              initial={{ opacity: 0, y: 70 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="flex flex-col items-center pb-4 text-center sm:items-start sm:text-left lg:pb-0"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex flex-col items-center text-center lg:items-start lg:text-left"
             >
 
-              {/* Badge */}
-              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 backdrop-blur-xl sm:gap-3 sm:border-yellow-400/20 sm:px-5 sm:py-2">
+              {/* Eyebrow */}
+              <p className="text-[10px] uppercase tracking-[0.25em] text-yellow-400">
+                <span className="mr-2 inline-block h-px w-6 align-middle bg-yellow-400" />
+                EST. 2024 &middot; ELITE FITNESS
+              </p>
 
-                <span className="pulse-dot h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
+              {/* Headline */}
+              <h1 className="mt-5 max-w-2xl text-4xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+                TRAIN HARD.
+                <br />
+                <span className="text-yellow-400">LIVE STRONGER.</span>
+              </h1>
 
-                <p className="text-[10px] tracking-[0.2em] uppercase text-yellow-400 sm:text-xs sm:tracking-widest">
-                  PREMIUM FITNESS EXPERIENCE
-                </p>
-              </div>
+              {/* Sub-headline */}
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-gray-400">
+                WHERE ELITE ATHLETES ARE MADE
+              </p>
 
-              {/* ================= HEADING ================= */}
-             <h1 className="max-w-full text-4xl font-black uppercase leading-none tracking-tight text-white sm:max-w-3xl sm:text-4xl md:text-5xl xl:text-6xl">
+              {/* Divider */}
+              <div className="my-6 h-[2px] w-16 bg-yellow-400" />
 
-  PUSH
-  <br />
-  LIMITS.
-
-  <span className="mt-2 block bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent drop-shadow-[0_0_45px_rgba(250,204,21,0.35)]">
-
-    BUILD{" "}
-
-    <br className="sm:hidden" />
-
-    <span className="hidden sm:inline">&nbsp;</span>
-
-    GREATNESS.
-  </span>
-</h1>
-
-              {/* Small Premium Line */}
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-
-                <div className="h-px w-8 bg-yellow-400" />
-
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-yellow-400 sm:text-xs sm:tracking-widest">
-                  ELITE TRANSFORMATION HUB
-                </p>
-              </div>
-
-              {/* Description */}
-              <p className="mx-auto mt-5 max-w-[280px] text-xs leading-relaxed text-gray-300 sm:max-w-md sm:text-sm lg:text-base">
-                Elite coaching, modern equipment, transformation programs,
-                and premium workout experiences crafted to unlock your
-                strongest version at MR WOW FITNESS.
+              {/* Body */}
+              <p className="max-w-lg text-sm leading-relaxed text-gray-300 lg:text-base">
+                Not just a gym — a transformation ecosystem. Premium
+                equipment, expert coaching, and a community that pushes you
+                beyond your limits every single day.
               </p>
 
               {/* ================= BUTTONS ================= */}
-              <div className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
+              <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:items-center">
 
-                {/* Main CTA */}
-              <Link
-  href="/joinnow"
-  className="shimmer group flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-8 py-4 text-sm font-black uppercase tracking-[0.06em] text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(250,204,21,0.45)] active:scale-95 sm:py-3 sm:font-bold sm:w-auto"
->
+                <Link
+                  href="/joinnow"
+                  className="shimmer group inline-flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-8 py-4 text-sm font-black uppercase tracking-[0.06em] text-black transition-all duration-200 hover:scale-105 hover:bg-yellow-300"
+                >
+                  START YOUR JOURNEY
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
 
-  <span className="truncate">
-    Join MR WOW
-  </span>
-
-  <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
-</Link>
-
-                {/* Secondary */}
-             <Link
-  href="/onedaypass"
-  className="flex min-h-12 w-full items-center justify-center rounded-2xl border border-white/20 bg-white/[0.05] px-8 py-4 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 active:scale-95 sm:border-white/10 sm:py-3 sm:w-auto"
->
-  Get 1-Day Pass
-</Link>
+                <button
+                  type="button"
+                  onClick={() => setShowVideo(true)}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur transition-all duration-300 hover:bg-white/10"
+                >
+                  <Play className="h-4 w-4 fill-current" />
+                  WATCH THE TOUR
+                </button>
               </div>
             </motion.div>
 
-            {/* ================= RIGHT SIDE ================= */}
+            {/* ================= RIGHT: STATS CARD ================= */}
             <motion.div
-              initial={{ opacity: 0, x: 80 }}
+              initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              className="relative hidden lg:block"
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+              className="relative mx-auto hidden w-full max-w-sm lg:block"
             >
 
-              {/* Glass Card */}
-              <div className="absolute right-4 top-1/2 z-20 w-[168px] max-w-full -translate-y-1/2 rounded-[1.8rem] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-2xl">
+              {/* Floating "OPEN 18 HOURS" Badge */}
+              <div className="absolute -top-3 right-6 z-20 rounded-full bg-yellow-400 px-3 py-1 text-[9px] font-black uppercase tracking-wider text-black shadow-lg">
+                OPEN 18 HOURS
+              </div>
 
-                {/* Item */}
-                <div className="flex flex-col items-center border-b border-white/10 pb-5 text-center">
+              {/* Card */}
+              <div
+                className="relative overflow-hidden rounded-3xl border border-white/10 border-t-2 border-t-yellow-400 bg-white/5 p-6 backdrop-blur-xl"
+                style={{
+                  boxShadow:
+                    "0 25px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
+                }}
+              >
+                <p className="mb-6 text-[10px] uppercase tracking-widest text-gray-500">
+                  OUR NUMBERS
+                </p>
 
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-yellow-400/10">
-                    <Users className="h-5 w-5 text-yellow-400" />
+                {stats.map((stat, index) => (
+                  <div
+                    key={stat.label}
+                    className={`relative flex items-center justify-between ${
+                      index !== stats.length - 1
+                        ? "border-b border-white/5 pb-4 mb-4"
+                        : ""
+                    }`}
+                  >
+                    <div>
+                      <h3
+                        className={`text-4xl font-black ${
+                          stat.accent ? "text-yellow-400" : "text-white"
+                        }`}
+                      >
+                        {stat.value}
+                      </h3>
+                      <p className="mt-1 text-[10px] tracking-widest text-gray-400">
+                        {stat.label}
+                      </p>
+                    </div>
+
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-yellow-400/10">
+                      <stat.icon className="h-4 w-4 text-yellow-400" />
+                    </div>
                   </div>
+                ))}
 
-                  <h3 className="glow-yellow-text mt-3 text-2xl font-bold text-white">
-                    500+
-                  </h3>
-
-                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400">
-                    Active Members
-                  </p>
-                </div>
-
-                {/* Item */}
-                <div className="flex flex-col items-center border-b border-white/10 py-5 text-center">
-
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-yellow-400/10">
-                    <HeartPulse className="h-5 w-5 text-yellow-400" />
-                  </div>
-
-                  <h3 className="glow-yellow-text mt-3 text-2xl font-bold text-white">
-                    3K+
-                  </h3>
-
-                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400">
-                    Transformations
-                  </p>
-                </div>
-
-                {/* Item */}
-                <div className="flex flex-col items-center pt-5 text-center">
-
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-yellow-400/10">
-                    <ShieldCheck className="h-5 w-5 text-yellow-400" />
-                  </div>
-
-                  <h3 className="mt-3 text-2xl font-bold text-white">
-                    PRO GYM
-                  </h3>
-
-                  <p className="mt-1 text-xs uppercase tracking-wider text-gray-400">
-                    Elite Training
-                  </p>
+                {/* Footer Pill */}
+                <div className="mt-2 inline-flex items-center rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-1 text-[10px] tracking-widest text-yellow-400">
+                  PRO GYM &middot; ELITE TRAINING
                 </div>
               </div>
             </motion.div>
@@ -251,11 +247,67 @@ const Hero = () => {
             <div className="h-8 w-px flex-shrink-0 bg-white/10" />
 
             <div className="flex flex-1 flex-col items-center">
-              <span className="text-sm font-bold text-yellow-400">Pro</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400">Gym</span>
+              <span className="text-sm font-bold text-yellow-400">5★</span>
+              <span className="text-[9px] uppercase tracking-wider text-gray-400">Rating</span>
             </div>
           </div>
         </div>
+
+        {/* ================= SCROLL INDICATOR ================= */}
+        <div className="absolute inset-x-0 bottom-16 z-20 hidden flex-col items-center gap-2 lg:flex">
+          <span className="text-[9px] uppercase tracking-widest text-gray-500">
+            SCROLL DOWN
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-gray-500"
+            >
+              <path d="M12 5v14M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </motion.div>
+        </div>
+
+        {/* ================= VIDEO MODAL ================= */}
+        {showVideo && (
+          <div
+            className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            onClick={() => setShowVideo(false)}
+          >
+            <div
+              className="relative mx-4 w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setShowVideo(false)}
+                aria-label="Close video"
+                className="absolute right-3 top-3 z-10 rounded-full bg-black/60 p-2 text-white transition-colors hover:bg-black"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {/* Video */}
+              <video
+                src="/tour.mp4"
+                controls
+                autoPlay
+                className="aspect-video w-full bg-black"
+                onEnded={() => setShowVideo(false)}
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ================= MOVING INFO BAR ================= */}

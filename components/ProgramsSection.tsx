@@ -1,125 +1,40 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  Dumbbell,
-  HeartPulse,
-  Users,
-  Flame,
-  Trophy,
-  Bike,
-  Target,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const services = [
+const programs = [
   {
     title: "Strength Training",
     tag: "STRENGTH",
-    icon: Dumbbell,
-    description:
-      "Build muscle mass, improve endurance, and increase strength using advanced free weights and resistance training.",
-    features: [
-      "Dumbbells & Barbells",
-      "Bench Press",
-      "Cable Machines",
-    ],
+    description: "Build raw power with free weights and resistance training.",
+    image: "/gym.jpg",
   },
-
   {
     title: "Cardio Training",
     tag: "CARDIO",
-    icon: HeartPulse,
-    description:
-      "Improve stamina, burn calories, and boost heart health with high-performance cardio programs.",
-    features: [
-      "Treadmills",
-      "Cycling Stations",
-      "Rowing Machines",
-    ],
+    description: "Torch calories and build endurance on premium cardio decks.",
+    image: "/treadmill.webp",
   },
-
   {
-    title: "Personal Training",
+    title: "Personal Coaching",
     tag: "1-ON-1",
-    icon: Users,
-    description:
-      "Get one-on-one coaching, customized workouts, nutrition plans, and expert guidance.",
-    features: [
-      "Custom Plans",
-      "Diet Guidance",
-      "Progress Tracking",
-    ],
+    description: "Custom programs and one-on-one guidance from elite coaches.",
+    image: "/about1.webp",
   },
-
   {
     title: "CrossFit & Functional",
     tag: "CROSSFIT",
-    icon: Flame,
-    description:
-      "Enhance agility, flexibility, mobility, and core strength with functional workouts.",
-    features: [
-      "Battle Ropes",
-      "TRX Training",
-      "Circuit Workouts",
-    ],
-  },
-
-  {
-    title: "Weight Loss Programs",
-    tag: "FAT LOSS",
-    icon: Target,
-    description:
-      "Scientifically designed transformation programs for fat loss and body toning.",
-    features: [
-      "Fat Burn",
-      "Transformation",
-      "Nutrition Support",
-    ],
-  },
-
-  {
-    title: "Sports Training",
-    tag: "SPORTS",
-    icon: Trophy,
-    description:
-      "Specialized athletic training programs to improve speed, endurance, and performance.",
-    features: [
-      "Agility",
-      "Explosive Power",
-      "Endurance",
-    ],
-  },
-
-  {
-    title: "Group Fitness",
-    tag: "GROUP",
-    icon: Users,
-    description:
-      "Experience high-energy group classes designed for motivation and maximum results.",
-    features: [
-      "HIIT Workouts",
-      "Core Training",
-      "Fun Sessions",
-    ],
-  },
-
-  {
-    title: "Endurance & Cycling",
-    tag: "ENDURANCE",
-    icon: Bike,
-    description:
-      "Boost cardiovascular fitness with cycling and endurance-focused routines.",
-    features: [
-      "Cycling",
-      "Cardio Sessions",
-      "Stamina Building",
-    ],
+    description: "Functional workouts that build agility, mobility, and grit.",
+    image: "/gym1.webp",
   },
 ];
 
 const ProgramsSection = () => {
   return (
-    <section className="relative overflow-hidden bg-black py-24 text-white">
+    <section className="relative overflow-hidden bg-black py-20 text-white lg:py-28">
 
       {/* ================= BG EFFECTS ================= */}
       <div className="absolute left-[-120px] top-20 h-[320px] w-[320px] rounded-full bg-yellow-400/10 blur-[120px]" />
@@ -133,133 +48,98 @@ const ProgramsSection = () => {
 
         {/* ================= HEADING ================= */}
         <motion.div
-          initial={{ opacity: 0, y: 70 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="mx-auto mb-14 max-w-4xl text-center sm:mb-16"
         >
 
-          {/* Badge */}
-          <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-xl sm:px-5">
-
-            <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
-
-            <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
-              OUR SERVICES
-            </p>
-          </div>
+          {/* Eyebrow */}
+          <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
+            OUR PROGRAMS
+          </p>
 
           {/* Title */}
-          <h2 className="text-3xl font-bold uppercase leading-[1] text-white sm:text-4xl lg:text-4xl">
-
-            Elite Fitness
-
-            <span className="mt-2 block bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              Programs
-            </span>
+          <h2 className="mt-3 text-3xl font-black uppercase leading-[1.1] text-white sm:text-4xl lg:text-5xl">
+            TRAIN LIKE A
+            <br />
+            <span className="text-yellow-400">CHAMPION</span>
           </h2>
 
-          {/* Description */}
-          <p className="mx-auto mt-5 max-w-3xl px-2 text-sm leading-relaxed text-gray-300 lg:text-base">
-            At MR WOW FITNESS, we provide premium training programs
-            designed to help you transform your body, build strength,
-            and unlock peak performance.
+          {/* Subtitle */}
+          <p className="mx-auto mt-5 max-w-2xl px-2 text-sm leading-relaxed text-gray-300 lg:text-base">
+            Professionally designed training programs for muscle growth,
+            endurance, recovery, and complete body transformation.
           </p>
         </motion.div>
 
-        {/* ================= MOBILE HORIZONTAL / DESKTOP GRID ================= */}
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 scrollbar-hide sm:grid sm:overflow-visible md:grid-cols-2 xl:grid-cols-4">
+        {/* ================= CARDS ================= */}
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 scrollbar-hide sm:grid sm:overflow-visible sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
 
-          {services.map((service, index) => {
-            const Icon = service.icon;
+          {programs.map((program, index) => (
+            <motion.div
+              key={program.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.08 }}
+              viewport={{ once: true }}
+              className="group relative aspect-[3/4] w-[75vw] shrink-0 snap-center overflow-hidden rounded-2xl sm:w-auto sm:shrink lg:h-96 lg:aspect-auto"
+            >
 
-            return (
-              <motion.div
-                key={service.title}
+              {/* Background Image */}
+              <Image
+                src={program.image}
+                alt={program.title}
+                fill
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 75vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              />
 
-                initial={{
-                  opacity: 0,
-                  x: -60,
-                }}
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10 transition-all duration-300 ease-out group-hover:from-black/95 group-hover:via-black/60" />
 
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
-
-                transition={{
-                  duration: 0.7,
-                  delay: index * 0.08,
-                }}
-
-                viewport={{ once: true }}
-
-                className="group relative w-[75vw] shrink-0 snap-center overflow-hidden rounded-[1.8rem] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.03] p-5 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/30 hover:shadow-[0_0_45px_rgba(250,204,21,0.08)] active:scale-[0.98] sm:w-auto sm:min-w-0 sm:shrink sm:rounded-[2rem] sm:p-7"
-              >
-
-                {/* Premium Top Border */}
-                <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                {/* Glow Effects */}
-                <>
-                  {/* Main Glow */}
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.18),transparent_55%)]" />
-
-                  {/* Corner Glow */}
-                  <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-yellow-400/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:h-40 sm:w-40" />
-
-                  {/* Mobile Ambient Glow (decorative "photo" backdrop) */}
-                  <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.22),transparent_70%)] sm:hidden" />
-                </>
-
-                {/* Mobile Category Pill */}
-                <span className="mb-4 inline-block rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-yellow-400 sm:hidden">
-                  {service.tag}
+              {/* Top Badge */}
+              <div className="absolute left-4 top-4 z-10">
+                <span className="inline-block rounded-full bg-yellow-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-black">
+                  {program.tag}
                 </span>
+              </div>
 
-                {/* Icon */}
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-[1.2rem] border border-yellow-400/20 bg-gradient-to-br from-yellow-400/20 to-orange-500/10 shadow-[0_0_30px_rgba(250,204,21,0.08)] transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_45px_rgba(250,204,21,0.18)] sm:h-16 sm:w-16 sm:rounded-[1.4rem]">
+              {/* Bottom Content */}
+              <div className="absolute inset-x-0 bottom-0 z-10 p-5">
+                <h3 className="text-xl font-black text-white">
+                  {program.title}
+                </h3>
 
-                  <Icon className="h-6 w-6 text-yellow-400 sm:h-8 sm:w-8" />
-                </div>
+                <p className="mt-2 text-xs leading-relaxed text-gray-300">
+                  {program.description}
+                </p>
 
-                {/* Content */}
-                <div className="relative z-10 mt-6 sm:mt-7">
-
-                  <h3 className="text-xl font-bold uppercase leading-snug text-white sm:text-lg">
-                    {service.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-relaxed text-gray-400">
-                    {service.description}
-                  </p>
-
-                  {/* Features */}
-                  <div className="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
-
-                    {service.features.map((feature) => (
-                      <span
-                        key={feature}
-                        className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-gray-300 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/10 hover:text-yellow-200 sm:px-3 sm:py-2 sm:text-[9px]"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom Border */}
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-500 group-hover:w-full sm:h-[3px]" />
-              </motion.div>
-            );
-          })}
+                <span className="mt-3 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-yellow-400 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100">
+                  EXPLORE
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Swipe Hint (mobile only) */}
         <p className="mt-3 text-center text-[10px] uppercase tracking-widest text-gray-500 sm:hidden">
           Swipe →
         </p>
+
+        {/* View All */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/programs"
+            className="group inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur transition-all duration-300 ease-out hover:bg-white/10"
+          >
+            VIEW ALL PROGRAMS
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </section>
   );

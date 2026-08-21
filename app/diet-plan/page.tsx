@@ -12,6 +12,7 @@ import {
   Zap,
   Dumbbell,
   Moon,
+  Flame,
   type LucideIcon,
 } from "lucide-react";
 
@@ -37,7 +38,56 @@ const mealIconMap: Record<string, LucideIcon> = {
   Bedtime: Moon,
 };
 
-/* ================= DATA ================= */
+/* ================= MEAL COLOR THEME ================= */
+const mealTheme: Record<
+  string,
+  { gradient: string; border: string; iconBg: string; text: string; badge: string }
+> = {
+  Breakfast: {
+    gradient: "from-orange-500/20 to-amber-500/10",
+    border: "border-orange-500/30",
+    iconBg: "bg-orange-500",
+    text: "text-orange-400",
+    badge: "border-orange-500/30 bg-orange-500/10 text-orange-300",
+  },
+  "Mid-Morning Snack": {
+    gradient: "from-green-500/20 to-emerald-500/10",
+    border: "border-green-500/30",
+    iconBg: "bg-green-500",
+    text: "text-green-400",
+    badge: "border-green-500/30 bg-green-500/10 text-green-300",
+  },
+  Lunch: {
+    gradient: "from-blue-500/20 to-cyan-500/10",
+    border: "border-blue-500/30",
+    iconBg: "bg-blue-500",
+    text: "text-blue-400",
+    badge: "border-blue-500/30 bg-blue-500/10 text-blue-300",
+  },
+  "Pre-Workout": {
+    gradient: "from-yellow-500/20 to-amber-400/10",
+    border: "border-yellow-500/30",
+    iconBg: "bg-yellow-500",
+    text: "text-yellow-400",
+    badge: "border-yellow-500/30 bg-yellow-500/10 text-yellow-300",
+  },
+  "Post-Workout / Dinner": {
+    gradient: "from-purple-500/20 to-violet-500/10",
+    border: "border-purple-500/30",
+    iconBg: "bg-purple-500",
+    text: "text-purple-400",
+    badge: "border-purple-500/30 bg-purple-500/10 text-purple-300",
+  },
+  Bedtime: {
+    gradient: "from-indigo-500/20 to-blue-900/20",
+    border: "border-indigo-500/30",
+    iconBg: "bg-indigo-600",
+    text: "text-indigo-400",
+    badge: "border-indigo-500/30 bg-indigo-500/10 text-indigo-300",
+  },
+};
+
+/* ================= DAY COLOR THEME ================= */
 const days = [
   "Monday",
   "Tuesday",
@@ -47,6 +97,19 @@ const days = [
   "Saturday",
 ] as const;
 
+const dayTheme: Record<
+  (typeof days)[number],
+  { abbr: string; dot: string; border: string; text: string; from: string; to: string }
+> = {
+  Monday: { abbr: "MON", dot: "bg-blue-500", border: "border-blue-500", text: "text-blue-400", from: "from-blue-600", to: "to-blue-400" },
+  Tuesday: { abbr: "TUE", dot: "bg-purple-500", border: "border-purple-500", text: "text-purple-400", from: "from-purple-600", to: "to-purple-400" },
+  Wednesday: { abbr: "WED", dot: "bg-orange-500", border: "border-orange-500", text: "text-orange-400", from: "from-orange-600", to: "to-orange-400" },
+  Thursday: { abbr: "THU", dot: "bg-green-500", border: "border-green-500", text: "text-green-400", from: "from-green-600", to: "to-green-400" },
+  Friday: { abbr: "FRI", dot: "bg-pink-500", border: "border-pink-500", text: "text-pink-400", from: "from-pink-600", to: "to-pink-400" },
+  Saturday: { abbr: "SAT", dot: "bg-red-500", border: "border-red-500", text: "text-red-400", from: "from-red-600", to: "to-red-400" },
+};
+
+/* ================= DATA ================= */
 const vegPlan: Record<(typeof days)[number], DayPlan> = {
   Monday: [
     { label: "Breakfast", time: "7:00 AM", text: "Oats with banana, almonds & whey protein shake", calories: 450 },
@@ -164,86 +227,117 @@ export default function DietPlanPage() {
   const plan = dietType === "veg" ? vegPlan : nonVegPlan;
   const meals = plan[activeDay];
   const totalCalories = meals.reduce((sum, m) => sum + m.calories, 0);
+  const theme = dayTheme[activeDay];
 
   return (
     <main className="relative overflow-hidden bg-black text-white">
 
-      {/* ================= BACKGROUND ================= */}
-      <div className="absolute inset-0">
-        <div className="absolute left-[-120px] top-20 h-[280px] w-[280px] rounded-full bg-yellow-400/10 blur-[130px] sm:h-[350px] sm:w-[350px]" />
-        <div className="absolute bottom-0 right-[-120px] h-[280px] w-[280px] rounded-full bg-orange-500/10 blur-[130px] sm:h-[350px] sm:w-[350px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
-      </div>
+      {/* ================= HERO HEADER ================= */}
+      <section className="relative overflow-hidden px-4 pb-10 pt-28 text-center sm:px-6 sm:pt-32 lg:px-10">
 
-      {/* ================= HEADER ================= */}
-      <section className="relative z-10 px-4 pb-10 pt-28 text-center sm:px-6 sm:pt-32 lg:px-10">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-black" />
 
-        <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-xl">
-          <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
-          <p className="text-xs uppercase tracking-widest text-yellow-400">
-            NUTRITION BLUEPRINT
+        {/* Diagonal Line Pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(45deg, rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 1px, transparent 1px, transparent 14px)",
+          }}
+        />
+
+        <div className="absolute left-[-120px] top-10 h-[280px] w-[280px] rounded-full bg-orange-500/10 blur-[130px] sm:h-[350px] sm:w-[350px]" />
+        <div className="absolute bottom-0 right-[-120px] h-[280px] w-[280px] rounded-full bg-yellow-400/10 blur-[130px] sm:h-[350px] sm:w-[350px]" />
+
+        <div className="relative z-10">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-xl">
+            <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
+            <p className="text-xs uppercase tracking-widest text-yellow-400">
+              NUTRITION BLUEPRINT
+            </p>
+          </div>
+
+          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-black uppercase leading-[1.05] sm:text-5xl md:text-6xl">
+            FUEL YOUR{" "}
+            <span className="gradient-underline text-yellow-400">
+              GAINS
+            </span>
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-gray-300 lg:text-base">
+            Science-backed nutrition plans crafted for maximum muscle growth
+            and fat loss.
           </p>
-        </div>
 
-        <h1 className="mx-auto mt-6 max-w-3xl text-3xl font-black uppercase leading-[1.05] sm:text-4xl md:text-5xl">
-          DIET
-          <span className="ml-2 bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
-            PLAN
-          </span>
-        </h1>
-
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-300 lg:text-base">
-          A day-by-day nutrition guide built around real bodybuilding
-          fundamentals — choose your preference and follow the plan for
-          your training days.
-        </p>
-
-        {/* ================= VEG / NON-VEG TOGGLE ================= */}
-        <div className="mx-auto mt-8 flex w-full items-center rounded-full border border-white/10 bg-white/[0.04] p-1.5 backdrop-blur-xl sm:max-w-xs">
-
-          <button
-            onClick={() => setDietType("veg")}
-            className={`flex h-11 flex-1 items-center justify-center gap-2 rounded-full text-xs font-black uppercase tracking-[0.14em] transition-all duration-300 active:scale-95 ${
-              dietType === "veg"
-                ? "bg-yellow-400 text-black shadow-[0_0_25px_rgba(250,204,21,0.45)]"
-                : "text-gray-400 hover:text-yellow-300"
+          {/* ================= VEG / NON-VEG TOGGLE ================= */}
+          <div
+            className={`relative mx-auto mt-10 grid w-full max-w-md grid-cols-2 overflow-hidden rounded-2xl border-2 bg-zinc-900 p-1.5 transition-colors duration-300 ${
+              dietType === "veg" ? "border-green-500" : "border-red-500"
             }`}
           >
-            <Leaf className="h-4 w-4" />
-            VEG
-          </button>
+            <div
+              className={`absolute inset-y-1.5 left-1.5 w-[calc(50%-6px)] rounded-xl transition-transform duration-300 ease-out ${
+                dietType === "veg"
+                  ? "translate-x-0 bg-green-500"
+                  : "translate-x-[calc(100%+6px)] bg-red-500"
+              }`}
+            />
 
-          <button
-            onClick={() => setDietType("nonveg")}
-            className={`flex h-11 flex-1 items-center justify-center gap-2 rounded-full text-xs font-black uppercase tracking-[0.14em] transition-all duration-300 active:scale-95 ${
-              dietType === "nonveg"
-                ? "bg-yellow-400 text-black shadow-[0_0_25px_rgba(250,204,21,0.45)]"
-                : "text-gray-400 hover:text-yellow-300"
-            }`}
-          >
-            <Beef className="h-4 w-4" />
-            NON-VEG
-          </button>
+            <button
+              type="button"
+              onClick={() => setDietType("veg")}
+              className={`relative z-10 flex items-center justify-center gap-2 py-4 text-sm font-black uppercase tracking-wider transition-colors duration-300 active:scale-95 ${
+                dietType === "veg" ? "text-white" : "text-gray-400"
+              }`}
+            >
+              <Leaf className="h-4 w-4" />
+              VEG
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setDietType("nonveg")}
+              className={`relative z-10 flex items-center justify-center gap-2 py-4 text-sm font-black uppercase tracking-wider transition-colors duration-300 active:scale-95 ${
+                dietType === "nonveg" ? "text-white" : "text-gray-400"
+              }`}
+            >
+              <Beef className="h-4 w-4" />
+              NON-VEG
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* ================= DAY TABS ================= */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-10">
+      {/* ================= DAY SELECTOR ================= */}
+      <section className="relative z-10 px-4 pt-8 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-5xl">
-          <div className="scrollbar-hide flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible">
-            {days.map((day) => (
-              <button
-                key={day}
-                onClick={() => setActiveDay(day)}
-                className={`flex h-11 snap-center items-center whitespace-nowrap rounded-full border px-4 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 active:scale-95 sm:px-5 ${
-                  activeDay === day
-                    ? "glow-yellow border-yellow-400 bg-yellow-400 text-black"
-                    : "border-white/20 bg-white/[0.03] text-gray-400 hover:border-yellow-400/30 hover:text-yellow-200 sm:border-white/10"
-                }`}
-              >
-                {day}
-              </button>
-            ))}
+          <div className="scrollbar-hide flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible">
+            {days.map((day) => {
+              const dTheme = dayTheme[day];
+              const isActive = activeDay === day;
+
+              return (
+                <button
+                  key={day}
+                  onClick={() => setActiveDay(day)}
+                  className={`flex min-w-[80px] shrink-0 snap-center flex-col items-center gap-2 rounded-2xl border py-3 text-center transition-all duration-300 active:scale-95 ${
+                    isActive
+                      ? `${dTheme.border} bg-white/[0.06] text-white shadow-[0_0_25px_rgba(255,255,255,0.08)]`
+                      : "border-zinc-800 bg-zinc-900 text-gray-500 hover:border-zinc-700"
+                  }`}
+                >
+                  <span
+                    className={`h-2 w-2 rounded-full ${
+                      isActive ? dTheme.dot : "bg-gray-600"
+                    }`}
+                  />
+                  <span className="text-xs font-black uppercase tracking-widest">
+                    {dTheme.abbr}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -252,12 +346,16 @@ export default function DietPlanPage() {
       <section className="relative z-10 px-4 py-10 sm:px-6 sm:py-12 lg:px-10">
         <div className="mx-auto max-w-5xl">
 
-          <div className="mb-6 flex flex-col items-center justify-between gap-3 rounded-2xl border border-yellow-400/10 bg-white/[0.03] px-5 py-4 text-center sm:flex-row sm:text-left">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white">
-              {activeDay} · {dietType === "veg" ? "Veg Plan" : "Non-Veg Plan"}
+          {/* Daily Calorie Banner */}
+          <div
+            className={`mb-6 flex flex-col items-center justify-between gap-2 rounded-2xl bg-gradient-to-r px-6 py-3 text-center sm:flex-row sm:text-left ${theme.from} ${theme.to}`}
+          >
+            <p className="text-sm font-black uppercase tracking-[0.1em] text-white">
+              {activeDay.toUpperCase()} &middot; {dietType === "veg" ? "VEG PLAN" : "NON-VEG PLAN"}
             </p>
-            <p className="glow-yellow-text text-sm font-black text-yellow-400">
-              ~{totalCalories} kcal / day
+            <p className="flex items-center gap-1.5 text-sm font-black text-white">
+              <Flame className="h-4 w-4" />
+              ~{totalCalories} KCAL / DAY
             </p>
           </div>
 
@@ -272,40 +370,49 @@ export default function DietPlanPage() {
             >
               {meals.map((meal) => {
                 const MealIcon = mealIconMap[meal.label];
+                const mTheme = mealTheme[meal.label];
+                const items = meal.text.split(" + ").map((i) => i.trim());
 
                 return (
-                <div
-                  key={meal.label}
-                  className="group relative overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 p-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30 sm:rounded-[1.6rem] sm:border-white/10 sm:bg-gradient-to-b sm:from-white/[0.06] sm:to-white/[0.02] sm:p-5"
-                >
-                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div
+                    key={meal.label}
+                    className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-b p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 ${mTheme.gradient} ${mTheme.border}`}
+                  >
 
-                  <div className="flex items-start gap-4">
-                    <div className="inline-flex flex-shrink-0 items-center justify-center rounded-lg bg-yellow-400/10 p-2">
-                      <MealIcon className="h-5 w-5 text-yellow-400" />
+                    {/* Top Row */}
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${mTheme.iconBg}`}>
+                          <MealIcon className="h-5 w-5 text-white" />
+                        </div>
+                        <h3 className="text-base font-black uppercase leading-tight text-white">
+                          {meal.label}
+                        </h3>
+                      </div>
+
+                      <span className={`shrink-0 rounded-full border px-3 py-1 text-[10px] font-black uppercase tracking-wide ${mTheme.badge}`}>
+                        {meal.calories} kcal
+                      </span>
                     </div>
 
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-lg font-bold uppercase tracking-[0.02em] text-white">
-                        {meal.label}
-                      </h3>
+                    {/* Time */}
+                    <p className={`mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] ${mTheme.text}`}>
+                      {meal.time}
+                    </p>
 
-                      <p className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-yellow-400/70">
-                        {meal.time}
-                      </p>
+                    {/* Divider */}
+                    <div className={`mt-3 mb-3 h-px w-full ${mTheme.border} border-t`} />
 
-                      <p className="mt-2 text-sm leading-relaxed text-gray-400">
-                        {meal.text}
-                      </p>
-                    </div>
+                    {/* Food Items */}
+                    <ul className="space-y-1.5">
+                      {items.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm text-white">
+                          <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${mTheme.iconBg}`} />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-
-                  <div className="mt-3 flex justify-end">
-                    <span className="rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-yellow-300">
-                      {meal.calories} kcal
-                    </span>
-                  </div>
-                </div>
                 );
               })}
             </motion.div>
@@ -315,9 +422,9 @@ export default function DietPlanPage() {
 
       {/* ================= NOTE ================= */}
       <section className="relative z-10 px-4 pb-16 sm:px-6 sm:pb-24 lg:px-10">
-        <div className="mx-auto flex max-w-5xl items-start gap-4 rounded-2xl border-l-2 border-yellow-400 bg-white/[0.03] p-5 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-5xl items-start gap-4 rounded-2xl border border-yellow-400/20 bg-yellow-400/10 p-4 backdrop-blur-xl">
           <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-400" />
-          <p className="text-sm leading-relaxed text-gray-400">
+          <p className="text-sm italic leading-relaxed text-gray-300">
             Diet plans are general guidelines based on standard bodybuilding
             nutrition principles. Consult a nutritionist for a plan
             personalized to your body, goals, and medical history.

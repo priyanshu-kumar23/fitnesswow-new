@@ -172,6 +172,54 @@ select option {
   }
 }
 
+/* ================= NOISE TEXTURE OVERLAY ================= */
+.noise {
+  position: relative;
+}
+
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ================= ANIMATED GRADIENT UNDERLINE ================= */
+@keyframes gradient-underline-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.gradient-underline {
+  position: relative;
+}
+
+.gradient-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #facc15, #fb923c, #facc15, #fb923c);
+  background-size: 200% 100%;
+  animation: gradient-underline-shift 3s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-underline::after {
+    animation: none;
+  }
+}
+
 /* ================= STAGGERED CHILD REVEAL ================= */
 .stagger-children > * {
   opacity: 0;

@@ -26,7 +26,7 @@ const AboutSection = () => {
   }, [images.length]);
 
   return (
-    <section className="relative overflow-hidden bg-black py-16 text-white sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-black py-20 text-white lg:py-28">
 
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0">
@@ -61,7 +61,7 @@ const AboutSection = () => {
                 About Us
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold uppercase leading-none text-yellow-400 sm:text-4xl lg:text-4xl">
+              <h2 className="mt-2 text-3xl font-black uppercase leading-none text-yellow-400 sm:text-4xl lg:text-5xl">
                 WHO WE ARE
               </h2>
             </div>
@@ -190,7 +190,7 @@ const AboutSection = () => {
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
 
               {[
-                "24/7 Elite Access",
+                "Open 6AM – 12AM",
                 "Certified Coaches",
                 "Luxury Workout Space",
                 "Modern Equipment",

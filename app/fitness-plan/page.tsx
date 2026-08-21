@@ -10,6 +10,8 @@ import {
   Activity,
   Target,
   Timer,
+  Moon,
+  ChevronDown,
   type LucideIcon,
 } from "lucide-react";
 
@@ -40,26 +42,61 @@ type DayPlan = {
 /* ================= LEVEL CONFIG ================= */
 const levelConfig: Record<
   Level,
-  { label: string; sets: number; rest: string; note: string }
+  {
+    label: string;
+    sets: number;
+    rest: string;
+    note: string;
+    duration: string;
+    intensity: string;
+    activeClasses: string;
+    inactiveClasses: string;
+  }
 > = {
   beginner: {
     label: "Beginner",
     sets: 3,
     rest: "60 sec",
     note: "Focus on form and controlled movement — don't chase heavy weight yet.",
+    duration: "~45 MIN",
+    intensity: "MODERATE",
+    activeClasses: "bg-green-500 text-white border-green-500",
+    inactiveClasses: "bg-transparent text-green-400 border-green-500/40 hover:border-green-500",
   },
   intermediate: {
     label: "Intermediate",
     sets: 4,
     rest: "75 sec",
     note: "Progressively increase weight while keeping full range of motion.",
+    duration: "~60 MIN",
+    intensity: "HIGH",
+    activeClasses: "bg-yellow-500 text-black border-yellow-500",
+    inactiveClasses: "bg-transparent text-yellow-400 border-yellow-500/40 hover:border-yellow-500",
   },
   advanced: {
     label: "Advanced",
     sets: 5,
     rest: "90 sec",
     note: "Push close to failure on the final set — add a drop set if recovery allows.",
+    duration: "~75 MIN",
+    intensity: "VERY HIGH",
+    activeClasses: "bg-red-500 text-white border-red-500",
+    inactiveClasses: "bg-transparent text-red-400 border-red-500/40 hover:border-red-500",
   },
+};
+
+/* ================= DAY COLOR THEME ================= */
+const dayTheme: Record<
+  string,
+  { abbr: string; muscle: string; dot: string; border: string; borderSoft: string; text: string; from: string; to: string; softGradient: string; numberText: string }
+> = {
+  Monday: { abbr: "MON", muscle: "CHEST", dot: "bg-blue-500", border: "border-blue-500", borderSoft: "border-blue-500/30", text: "text-blue-400", from: "from-blue-600", to: "to-blue-400", softGradient: "from-blue-500/10 to-blue-900/5", numberText: "text-blue-500/30" },
+  Tuesday: { abbr: "TUE", muscle: "BACK", dot: "bg-purple-500", border: "border-purple-500", borderSoft: "border-purple-500/30", text: "text-purple-400", from: "from-purple-600", to: "to-purple-400", softGradient: "from-purple-500/10 to-purple-900/5", numberText: "text-purple-500/30" },
+  Wednesday: { abbr: "WED", muscle: "SHOULDERS", dot: "bg-orange-500", border: "border-orange-500", borderSoft: "border-orange-500/30", text: "text-orange-400", from: "from-orange-600", to: "to-orange-400", softGradient: "from-orange-500/10 to-orange-900/5", numberText: "text-orange-500/30" },
+  Thursday: { abbr: "THU", muscle: "LEGS", dot: "bg-green-500", border: "border-green-500", borderSoft: "border-green-500/30", text: "text-green-400", from: "from-green-600", to: "to-green-400", softGradient: "from-green-500/10 to-green-900/5", numberText: "text-green-500/30" },
+  Friday: { abbr: "FRI", muscle: "ARMS", dot: "bg-pink-500", border: "border-pink-500", borderSoft: "border-pink-500/30", text: "text-pink-400", from: "from-pink-600", to: "to-pink-400", softGradient: "from-pink-500/10 to-pink-900/5", numberText: "text-pink-500/30" },
+  Saturday: { abbr: "SAT", muscle: "FULL BODY", dot: "bg-red-500", border: "border-red-500", borderSoft: "border-red-500/30", text: "text-red-400", from: "from-red-600", to: "to-red-400", softGradient: "from-red-500/10 to-red-900/5", numberText: "text-red-500/30" },
+  Sunday: { abbr: "SUN", muscle: "REST", dot: "bg-gray-500", border: "border-indigo-500", borderSoft: "border-indigo-500/30", text: "text-indigo-400", from: "from-zinc-700", to: "to-zinc-600", softGradient: "from-zinc-800 to-zinc-900", numberText: "text-indigo-500/30" },
 };
 
 /* ================= WEEKLY SPLIT ================= */
@@ -143,13 +180,16 @@ const activeRest = [
   "Full-body stretching / mobility work",
   "Foam rolling for tight muscle groups",
   "Optional light yoga session",
+  "Stay hydrated — aim for 3+ liters of water",
 ];
 
 const levels: Level[] = ["beginner", "intermediate", "advanced"];
+const weekDays = [...weekPlan.map((d) => d.day), "Sunday"];
 
 export default function FitnessPlanPage() {
   const [level, setLevel] = useState<Level>("beginner");
   const [activeDay, setActiveDay] = useState<string>("Monday");
+  const [openTip, setOpenTip] = useState<string | null>(null);
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
@@ -161,75 +201,107 @@ export default function FitnessPlanPage() {
   const config = levelConfig[level];
   const selectedDay = weekPlan.find((d) => d.day === activeDay);
   const isSunday = activeDay === "Sunday";
+  const theme = dayTheme[activeDay];
+
+  const toggleTip = (name: string) => {
+    setOpenTip((prev) => (prev === name ? null : name));
+  };
 
   return (
     <main className="relative overflow-hidden bg-black text-white">
 
-      {/* ================= BACKGROUND ================= */}
-      <div className="absolute inset-0">
-        <div className="absolute left-[-120px] top-20 h-[280px] w-[280px] rounded-full bg-yellow-400/10 blur-[130px] sm:h-[350px] sm:w-[350px]" />
+      {/* ================= HERO HEADER ================= */}
+      <section className="relative overflow-hidden px-4 pb-10 pt-28 text-center sm:px-6 sm:pt-32 lg:px-10">
+
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-black" />
+        <div className="absolute left-[-120px] top-10 h-[280px] w-[280px] rounded-full bg-yellow-400/10 blur-[130px] sm:h-[350px] sm:w-[350px]" />
         <div className="absolute bottom-0 right-[-120px] h-[280px] w-[280px] rounded-full bg-orange-500/10 blur-[130px] sm:h-[350px] sm:w-[350px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
-      </div>
 
-      {/* ================= HEADER ================= */}
-      <section className="relative z-10 px-4 pb-10 pt-28 text-center sm:px-6 sm:pt-32 lg:px-10">
+        {/* Decorative Giant Text */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-8 select-none text-center text-[6rem] font-black uppercase leading-none text-white/5 sm:text-[9rem] md:top-4 md:text-[12rem]"
+        >
+          TRAIN
+        </span>
 
-        <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-xl">
-          <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
-          <p className="text-xs uppercase tracking-widest text-yellow-400">
-            TRAINING BLUEPRINT
+        <div className="relative z-10">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-xl">
+            <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
+            <p className="text-xs uppercase tracking-widest text-yellow-400">
+              TRAINING BLUEPRINT
+            </p>
+          </div>
+
+          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-black uppercase leading-[1.05] sm:text-5xl md:text-6xl">
+            BUILD YOUR{" "}
+            <span className="gradient-underline text-yellow-400">
+              BEAST MODE
+            </span>
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-gray-300 lg:text-base">
+            A structured 6-day split designed for maximum strength,
+            hypertrophy and performance.
           </p>
-        </div>
 
-        <h1 className="mx-auto mt-6 max-w-3xl text-3xl font-black uppercase leading-[1.05] sm:text-4xl md:text-5xl">
-          FITNESS
-          <span className="ml-2 bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
-            PLAN
-          </span>
-        </h1>
+          {/* ================= DIFFICULTY FILTER ================= */}
+          <div className="mx-auto mt-10 flex w-full max-w-lg items-center gap-2">
+            {levels.map((lvl) => {
+              const lvlConfig = levelConfig[lvl];
+              const isActive = level === lvl;
 
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-300 lg:text-base">
-          A structured 7-day training split with a muscle-group focus for
-          every day. Pick your level to adjust sets, rest time, and
-          intensity.
-        </p>
-
-        {/* ================= LEVEL TABS ================= */}
-        <div className="mx-auto mt-8 flex w-full max-w-lg items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] p-1.5 backdrop-blur-xl">
-          {levels.map((lvl) => (
-            <button
-              key={lvl}
-              onClick={() => setLevel(lvl)}
-              className={`flex h-11 flex-1 items-center justify-center rounded-full text-[11px] font-black uppercase tracking-[0.1em] transition-all duration-300 active:scale-95 sm:text-xs ${
-                level === lvl
-                  ? "bg-yellow-400 text-black shadow-[0_0_25px_rgba(250,204,21,0.45)]"
-                  : "text-gray-400 hover:text-yellow-300"
-              }`}
-            >
-              {levelConfig[lvl].label}
-            </button>
-          ))}
+              return (
+                <button
+                  key={lvl}
+                  onClick={() => setLevel(lvl)}
+                  className={`flex h-11 flex-1 items-center justify-center rounded-full border-2 text-[11px] font-black uppercase tracking-[0.1em] transition-all duration-300 active:scale-95 sm:text-xs ${
+                    isActive ? lvlConfig.activeClasses : lvlConfig.inactiveClasses
+                  }`}
+                >
+                  {lvlConfig.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* ================= DAY TABS ================= */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-10">
+      {/* ================= DAY SELECTOR ================= */}
+      <section className="relative z-10 px-4 pt-8 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-5xl">
-          <div className="scrollbar-hide flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible">
-            {[...weekPlan.map((d) => d.day), "Sunday"].map((day) => (
-              <button
-                key={day}
-                onClick={() => setActiveDay(day)}
-                className={`flex h-11 snap-center items-center whitespace-nowrap rounded-full border px-4 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 active:scale-95 sm:px-5 ${
-                  activeDay === day
-                    ? "glow-yellow border-yellow-400 bg-yellow-400 text-black"
-                    : "border-white/20 bg-white/[0.03] text-gray-400 hover:border-yellow-400/30 hover:text-yellow-200 sm:border-white/10"
-                }`}
-              >
-                {day}
-              </button>
-            ))}
+          <div className="scrollbar-hide flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible">
+            {weekDays.map((day) => {
+              const dTheme = dayTheme[day];
+              const isActive = activeDay === day;
+              const isRestDay = day === "Sunday";
+
+              return (
+                <button
+                  key={day}
+                  onClick={() => setActiveDay(day)}
+                  className={`flex min-w-[90px] shrink-0 snap-center flex-col items-center gap-1 rounded-2xl border py-3 text-center transition-all duration-300 active:scale-95 ${
+                    isActive
+                      ? `${dTheme.border} bg-white/[0.06] text-white shadow-[0_0_25px_rgba(255,255,255,0.08)]`
+                      : isRestDay
+                        ? "border-zinc-800 bg-zinc-900 text-gray-500 hover:border-zinc-700"
+                        : "border-zinc-800 bg-zinc-900 text-gray-500 hover:border-zinc-700"
+                  }`}
+                >
+                  {isRestDay ? (
+                    <Moon className={`h-4 w-4 ${isActive ? "text-indigo-400" : "text-gray-500"}`} />
+                  ) : (
+                    <span className={`h-2 w-2 rounded-full ${isActive ? dTheme.dot : "bg-gray-600"}`} />
+                  )}
+                  <span className="text-xs font-black uppercase tracking-widest">
+                    {dTheme.abbr}
+                  </span>
+                  <span className="text-[9px] uppercase tracking-wider text-gray-500">
+                    {dTheme.muscle}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -247,22 +319,31 @@ export default function FitnessPlanPage() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="mb-6 rounded-2xl border border-yellow-400/10 bg-white/[0.03] px-5 py-4 text-center">
-                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white">
-                    Sunday · Active Rest
-                  </p>
+                {/* Rest Day Card */}
+                <div className="relative overflow-hidden rounded-[1.8rem] border border-indigo-500/20 bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 text-center sm:p-10">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.12),transparent_65%)]" />
+
+                  <div className="relative z-10">
+                    <Moon className="mx-auto h-14 w-14 text-indigo-400" />
+                    <h2 className="mt-4 text-3xl font-black uppercase text-white sm:text-4xl">
+                      REST &amp; RECOVER
+                    </h2>
+                    <p className="mt-2 text-sm uppercase tracking-[0.2em] text-gray-500">
+                      SUNDAY
+                    </p>
+                  </div>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   {activeRest.map((item) => (
                     <div
                       key={item}
-                      className="flex items-center gap-3 rounded-[1.6rem] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-5 backdrop-blur-xl"
+                      className="flex items-center gap-3 rounded-[1.6rem] border border-indigo-500/20 bg-gradient-to-b from-indigo-500/10 to-indigo-900/5 p-5 backdrop-blur-xl"
                     >
-                      <span className="inline-flex flex-shrink-0 items-center justify-center rounded-lg bg-yellow-400/10 p-2">
-                        <Activity className="h-5 w-5 text-yellow-400" />
+                      <span className="inline-flex flex-shrink-0 items-center justify-center rounded-lg bg-indigo-500/20 p-2">
+                        <Activity className="h-5 w-5 text-indigo-400" />
                       </span>
-                      <p className="text-sm leading-relaxed text-gray-400">
+                      <p className="text-sm leading-relaxed text-gray-300">
                         {item}
                       </p>
                     </div>
@@ -278,73 +359,104 @@ export default function FitnessPlanPage() {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="mb-6 flex flex-col items-center justify-between gap-3 rounded-2xl border border-yellow-400/10 bg-white/[0.03] px-5 py-4 text-center sm:flex-row sm:text-left">
-                    <p className="text-lg font-black uppercase tracking-[0.06em] text-yellow-400 sm:text-sm sm:font-semibold sm:tracking-[0.14em] sm:text-white">
-                      {selectedDay.day} · {selectedDay.focus}
+                  {/* Workout Day Header Banner */}
+                  <div
+                    className={`flex flex-col items-center justify-between gap-3 rounded-2xl bg-gradient-to-r px-6 py-4 text-center sm:flex-row sm:text-left ${theme.from} ${theme.to}`}
+                  >
+                    <p className="text-sm font-black uppercase tracking-[0.1em] text-white">
+                      {selectedDay.day.toUpperCase()} &middot; {selectedDay.focus.toUpperCase()}
                     </p>
-                    <p className="glow-yellow-text text-sm font-black text-yellow-400">
-                      {config.sets} sets · {config.rest} rest
-                    </p>
+                    <div className="flex items-center gap-4 text-xs font-black uppercase tracking-wide text-white">
+                      <span className="flex items-center gap-1.5">
+                        <Flame className="h-4 w-4" />
+                        INTENSITY: {config.intensity}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Timer className="h-4 w-4" />
+                        {config.duration}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Warm-up */}
-                  <div className="mb-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-3">
-                    <Flame className="h-4 w-4 flex-shrink-0 text-yellow-400" />
-                    <p className="text-xs text-gray-400">
-                      <span className="font-semibold text-gray-200">
-                        Warm-Up (5 min):
-                      </span>{" "}
-                      Light cardio + dynamic stretching before you start.
-                    </p>
+                  {/* Warm-up pill */}
+                  <div className="mt-4 flex justify-center sm:justify-start">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs text-gray-400">
+                      <Flame className="h-3.5 w-3.5 flex-shrink-0 text-yellow-400" />
+                      Always warm up 5-10 mins before starting
+                    </span>
                   </div>
 
-                  <div className="flex flex-col divide-y divide-white/5 md:grid md:grid-cols-2 md:gap-4 md:divide-y-0 lg:grid-cols-3">
-                    {selectedDay.exercises.map((ex) => {
+                  {/* Exercise Cards */}
+                  <div className="mt-6 flex flex-col gap-3">
+                    {selectedDay.exercises.map((ex, index) => {
                       const ExIcon = exerciseIconMap[ex.type];
+                      const isTipOpen = openTip === ex.name;
 
                       return (
-                      <div
-                        key={ex.name}
-                        className="group relative overflow-hidden py-4 transition-all duration-300 max-md:first:pt-0 md:rounded-[1.6rem] md:border md:border-white/10 md:bg-gradient-to-b md:from-white/[0.06] md:to-white/[0.02] md:p-5 md:hover:-translate-y-1 md:hover:border-yellow-400/30"
-                      >
-                        <div className="absolute inset-x-0 top-0 hidden h-[2px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block" />
+                        <div
+                          key={ex.name}
+                          className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-r p-4 transition-all duration-300 hover:-translate-y-1 sm:p-5 ${theme.softGradient} ${theme.borderSoft}`}
+                        >
+                          <div className="flex items-center gap-4 sm:gap-6">
 
-                        <div className="flex items-start gap-4">
-                          <span className="inline-flex flex-shrink-0 items-center justify-center rounded-lg bg-yellow-400/10 p-2">
-                            <ExIcon className="h-5 w-5 text-yellow-400" />
-                          </span>
-
-                          <div className="min-w-0 flex-1">
-                            <h3 className="text-lg font-bold leading-snug text-white">
-                              {ex.name}
-                            </h3>
-
-                            <span className="mt-1 inline-block text-sm font-bold text-yellow-400 md:mt-1.5 md:rounded-full md:border md:border-yellow-400/20 md:bg-yellow-400/10 md:px-3 md:py-1 md:text-[10px] md:uppercase md:tracking-[0.1em] md:text-yellow-300">
-                              {config.sets} x {ex.reps}
+                            {/* Number */}
+                            <span className={`w-12 shrink-0 text-4xl font-black sm:w-16 sm:text-6xl ${theme.numberText}`}>
+                              {String(index + 1).padStart(2, "0")}
                             </span>
+
+                            {/* Center */}
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-2">
+                                <ExIcon className={`h-4 w-4 shrink-0 ${theme.text}`} />
+                                <h3 className="truncate text-base font-black text-white">
+                                  {ex.name}
+                                </h3>
+                              </div>
+
+                              <p className="mt-1 text-xs uppercase tracking-widest text-gray-400">
+                                {selectedDay.focus}
+                              </p>
+
+                              <button
+                                type="button"
+                                onClick={() => toggleTip(ex.name)}
+                                className="mt-1.5 flex items-center gap-1 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-300"
+                              >
+                                Tip
+                                <ChevronDown
+                                  className={`h-3 w-3 transition-transform duration-200 ${isTipOpen ? "rotate-180" : ""}`}
+                                />
+                              </button>
+
+                              <AnimatePresence initial={false}>
+                                {isTipOpen && (
+                                  <motion.p
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: "auto" }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="mt-1 overflow-hidden text-xs italic leading-relaxed text-gray-500"
+                                  >
+                                    {ex.tip}
+                                  </motion.p>
+                                )}
+                              </AnimatePresence>
+                            </div>
+
+                            {/* Right: Sets x Reps block */}
+                            <div className="flex shrink-0 flex-col items-end gap-1.5">
+                              <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-blue-300">
+                                {config.sets} SETS
+                              </span>
+                              <span className="rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-yellow-300">
+                                {ex.reps} REPS
+                              </span>
+                              <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-black uppercase tracking-wide text-gray-400">
+                                {config.rest} REST
+                              </span>
+                            </div>
                           </div>
                         </div>
-
-                        {/* Set progress indicator */}
-                        <div className="mt-3 flex gap-1.5 pl-[52px] md:mt-4 md:pl-0">
-                          {Array.from({ length: config.sets }).map((_, i) => (
-                            <span
-                              key={i}
-                              className="h-1.5 flex-1 rounded-full bg-yellow-400/20"
-                            />
-                          ))}
-                        </div>
-
-                        <p className="mt-2 flex items-center gap-1.5 pl-[52px] text-xs uppercase tracking-[0.14em] text-gray-500 md:mt-3 md:pl-0">
-                          <Timer className="h-3.5 w-3.5 flex-shrink-0" />
-                          Rest {config.rest}
-                        </p>
-
-                        <p className="mt-2 flex items-start gap-1.5 pl-[52px] text-sm leading-relaxed text-gray-400 md:mt-3 md:pl-0">
-                          <Target className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-yellow-400/70" />
-                          <span>{ex.tip}</span>
-                        </p>
-                      </div>
                       );
                     })}
                   </div>
@@ -371,11 +483,46 @@ export default function FitnessPlanPage() {
         </div>
       </section>
 
+      {/* ================= WEEKLY SPLIT PROGRESS ================= */}
+      <section className="relative z-10 px-4 pb-10 sm:px-6 lg:px-10">
+        <div className="mx-auto max-w-5xl">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-yellow-400">
+            YOUR WEEKLY SPLIT
+          </p>
+
+          <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl sm:p-5">
+            {weekDays.map((day) => {
+              const dTheme = dayTheme[day];
+              const isActive = activeDay === day;
+
+              return (
+                <button
+                  key={day}
+                  onClick={() => setActiveDay(day)}
+                  className="flex items-center gap-3 text-left"
+                >
+                  <span className="w-9 shrink-0 text-[10px] font-black uppercase tracking-widest text-gray-500">
+                    {dTheme.abbr}
+                  </span>
+                  <span
+                    className={`flex h-8 flex-1 items-center rounded-full bg-gradient-to-r px-4 text-[10px] font-black uppercase tracking-wide text-white transition-all duration-300 ${dTheme.from} ${dTheme.to} ${
+                      isActive ? "opacity-100" : "opacity-50 hover:opacity-80"
+                    }`}
+                  >
+                    {dTheme.muscle}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ================= NOTE ================= */}
       <section className="relative z-10 px-4 pb-16 sm:px-6 sm:pb-24 lg:px-10">
-        <div className="mx-auto flex max-w-5xl items-start gap-4 rounded-2xl border-l-2 border-yellow-400 bg-white/[0.03] p-5 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-5xl items-start gap-4 rounded-2xl border border-yellow-400/20 bg-yellow-400/10 p-4 backdrop-blur-xl">
           <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-400" />
-          <p className="text-sm leading-relaxed text-gray-400">
+          <p className="text-sm italic leading-relaxed text-gray-300">
             Training plans are general guidelines. Warm up properly, use a
             weight you can control with good form, and consult a certified
             trainer if you&apos;re new to any of these movements.

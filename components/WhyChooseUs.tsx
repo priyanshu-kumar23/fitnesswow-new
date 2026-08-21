@@ -25,9 +25,9 @@ const features = [
   },
   {
     icon: Clock3,
-    title: "18/6 Access",
+    title: "18-Hour Access",
     description:
-      "Workout anytime with flexible gym access designed for your lifestyle.",
+      "Mon – Sat 6:00 AM – 12:00 AM (Midnight) · 18 Hours of flexible gym access.",
   },
   {
     icon: Trophy,
@@ -51,7 +51,7 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="relative overflow-hidden bg-[#050505] py-16 text-white sm:py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-[#050505] py-20 text-white lg:py-28">
 
       {/* ================= BACKGROUND GLOW ================= */}
       <div className="absolute left-[-120px] top-20 h-[260px] w-[260px] rounded-full bg-yellow-400/10 blur-[120px] sm:h-[320px] sm:w-[320px]" />
@@ -83,7 +83,7 @@ const WhyChooseUs = () => {
           </div>
 
           {/* Heading */}
-          <h2 className="mt-5 text-3xl font-bold uppercase leading-[1] text-white sm:text-4xl lg:text-4xl">
+          <h2 className="mt-5 text-3xl font-black uppercase leading-[1] text-white sm:text-4xl lg:text-5xl">
 
             THE BEST FITNESS
 

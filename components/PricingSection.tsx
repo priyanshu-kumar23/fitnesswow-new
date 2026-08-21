@@ -6,13 +6,19 @@ import {
   ArrowRight,
   BadgeCheck,
   Users,
+  Award,
+  Salad,
 } from "lucide-react";
 
-import { FaInstagram } from "react-icons/fa";
+const achievements = [
+  { icon: Award, label: "10+ Years Experience" },
+  { icon: Users, label: "500+ Members Trained" },
+  { icon: Salad, label: "Certified Nutrition Coach" },
+];
 
 const PricingSection = () => {
   return (
-    <section className="relative overflow-hidden bg-black py-16 text-white sm:py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-black py-20 text-white lg:py-28">
 
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0">
@@ -44,6 +50,14 @@ const PricingSection = () => {
 
               {/* Glow */}
               <div className="absolute left-10 top-10 h-52 w-52 rounded-full bg-yellow-400/20 blur-[120px] sm:h-64 sm:w-64" />
+
+              {/* Corner Badge */}
+              <div className="absolute left-4 top-4 z-30 sm:left-8 sm:top-8 lg:left-10 lg:top-10">
+                <div className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-black shadow-lg shadow-black/40 sm:text-xs">
+                  <span className="h-1.5 w-1.5 rounded-full bg-black" />
+                  MEET THE FOUNDER
+                </div>
+              </div>
 
               <div className="relative p-4 sm:p-6 lg:p-10">
 
@@ -101,30 +115,26 @@ const PricingSection = () => {
               className="px-4 pb-8 sm:px-8 lg:px-12 lg:pb-0"
             >
 
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 backdrop-blur-xl sm:gap-3 sm:px-5">
-
-                <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_#facc15]" />
-
-                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
-                  MEET THE FOUNDER
-                </p>
-              </div>
+              {/* Eyebrow */}
+              <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
+                THE VISION BEHIND THE GYM
+              </p>
 
               {/* Heading */}
-              <h2 className="mt-6 text-3xl font-bold uppercase leading-none sm:text-4xl lg:text-4xl">
-
-                Rahul
-
-                <span className="ml-2 bg-gradient-to-r from-yellow-200 via-yellow-400 to-orange-500 bg-clip-text text-transparent sm:ml-3">
-                  Yadav
+              <h2 className="mt-4 text-4xl font-black uppercase leading-none sm:text-5xl lg:text-5xl">
+                RAHUL
+                <span className="ml-2 text-yellow-400 sm:ml-3">
+                  YADAV
                 </span>
               </h2>
 
               {/* Sub */}
-              <p className="mt-4 text-xs uppercase tracking-widest text-yellow-400">
-                Founder Of MR WOW FITNESS
+              <p className="mt-4 text-xs uppercase tracking-widest text-gray-400">
+                Founder &amp; Head Coach &middot; MR WOW FITNESS
               </p>
+
+              {/* Divider */}
+              <div className="mt-6 h-[2px] w-16 bg-yellow-400" />
 
               {/* Description */}
               <div className="mt-6 border-l-2 border-yellow-400/70 pl-4 sm:mt-8 sm:border-l-0 sm:pl-0">
@@ -142,50 +152,21 @@ const PricingSection = () => {
                 </p>
               </div>
 
-              {/* Stats */}
-              <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
-
-                {/* Followers */}
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.04] hover:glow-yellow sm:rounded-[1.8rem] sm:p-5">
-
-                  <div className="flex items-center gap-3 sm:gap-4">
-
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-400/10 sm:h-14 sm:w-14">
-                      <FaInstagram className="h-6 w-6 text-yellow-400 sm:h-7 sm:w-7" />
+              {/* Achievement Badges */}
+              <div className="mt-8 grid grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-3">
+                {achievements.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.04]"
+                  >
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-yellow-400/10">
+                      <item.icon className="h-4 w-4 text-yellow-400" />
                     </div>
-
-                    <div>
-                      <h3 className="glow-yellow-text text-2xl font-bold text-white">
-                        44K+
-                      </h3>
-
-                      <p className="text-xs uppercase tracking-wider text-gray-400">
-                        Instagram Followers
-                      </p>
-                    </div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gray-200">
+                      {item.label}
+                    </p>
                   </div>
-                </div>
-
-                {/* Trained Clients */}
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-yellow-400/20 hover:bg-yellow-400/[0.04] hover:glow-yellow sm:rounded-[1.8rem] sm:p-5">
-
-                  <div className="flex items-center gap-3 sm:gap-4">
-
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-400/10 sm:h-14 sm:w-14">
-                      <Users className="h-6 w-6 text-yellow-400 sm:h-7 sm:w-7" />
-                    </div>
-
-                    <div>
-                      <h3 className="glow-yellow-text text-2xl font-bold text-white">
-                        500+
-                      </h3>
-
-                      <p className="text-xs uppercase tracking-wider text-gray-400">
-                        Trained Members
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Quote */}

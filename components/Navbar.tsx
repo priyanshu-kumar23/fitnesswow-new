@@ -67,15 +67,16 @@ const Navbar = () => {
   };
 
   return (
+    <>
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.7 }}
-      className="fixed left-0 top-0 z-[9999] w-full px-0 py-0 sm:px-4 sm:py-3"
+      className="fixed left-3 right-3 top-3 z-[9999] rounded-2xl border border-white/10 bg-black/80 shadow-lg shadow-black/50 backdrop-blur-xl sm:left-0 sm:right-0 sm:top-0 sm:rounded-none sm:border-x-0 sm:border-t-0 sm:border-b sm:border-yellow-400/10 sm:bg-black/65 sm:shadow-none sm:backdrop-blur-2xl"
     >
 
       {/* ================= NAVBAR CONTAINER ================= */}
-      <div className="relative mx-auto max-w-7xl overflow-visible rounded-none sm:rounded-2xl">
+      <div className="relative mx-auto max-w-7xl overflow-visible">
 
         {/* ================= MOBILE SPARK ================= */}
         <div className="absolute inset-x-0 top-0 hidden h-[2px] overflow-hidden rounded-t-2xl sm:block xl:hidden">
@@ -94,7 +95,7 @@ const Navbar = () => {
         </div>
 
         {/* ================= MAIN NAVBAR ================= */}
-        <div className="relative rounded-none border-0 border-b border-white/10 bg-black/80 backdrop-blur-xl sm:rounded-2xl sm:border sm:border-yellow-400/10 sm:bg-black/65 sm:backdrop-blur-2xl">
+        <div className="relative rounded-2xl sm:rounded-none">
 
           {/* Glow */}
           <div className="absolute left-0 top-0 hidden h-full w-32 bg-yellow-400/5 blur-3xl sm:block" />
@@ -237,18 +238,29 @@ const Navbar = () => {
           {/* Bottom Glow */}
           <div className="absolute bottom-0 left-0 hidden h-[1px] w-full bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent sm:block" />
         </div>
+      </div>
+    </motion.header>
 
-        {/* ================= MOBILE MENU ================= */}
-        <AnimatePresence>
+    {/*
+      ================= MOBILE MENU =================
+      Rendered as a SIBLING of motion.header, not a descendant.
+      framer-motion applies an inline `transform` to the header for its
+      y-animation, and a `transform` on an ancestor creates a new containing
+      block for descendant `position: fixed` elements — so a fixed overlay
+      nested inside the header would be confined to the header's own small
+      box instead of the viewport, collapsing to near-zero height (this was
+      the menu-not-opening bug). Keeping it outside fixes that.
+    */}
+    <AnimatePresence>
 
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-0 top-[70px] z-[9998] bg-black/95 backdrop-blur-2xl sm:top-[88px] xl:hidden"
-            >
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="fixed inset-0 top-[86px] z-[9998] bg-black/95 backdrop-blur-2xl sm:top-[88px] xl:hidden"
+        >
 
               {/* Scrollable Content */}
               <div className="h-full overflow-y-auto px-5 py-6">
@@ -369,8 +381,7 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-    </motion.header>
+    </>
   );
 };
 

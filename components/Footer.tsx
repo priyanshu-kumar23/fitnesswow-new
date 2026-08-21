@@ -7,21 +7,102 @@ import {
   Phone,
   Mail,
   Clock3,
-  ArrowUpRight,
+  ChevronRight,
+  MessageCircle,
+  ExternalLink,
 } from "lucide-react";
 
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
+
+const MAPS_EMBED_SRC =
+  "https://maps.google.com/maps?q=Mr+Wow+Fitness+Plot+115+Sector+4+Greater+Noida+West+Uttar+Pradesh+201318&output=embed&z=16";
+
+const MAPS_SHARE_URL = "https://maps.app.goo.gl/MiZy4S8Kn9L4jKan8";
+
+const mobileQuickLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Programs", href: "/programs" },
+  { name: "Membership", href: "/pricing" },
+];
+
+const mobileExploreLinks = [
+  { name: "Diet Plan", href: "/diet-plan" },
+  { name: "Fitness Plan", href: "/fitness-plan" },
+  { name: "Testimonials", href: "/testimonials" },
+  { name: "Contact", href: "/contact" },
+];
+
+const desktopNavigateLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Programs", href: "/programs" },
+  { name: "Membership", href: "/pricing" },
+  { name: "Contact", href: "/contact" },
+];
+
+const desktopExploreLinks = [
+  { name: "Diet Plan", href: "/diet-plan" },
+  { name: "Fitness Plan", href: "/fitness-plan" },
+  { name: "Testimonials", href: "/testimonials" },
+  { name: "Join Now", href: "/joinnow" },
+];
+
+function SocialIcons({ size = "h-9 w-9" }: { size?: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <a
+        href="https://www.instagram.com/mr.wowfitness?igsh=ZDJ1c3M0b2c4Z3Ns"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        className={`group flex ${size} items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 text-gray-400 transition-all duration-300 hover:border-yellow-400 hover:text-yellow-400`}
+      >
+        <FaInstagram className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+      </a>
+
+      <a
+        href="#"
+        aria-label="YouTube"
+        className={`group flex ${size} items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 text-gray-400 transition-all duration-300 hover:border-yellow-400 hover:text-yellow-400`}
+      >
+        <FaYoutube className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+      </a>
+
+      <a
+        href="https://wa.me/919354545001"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        className={`group flex ${size} items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 text-gray-400 transition-all duration-300 hover:border-yellow-400 hover:text-yellow-400`}
+      >
+        <MessageCircle className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+      </a>
+    </div>
+  );
+}
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-black text-white">
+    <footer className="noise relative overflow-hidden bg-zinc-950 text-white">
+
+      {/* ================= TOP ACCENT ================= */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
 
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0">
 
-        {/* Glow */}
-        <div className="absolute left-[-120px] top-0 h-[320px] w-[320px] rounded-full bg-yellow-400/10 blur-[120px]" />
+        {/* Top-Center Radial Glow */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 0%, rgba(245,197,24,0.04) 0%, transparent 50%)",
+          }}
+        />
 
+        {/* Corner Glows */}
+        <div className="absolute left-[-120px] top-0 h-[320px] w-[320px] rounded-full bg-yellow-400/10 blur-[120px]" />
         <div className="absolute bottom-0 right-[-120px] h-[320px] w-[320px] rounded-full bg-orange-500/10 blur-[120px]" />
 
         {/* Grid */}
@@ -30,237 +111,286 @@ const Footer = () => {
 
       <div className="relative z-10">
 
-        {/* ================= TOP ================= */}
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-10 text-center sm:px-8 sm:py-16 lg:grid-cols-[1.2fr_1fr_1fr_1.2fr] lg:gap-12 lg:px-10 lg:text-left">
+        {/* ================= MOBILE FOOTER ================= */}
+        <div className="px-5 py-8 md:hidden">
 
-          {/* ================= BRAND ================= */}
-          <div className="flex flex-col items-center lg:items-start">
+          {/* Brand Block */}
+          <div className="flex flex-col items-center text-center">
 
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-flex items-center gap-2">
               <Image
                 src="/logo.png"
                 alt="MR WOW FITNESS"
-                width={170}
-                height={170}
-                className="w-[140px] sm:w-[170px]"
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-lg object-cover"
               />
+              <span className="text-sm font-black uppercase tracking-wider text-white">
+                MR WOW FITNESS
+              </span>
             </Link>
 
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-gray-400 sm:text-base">
-              Transform your body, elevate your confidence, and unlock your
-              strongest version with premium workouts, expert trainers, and
-              high-energy fitness programs.
+            <p className="mt-1 text-xs text-gray-400">
+              Train Hard. Live Stronger.
             </p>
 
-            {/* Social */}
-            <div className="mt-7 flex items-center justify-center gap-4 lg:justify-start">
+            <div className="mt-4">
+              <SocialIcons size="h-9 w-9" />
+            </div>
+          </div>
 
-              {/* Instagram */}
-              <a
-                href="https://www.instagram.com/mr.wowfitness?igsh=ZDJ1c3M0b2c4Z3Ns"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-pink-500/40 hover:bg-pink-500/10"
-              >
-                <FaInstagram className="h-5 w-5 text-pink-400 transition-transform duration-300 group-hover:scale-110" />
-              </a>
+          <div className="my-4 border-t border-white/8" />
 
-              {/* Phone */}
+          {/* Links Grid */}
+          <div className="grid grid-cols-2 gap-4 text-center">
+            <div>
+              <h3 className="mb-2 text-[10px] uppercase tracking-widest text-yellow-400">
+                Quick Links
+              </h3>
+              <div className="flex flex-col">
+                {mobileQuickLinks.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="py-1 text-xs leading-7 text-gray-400 transition-colors hover:text-yellow-400"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="mb-2 text-[10px] uppercase tracking-widest text-yellow-400">
+                Explore
+              </h3>
+              <div className="flex flex-col">
+                {mobileExploreLinks.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="py-1 text-xs leading-7 text-gray-400 transition-colors hover:text-yellow-400"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="my-4 border-t border-white/8" />
+
+          {/* Contact Info */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="mx-auto flex max-w-xs items-start gap-2 text-left">
+              <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+              <p className="text-xs text-gray-400">
+                Plot 115, Sec-4, Greater Noida West - 201318
+              </p>
+            </div>
+
+            <div className="mx-auto flex max-w-xs items-start gap-2 text-left">
+              <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
               <a
                 href="tel:+919354545001"
-                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30 hover:bg-yellow-400/10"
+                className="text-xs text-gray-400 transition-colors hover:text-yellow-400"
               >
-                <Phone className="h-5 w-5 text-yellow-400" />
+                +91 93545 45001
               </a>
+            </div>
 
-              {/* Mail */}
+            <div className="mx-auto flex max-w-xs items-start gap-2 text-left">
+              <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
               <a
-                href="mailto:mrwowfitness@gmail.com"
-                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30 hover:bg-yellow-400/10"
+                href="mailto:rahulyadav809052@gmail.com"
+                className="text-xs text-gray-400 transition-colors hover:text-yellow-400"
               >
-                <Mail className="h-5 w-5 text-yellow-400" />
+                rahulyadav809052@gmail.com
               </a>
             </div>
-          </div>
 
-          {/* ================= QUICK LINKS ================= */}
-          <div>
-
-            <h3 className="text-xl font-semibold uppercase lg:text-2xl">
-              Quick Links
-            </h3>
-
-            <div className="mt-6 grid grid-cols-2 justify-items-center gap-x-4 gap-y-4 lg:flex lg:flex-col lg:justify-items-start lg:gap-4">
-
-              {[
-                { name: "Home", href: "/" },
-                { name: "About", href: "/about" },
-                { name: "Programs", href: "/programs" },
-                { name: "Diet Plan", href: "/diet-plan" },
-                { name: "Fitness Plan", href: "/fitness-plan" },
-                { name: "Pricing", href: "/pricing" },
-                { name: "Contact", href: "/contact" },
-              ].map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="group flex items-center gap-2 text-sm text-gray-400 transition-all duration-300 hover:text-yellow-400 sm:text-base"
-                >
-                  <ArrowUpRight className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-
-                  {item.name}
-                </Link>
-              ))}
+            <div className="mx-auto flex max-w-xs items-start gap-2 text-left">
+              <Clock3 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+              <p className="text-xs text-gray-400">
+                Mon – Sat &middot; 6AM – 12AM
+              </p>
             </div>
           </div>
+        </div>
 
-          {/* ================= SERVICES ================= */}
-          <div>
+        {/* ================= DESKTOP FOOTER ================= */}
+        <div className="hidden md:block">
 
-            <h3 className="text-xl font-semibold uppercase lg:text-2xl">
-              Our Services
-            </h3>
+          <div className="mx-auto grid max-w-7xl gap-10 px-8 py-14 lg:grid-cols-[2fr_1fr_1fr_1.2fr] lg:gap-8 lg:px-10">
 
-            <div className="mt-6 flex flex-col items-center gap-4 lg:items-start">
+            {/* ================= BRAND ================= */}
+            <div>
+              <Link href="/" className="inline-flex items-center gap-3">
+                <Image
+                  src="/logo.png"
+                  alt="MR WOW FITNESS"
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 rounded-xl object-cover"
+                />
+                <span className="text-xl font-black uppercase tracking-wide text-white">
+                  MR WOW FITNESS
+                </span>
+              </Link>
 
-              {[
-                "Strength Training",
-                "Personal Training",
-                "Fat Loss Programs",
-                "Muscle Building",
-                "Cardio Workouts",
-                "Functional Training",
-                "Diet Guidance",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 text-sm text-gray-400 sm:text-base"
-                >
-                  <span className="h-2 w-2 flex-shrink-0 rounded-full bg-yellow-400" />
+              <p className="mt-4 text-xs font-semibold uppercase tracking-widest text-yellow-400">
+                Where Champions Are Built
+              </p>
 
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
+              <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-gray-500">
+                Premium gym in Greater Noida West with elite coaching, modern
+                equipment, and a transformation-first community.
+              </p>
 
-          {/* ================= CONTACT ================= */}
-          <div>
-
-            <h3 className="text-xl font-semibold uppercase lg:text-2xl">
-              Contact Info
-            </h3>
-
-            <div className="mt-6 space-y-6 lg:space-y-5">
-
-              {/* Address */}
-              <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-yellow-400/20 bg-yellow-400/10">
-                  <MapPin className="h-5 w-5 text-yellow-400" />
-                </div>
-
-                <div>
-                  <p className="text-sm font-semibold text-white">
-                    Address
-                  </p>
-
-                  <p className="mt-2 text-sm leading-relaxed text-gray-400">
-                    Plot No-115, Sector-4,
-                    <br />
-                    Iteda, Greater Noida,
-                    <br />
-                    Uttar Pradesh 201318
-                  </p>
-                </div>
+              <div className="mt-4">
+                <SocialIcons size="h-9 w-9" />
               </div>
+            </div>
 
-              {/* Phone */}
-              <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            {/* ================= NAVIGATE ================= */}
+            <div>
+              <h3 className="mb-4 text-[10px] uppercase tracking-widest text-yellow-400">
+                Navigate
+              </h3>
 
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-yellow-400/20 bg-yellow-400/10">
-                  <Phone className="h-5 w-5 text-yellow-400" />
+              <div className="flex flex-col gap-3">
+                {desktopNavigateLinks.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="group flex items-center gap-1 text-sm text-gray-400 transition-all duration-200 hover:translate-x-1 hover:text-white"
+                  >
+                    {item.name}
+                    <ChevronRight className="h-3 w-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* ================= EXPLORE ================= */}
+            <div>
+              <h3 className="mb-4 text-[10px] uppercase tracking-widest text-yellow-400">
+                Explore
+              </h3>
+
+              <div className="flex flex-col gap-3">
+                {desktopExploreLinks.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="group flex items-center gap-1 text-sm text-gray-400 transition-all duration-200 hover:translate-x-1 hover:text-white"
+                  >
+                    {item.name}
+                    <ChevronRight className="h-3 w-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* ================= VISIT US ================= */}
+            <div>
+              <h3 className="mb-4 text-[10px] uppercase tracking-widest text-yellow-400">
+                Visit Us
+              </h3>
+
+              <div className="flex flex-col gap-3">
+                <div className="flex items-start gap-2">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-yellow-400" />
+                  <p className="text-xs leading-relaxed text-gray-400">
+                    Plot 115, Sec-4, Greater Noida West
+                    <br />
+                    UP, India - 201318
+                  </p>
                 </div>
 
-                <div>
-                  <p className="text-sm font-semibold text-white">
-                    Phone
+                <div className="flex items-start gap-2">
+                  <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-yellow-400" />
+                  <p className="text-xs leading-relaxed text-gray-400">
+                    Mon–Sun: 6:00 AM – 12:00 AM
                   </p>
+                </div>
 
+                <div className="flex items-start gap-2">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-yellow-400" />
+                  <a
+                    href="mailto:rahulyadav809052@gmail.com"
+                    className="text-xs leading-relaxed text-gray-400 transition-colors hover:text-yellow-400"
+                  >
+                    rahulyadav809052@gmail.com
+                  </a>
+                </div>
+
+                <div className="flex items-start gap-2">
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-yellow-400" />
                   <a
                     href="tel:+919354545001"
-                    className="mt-2 block text-sm text-gray-400 transition-colors hover:text-yellow-400"
+                    className="text-xs leading-relaxed text-gray-400 transition-colors hover:text-yellow-400"
                   >
                     +91 93545 45001
                   </a>
                 </div>
               </div>
-
-              {/* Timing */}
-              <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-yellow-400/20 bg-yellow-400/10">
-                  <Clock3 className="h-5 w-5 text-yellow-400" />
-                </div>
-
-                <div>
-                  <p className="text-sm font-semibold text-white">
-                    Working Hours
-                  </p>
-
-                  <p className="mt-2 text-sm text-gray-400">
-                    Open 18/6 Hours
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* ================= FOOTER MAP ================= */}
-        <div className="px-5 pb-10 sm:px-8 lg:px-10">
+        {/* ================= MAP (shared, both breakpoints) ================= */}
+        <div className="px-5 pt-2 sm:px-8 lg:px-10">
+          <div className="mx-auto max-w-7xl">
 
-          <div className="overflow-hidden rounded-[28px] border border-white/10 shadow-[0_0_40px_rgba(250,204,21,0.06)]">
+            <div className="flex items-center justify-center gap-2 pb-3">
+              <MapPin className="h-3.5 w-3.5 text-yellow-400" />
+              <p className="text-[10px] uppercase tracking-widest text-yellow-400">
+                Our Location
+              </p>
+            </div>
 
-            <iframe
-              src="https://www.google.com/maps?q=28.6004816,77.4425365&z=17&output=embed"
-              width="100%"
-              height="260"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              className="border-0 grayscale-[0.15]"
-            ></iframe>
+            <div className="overflow-hidden rounded-2xl border border-white/8">
+              <iframe
+                src={MAPS_EMBED_SRC}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-[180px] w-full border-0 opacity-75 transition-opacity duration-300 hover:opacity-100 sm:h-[220px]"
+              />
+            </div>
 
+            <a
+              href={MAPS_SHARE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 flex items-center justify-center gap-1 text-xs text-yellow-400 transition-colors hover:text-yellow-300"
+            >
+              <ExternalLink className="h-3 w-3" />
+              View on Google Maps
+            </a>
           </div>
         </div>
 
-        {/* ================= BOTTOM ================= */}
-        <div className="border-t border-white/10">
+        {/* ================= BOTTOM BAR (shared, both breakpoints) ================= */}
+        <div className="mt-8 border-t border-white/8 pt-4">
+          <div className="mx-auto flex max-w-7xl flex-col items-center gap-2 px-5 pb-6 text-center sm:flex-row sm:justify-between sm:px-8 sm:text-left lg:px-10">
 
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-6 text-center sm:px-8 md:flex-row lg:px-10">
-
-            <p className="text-sm text-gray-500">
-              © 2026 MR WOW FITNESS. All rights reserved.
+            <p className="text-[11px] text-gray-600">
+              &copy; 2026 MR WOW FITNESS &middot; All Rights Reserved
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-6">
-
-              <Link
-                href="/"
-                className="text-sm text-gray-500 transition-colors hover:text-yellow-400"
+            <p className="text-[11px] text-gray-600">
+              Crafted with passion by{" "}
+              <a
+                href="https://velotixtech.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-yellow-400 transition-colors hover:text-yellow-300"
               >
-                Privacy Policy
-              </Link>
-
-              <Link
-                href="/"
-                className="text-sm text-gray-500 transition-colors hover:text-yellow-400"
-              >
-                Terms & Conditions
-              </Link>
-
-            </div>
+                Velotix Tech
+              </a>
+            </p>
           </div>
         </div>
       </div>

@@ -69,7 +69,7 @@ const TestimonialsSection = () => {
             </div>
 
             {/* Heading */}
-            <h2 className="mt-6 text-3xl font-bold uppercase leading-[1] sm:text-4xl lg:text-4xl">
+            <h2 className="mt-6 text-3xl font-black uppercase leading-[1] sm:text-4xl lg:text-5xl">
 
               REAL RESULTS,
 
@@ -143,14 +143,20 @@ const TestimonialsSection = () => {
 
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
-                    <div>
-                      <h3 className="text-lg font-bold text-white">
-                        {testimonial.name}
-                      </h3>
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-yellow-400/20 bg-yellow-400/10 text-sm font-black text-yellow-400">
+                        {testimonial.name.split(" ").map((n) => n[0]).join("")}
+                      </div>
 
-                      <p className="mt-1 text-sm text-gray-400">
-                        {testimonial.location}
-                      </p>
+                      <div>
+                        <h3 className="text-lg font-bold text-white">
+                          {testimonial.name}
+                        </h3>
+
+                        <p className="mt-1 text-sm text-gray-400">
+                          {testimonial.location}
+                        </p>
+                      </div>
                     </div>
 
                     <div className="w-fit rounded-full border border-yellow-400/10 bg-yellow-400/10 px-4 py-2">
@@ -199,7 +205,7 @@ const TestimonialsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mt-6 text-3xl font-bold uppercase leading-[1] sm:mt-7 sm:text-4xl lg:text-4xl"
+            className="mt-6 text-3xl font-black uppercase leading-[1] sm:mt-7 sm:text-4xl lg:text-5xl"
           >
             BUILD YOUR
             <span className="block">
